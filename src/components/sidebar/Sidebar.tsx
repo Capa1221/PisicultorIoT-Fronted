@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className={`bg-primary-900 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
+        className={`bg-secondary-900/10 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
           showMenu ? "left-0" : "-left-full"
         }`}
       >
@@ -24,13 +24,13 @@ const Sidebar = () => {
             src="https://img.freepik.com/foto-gratis/anciano-sonriente-gafas_23-2148740051.jpg"
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
           />
-          <h1 className="text-xl text-white font-bold">Jorge Luis Trejo</h1>
-          <p className="bg-primary-100 py-2 px-4 rounded-full text-white">
+          <h1 className="text-xl text-black font-bold">Jorge Luis Trejo</h1>
+          <p className="bg-primary-100 py-2 px-4 rounded-full text-black">
             Pro level
           </p>
         </div>
         {/* Nav */}
-        <div className="bg-primary-300 p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll flex flex-col justify-between gap-8">
+        <div className="bg-primary p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll flex flex-col justify-between gap-8">
           <nav className="flex flex-col gap-8">
             <a
               href="#"
