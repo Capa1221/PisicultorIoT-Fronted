@@ -1,8 +1,5 @@
-import React from "react";
 // Icons
 import {
-  RiDoubleQuotesL,
-  RiDoubleQuotesR,
   RiFacebookLine,
   RiInstagramLine,
   RiTwitterLine,

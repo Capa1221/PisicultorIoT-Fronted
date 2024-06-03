@@ -1,6 +1,5 @@
-import React from "react";
 // Icons
-import { RiMailFill, RiSmartphoneFill, RiMacFill, RiDatabase2Fill, RiBarChart2Fill } from "react-icons/ri";
+import { RiDatabase2Fill, RiBarChart2Fill } from "react-icons/ri";
 
 export const Applicationform = () => {
   return (

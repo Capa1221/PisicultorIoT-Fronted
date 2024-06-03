@@ -1,12 +1,3 @@
-import React from "react";
-// Icons
-import {
-  RiCheckboxBlankCircleFill,
-  RiInstagramLine,
-  RiFacebookLine,
-  RiTwitterLine,
-  RiGithubLine,
-} from "react-icons/ri";
 
 export const Footer = () => {
   return (
