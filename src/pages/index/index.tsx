@@ -1,3 +1,4 @@
+import { Characteristics } from '../../components/characteristics/Characteristics'
 import { Header } from '../../components/header/Header'
 import { Hero } from '../../components/hero/Hero'
 import { Technologies } from '../../components/technologies/Technologies'
@@ -8,6 +9,7 @@ export const Index  =() => {
       <Header />
       <Hero />
       <Technologies />
+      <Characteristics />
       
     </div>
   )
