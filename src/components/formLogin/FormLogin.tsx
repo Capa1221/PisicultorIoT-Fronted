@@ -57,7 +57,7 @@ export const FormLogin = () => {
             <span className="text-gray-500">
               ¿No tienes cuenta?{" "}
               <a
-                href="#"
+                href="/"
                 className="text-gray-900 hover:underline transition-all"
               >
                 Regresar

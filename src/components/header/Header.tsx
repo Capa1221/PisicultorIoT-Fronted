@@ -46,10 +46,10 @@ export const Header = () => {
       </NavbarContent>
       <NavbarContent justify="end"  className="hidden lg:flex sm:flex">
         <NavbarItem >
-          <Link href="#">Login</Link>
+          <Link href="/Iniciar-Sesion">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
+          <Button as={Link} color="warning" href="/Iniciar-Sesion" variant="flat">
             Sign Up
           </Button>
         </NavbarItem>
