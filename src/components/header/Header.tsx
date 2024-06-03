@@ -1,45 +1,81 @@
-import React, { useState } from "react";
-// Icons
-import {
-  RiCheckboxBlankCircleFill,
-  RiMenu3Fill,
-  RiCloseLine,
-} from "react-icons/ri";
+import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 
 export const Header = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
+
   return (
-    <header className="flex items-center justify-between xl:justify-start w-full py-4 px-8 h-[10vh] z-50">
-      <div className="xl:w-1/6 text-center -mt-4">
-        <a href="#" className="text-2xl font-bold relative p-1 bg-white">
-          Power<span className="text-primary text-5xl">.</span>{" "}
-          <RiCheckboxBlankCircleFill className="absolute -left-3 -bottom-3 text-primary -z-10" />
-        </a>
-      </div>
-      <nav
-        className={`fixed bg-white w-[80%] md:w-[40%] xl:w-full h-full ${
-          showMenu ? "left-0" : "-left-full"
-        } top-0 xl:static flex-1 flex flex-col xl:flex-row items-center justify-center gap-10 transition-all duration-500 z-50`}
-      >
-        <a href="#home" className="">
-          Home
-        </a>
-        <a href="#aboutUs" className="">
-          About Us
-        </a>
-        <a href="#services" className="">
-          Services
-        </a>
-        <a href="#aboutUs" className="">
-          Products
-        </a>
-      </nav>
-      <button
-        onClick={() => setShowMenu(!showMenu)}
-        className="xl:hidden text-2xl p-2"
-      >
-        {showMenu ? <RiCloseLine /> : <RiMenu3Fill />}
-      </button>
-    </header>
+    <Navbar disableAnimation isBordered className="bg-primary text-white">
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle />
+      </NavbarContent>
+
+      <NavbarContent className="sm:hidden pr-3" justify="center">
+        <NavbarBrand>
+
+          <p className="font-bold text-inherit">ACME</p>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarBrand>
+          
+          <p className="font-bold text-inherit">ACME</p>
+        </NavbarBrand>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Features
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="#" aria-current="page" color="warning">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} color="warning" href="#" variant="flat">
+            Sign Up
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              className="w-full"
+              color={
+                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
-};
+}

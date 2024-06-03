@@ -1,15 +1,10 @@
-import React from 'react'
+import { Header } from '../../components/header/Header'
 
-export const index  =() => {
+export const Index  =() => {
   return (
     <div>
       <Header />
-      <Hero />
-      <Technologies />
-      <Characteristics />
-      <Developers />
-      <Applicationform />
-      <Footer />
+     
     </div>
   )
 }
