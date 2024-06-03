@@ -1,11 +1,11 @@
 import './App.css'
-import { Index } from './pages/index'
+import { Login } from './pages/login/Login'
 
 function App() {
 
   return (
     <>
-      <Index/>
+      <Login/>
     </>
   )
 }
