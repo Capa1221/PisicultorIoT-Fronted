@@ -1,17 +1,14 @@
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import imagenSistema from '../../assets/54705961_transparen.png';
 
 export const Header = () => {
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    "Inicio",
+    "Tecnologías",
+    "Características",
+    "Desarrolladores",
+    "Formulario de Solicitud (o Formulario de Inscripción)",
+    "Iniciar Sesión",
   ];
 
   return (
@@ -22,8 +19,7 @@ export const Header = () => {
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-
-          <p className="font-bold text-inherit">ACME</p>
+        <img src={imagenSistema} alt="Logo del sistema" className="h-[10rem] w-auto" />
         </NavbarBrand>
       </NavbarContent>
 
@@ -48,9 +44,8 @@ export const Header = () => {
           </Link>
         </NavbarItem>
       </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
+      <NavbarContent justify="end"  className="hidden lg:flex sm:flex">
+        <NavbarItem >
           <Link href="#">Login</Link>
         </NavbarItem>
         <NavbarItem>
