@@ -26,7 +26,7 @@ const Sidebar = () => {
           />
           <h1 className="text-xl text-black font-bold">Jorge Luis Trejo</h1>
           <p className="bg-primary-100 py-2 px-4 rounded-full text-black">
-            Pro level
+            Usuario
           </p>
         </div>
         {/* Nav */}
@@ -42,13 +42,13 @@ const Sidebar = () => {
               href="#"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
-              <RiFileCopyLine /> Projects
+              <RiFileCopyLine /> Hiberna...
             </a>
             <a
               href="#"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
-              <RiWalletLine /> Invoices
+              <RiWalletLine /> Usuarios
             </a>
             <a
               href="#"
