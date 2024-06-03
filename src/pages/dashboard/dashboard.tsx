@@ -1,5 +1,5 @@
 // Icons
-import { RiLineChartLine, RiHashtag } from "react-icons/ri";
+import { RiLineChartLine } from "react-icons/ri";
 import { HeaderDashboard } from "../../components/header/HeaderDashboard";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { Button } from "@nextui-org/react";

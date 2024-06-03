@@ -1,6 +1,3 @@
-import React from "react";
-// Icons
-import { RiSearch2Line } from "react-icons/ri";
 
 export const HeaderDashboard = () => {
   return (
