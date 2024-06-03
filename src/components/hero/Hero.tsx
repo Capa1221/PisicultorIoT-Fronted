@@ -1,8 +1,6 @@
 import heroImage from '../../assets/AgricultorIoT.jpeg';
 import {
   RiCheckboxBlankCircleFill,
-  RiPlayFill,
-  RiStarFill,
 } from "react-icons/ri";
 
 export const Hero = () => {
