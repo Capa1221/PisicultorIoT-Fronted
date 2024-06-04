@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // Icons
 import {
   RiHome3Line,
@@ -32,30 +33,34 @@ const Sidebar = () => {
         {/* Nav */}
         <div className="bg-primary p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll flex flex-col justify-between gap-8">
           <nav className="flex flex-col gap-8">
-            <a
-              href="#"
+            <Link
+              to="/dashboard/home"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              onClick={() => setShowMenu(false)}
             >
               <RiHome3Line /> Home
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/dashboard/hibernaderos"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              onClick={() => setShowMenu(false)}
             >
-              <RiFileCopyLine /> Hiberna...
-            </a>
-            <a
-              href="#"
+              <RiFileCopyLine /> Hibernaderos
+            </Link>
+            <Link
+              to="/dashboard/usuarios"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              onClick={() => setShowMenu(false)}
             >
               <RiWalletLine /> Usuarios
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/dashboard/reports"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              onClick={() => setShowMenu(false)}
             >
               <RiPieChartLine /> Reports
-            </a>
+            </Link>
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl">
             <p className="text-gray-400">Having troubles?</p>

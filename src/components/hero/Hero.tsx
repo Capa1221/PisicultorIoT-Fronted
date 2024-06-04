@@ -9,7 +9,7 @@ export const Hero = () => {
       {/* Information */}
       <div className="md:col-span-5 flex items-center justify-center p-8 xl:p-16">
         <div className="flex flex-col gap-8">
-          <h1 className="text-4xl xl:text-7xl font-bold xl:leading-[7.5rem]">
+          <h1 className="text-3xl xl:text-5xl font-bold xl:leading-[7.5rem]">
           Sistema de información para agricultura de precisión
             <span className="text-primary py-2 px-6 border-8 border-primary relative inline-block">
             Agricultor IOT

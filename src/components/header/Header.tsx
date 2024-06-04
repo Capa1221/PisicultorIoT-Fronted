@@ -1,5 +1,15 @@
-import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import imagenSistema from '../../assets/54705961_transparen.png';
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
+import imagenSistema from "../../assets/54705961_transparen.png";
 
 export const Header = () => {
   const menuItems = [
@@ -7,7 +17,7 @@ export const Header = () => {
     "Tecnologías",
     "Características",
     "Desarrolladores",
-    "Formulario de Solicitud (o Formulario de Inscripción)",
+    "Formulario de Solicitud",
     "Iniciar Sesión",
   ];
 
@@ -19,38 +29,41 @@ export const Header = () => {
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-        <img src={imagenSistema} alt="Logo del sistema" className="h-[10rem] w-auto" />
+          <img
+            src={imagenSistema}
+            alt="Logo del sistema"
+            className="h-[10rem] w-auto"
+          />
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
-          
-          <p className="font-bold text-inherit">ACME</p>
+          <img
+            src={imagenSistema}
+            alt="Logo del sistema"
+            className="h-[10rem] w-auto"
+          />
         </NavbarBrand>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page" color="warning">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+        {menuItems.slice(1, -1).map((item, index) => (
+          <NavbarItem key={index}>
+            <Link href="#" aria-current="page" className="text-white hover:text-blue-500">
+              {item}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
-      <NavbarContent justify="end"  className="hidden lg:flex sm:flex">
-        <NavbarItem >
-          <Link href="/Iniciar-Sesion">Login</Link>
-        </NavbarItem>
+      
+      <NavbarContent justify="end" className="hidden lg:flex sm:flex">
         <NavbarItem>
-          <Button as={Link} color="warning" href="/Iniciar-Sesion" variant="flat">
-            Sign Up
+          <Button
+            as={Link}
+            color="success"
+            href="/Iniciar-Sesion"
+            variant="bordered"
+            className="text-white hover:text-blue-300"
+          >
+            {menuItems[menuItems.length - 1]}
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -60,9 +73,7 @@ export const Header = () => {
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               className="w-full"
-              color={
-                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
+              color="foreground"
               href="#"
               size="lg"
             >
@@ -73,4 +84,4 @@ export const Header = () => {
       </NavbarMenu>
     </Navbar>
   );
-}
+};
