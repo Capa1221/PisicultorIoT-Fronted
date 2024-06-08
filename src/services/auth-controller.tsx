@@ -1,18 +1,32 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 
-const API_URL = 'http://179.1.133.13/apiOrion/auth/login';
+const API_URL = "http://179.1.133.13/apiOrion/auth";
 
-interface LoginResponse {
-  token: string; 
-  user: {
-    id: string;
-    email: string;
-  };
+export const postLogin = async (usuario: string, clave: string) => {
+  try {
+    const response = await axios.post(API_URL+'/login', {
+      usuario,
+      clave,
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+interface RegisterData {
+  id: string;
+  usuario: string;
+  nombres: string;
+  email: string;
+  clave: string;
 }
 
-export const postLogin = async (usuario: string, clave: string): Promise<AxiosResponse<LoginResponse>> => {
-  return axios.post<LoginResponse>(API_URL, {
-    usuario,
-    clave
-  });
+interface RegisterResponse {
+  bearer: string;
+}
+
+export const postRegister = async (registerData: RegisterData): Promise<AxiosResponse<RegisterResponse>> => {
+  return axios.post<RegisterResponse>(API_URL+'/register', registerData);
 };
+
