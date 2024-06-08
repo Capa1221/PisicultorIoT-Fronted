@@ -5,6 +5,7 @@ import { Index } from './pages/index';
 import { Login } from './pages/login/Login';
 
 function App() {
+  const [user, setUser] =
   return (
     <>
       <BrowserRouter>

@@ -4,8 +4,8 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { HeaderDashboard } from "../../components/header/HeaderDashboard";
 import Home from "./pages/Home";
 import Hibernaderos from "./pages/Invernaderos";
-import Usuarios from "./pages/usuarios";
 import Reports from "./pages/reports";
+import { Usuarios } from "./pages/usuarios";
 
 export const Dashboard = () => {
   return (
