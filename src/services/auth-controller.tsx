@@ -2,18 +2,6 @@ import axios, { AxiosResponse } from "axios";
 
 const API_URL = "http://179.1.133.13/apiOrion/auth";
 
-export const postLogin = async (usuario: string, clave: string) => {
-  try {
-    const response = await axios.post(API_URL+'/login', {
-      usuario,
-      clave,
-    });
-    return response;
-  } catch (error) {
-    return error;
-  }
-};
-
 interface RegisterData {
   id: string;
   usuario: string;
@@ -22,11 +10,24 @@ interface RegisterData {
   clave: string;
 }
 
-interface RegisterResponse {
+interface LoginData {
+    usuario: string;
+    clave: string;
+  }
+
+interface AuthResponse {
   bearer: string;
 }
 
-export const postRegister = async (registerData: RegisterData): Promise<AxiosResponse<RegisterResponse>> => {
-  return axios.post<RegisterResponse>(API_URL+'/register', registerData);
-};
+export const postRegister = async (registerData: RegisterData, bearerToken: string): Promise<AxiosResponse<AuthResponse>> => {
+    return axios.post<AuthResponse>(`${API_URL}/register`, registerData, {
+      headers: {
+        "Authorization": `Bearer ${bearerToken}`
+      }
+    });
+  };
+  
 
+export const postLogin = async (loginData: LoginData): Promise<AxiosResponse<AuthResponse>> => {
+  return axios.post<AuthResponse>(`${API_URL}/login`, loginData);
+};

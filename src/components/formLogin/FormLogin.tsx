@@ -13,10 +13,10 @@ export const FormLogin = () => {
     event.preventDefault();
 
     try {
-      const response = await postLogin(email, password);
+      const response = await postLogin({ usuario: email, clave: password });
 
-      if (response.status === 200 ) {
-        const token = response.data.token;
+      if (response.status === 200) {
+        const token = response.data.bearer;
         sessionStorage.setItem('authToken', token);
         sessionStorage.setItem('userEmail', email);
         navigate('/dashboard');

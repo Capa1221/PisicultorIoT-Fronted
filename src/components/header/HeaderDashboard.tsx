@@ -1,4 +1,3 @@
-import React from "react";
 
 export const HeaderDashboard = () => {
   // Obtener el correo electrónico del usuario guardado en la sesión
