@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-// Icons
+import { Link, useNavigate } from "react-router-dom";
 import {
   RiHome3Line,
   RiFileCopyLine,
@@ -10,8 +9,16 @@ import {
   RiCloseFill,
 } from "react-icons/ri";
 
-const Sidebar = () => {
+const Sidebar = ({ userEmail }: { userEmail: string }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('userEmail');
+    sessionStorage.removeItem('authToken');
+    navigate('/');
+  };
+
   return (
     <>
       <div
@@ -24,8 +31,10 @@ const Sidebar = () => {
           <img
             src="https://img.freepik.com/foto-gratis/anciano-sonriente-gafas_23-2148740051.jpg"
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
+            alt="Profile"
           />
-          <h1 className="text-xl text-black font-bold">Jorge Luis Trejo</h1>
+          {/* Mostrar el correo electrónico del usuario */}
+          <h1 className="text-xl text-black font-bold">{userEmail}</h1>
           <p className="bg-primary-100 py-2 px-4 rounded-full text-black">
             Usuario
           </p>
@@ -38,14 +47,14 @@ const Sidebar = () => {
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiHome3Line /> Home
+              <RiHome3Line /> Inicio
             </Link>
             <Link
               to="/dashboard/hibernaderos"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiFileCopyLine /> Hibernaderos
+              <RiFileCopyLine /> Invernaderos
             </Link>
             <Link
               to="/dashboard/usuarios"
@@ -59,12 +68,13 @@ const Sidebar = () => {
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiPieChartLine /> Reports
+              <RiPieChartLine /> Reportes
             </Link>
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl">
-            <p className="text-gray-400">Having troubles?</p>
-            <a href="#">Contact us</a>
+            <button onClick={handleLogout} className="hover:text-red-500">
+              Cerrar sesión
+            </button>
           </div>
         </div>
       </div>
