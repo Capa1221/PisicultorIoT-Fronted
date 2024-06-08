@@ -1,0 +1,31 @@
+import axios, { AxiosResponse } from 'axios';
+
+const API_URL = 'http://179.1.133.13/apiOrion';
+
+interface DatosSensor {
+  idSensor: string;
+  valor: string;
+}
+
+export const insertarDatosSensor = async (datosSensor: DatosSensor, token: string): Promise<AxiosResponse<DatosSensor>> => {
+  return axios.post<DatosSensor>(
+    `${API_URL}/v1/datos/insertar`,
+    datosSensor,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+};
+
+export const obtenerDatosPorRangoFechasYSensor = async (fechaInicial: string, fechaFinal: string, idSensor: string, token: string): Promise<AxiosResponse<DatosSensor[]>> => {
+  return axios.get<DatosSensor[]>(
+    `${API_URL}/v1/datos/rangoFechasporSensor?fechaInicial=${fechaInicial}&fechafinal=${fechaFinal}&idSensor=${idSensor}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+};
