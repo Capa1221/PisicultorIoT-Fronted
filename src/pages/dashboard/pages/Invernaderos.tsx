@@ -3,6 +3,8 @@ import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
 import ActionModal from "../../../components/modals/ActionModalHibernadero";
 import { useDisclosure } from "@nextui-org/react";
 import { buscarTodosLosHibernaderos } from "../../../services/hibernadero-controller";
+import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
+import { CommentSection } from "../../../components/comment-dashboard/comment";
 
 interface Hibernadero {
   id: string;
@@ -17,13 +19,14 @@ const Hibernaderos: React.FC = () => {
   const [selectedHibernadero, setSelectedHibernadero] = useState<string | null>(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const token = sessionStorage.getItem("authToken");
+  const email = sessionStorage.getItem('userEmail');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (token) {
           const response = await buscarTodosLosHibernaderos(token);
-          setHibernaderos(response.data);
+          //setHibernaderos(response.data);
         } else {
           console.error("Token is null");
         }
@@ -58,17 +61,11 @@ const Hibernaderos: React.FC = () => {
 
   return (
     <>
-      <header className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <h1 className="text-2xl md:text-3xl font-bold">
-          Tus Invernaderos <span className="text-primary">Jorge</span>
-        </h1>
-      </header>
+      <HeaderDashboard mensaje="Tus Invernaderos "/>
       <div className="p-8">
-        <p className="mb-8 text-lg">
-          Bienvenido a la sección de administración de tus invernaderos. Aquí puedes ver
-          información detallada sobre cada uno de ellos y realizar acciones como editar,
-          eliminar o asociar usuarios. Explora tus invernaderos y mantén todo bajo control.
-        </p>
+        <CommentSection mensaje="Bienvenido a la sección de administración de usuarios del sistema. Aquí
+      puedes ver la lista de usuarios registrados, sus roles, y realizar acciones
+      como visualizar detalles adicionales."/>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {hibernaderos.map((hibernadero) => (
             <Card key={hibernadero.id} className="py-4">

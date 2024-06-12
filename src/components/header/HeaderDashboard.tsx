@@ -1,12 +1,12 @@
 
-export const HeaderDashboard = () => {
+export const HeaderDashboard = ({mensaje}:{mensaje:string}) => {
   // Obtener el correo electrónico del usuario guardado en la sesión
   const userEmail = sessionStorage.getItem("userEmail") || "";
 
   return (
-    <header className="flex flex-col md:flex-row items-center justify-between gap-4">
+    <header className="flex flex-col md:flex-row items-center justify-between gap-4 ml-5">
       <h1 className="text-2xl md:text-3xl font-bold">
-        🌞 Hey, has vuelto{" "}
+      &#x1F31E; {mensaje} {""}, User {""}
         <span className="text-primary">{userEmail}</span>
       </h1>
     </header>

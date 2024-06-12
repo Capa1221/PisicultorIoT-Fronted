@@ -65,7 +65,7 @@ const Home = () => {
   return (
     <div>
       {/* Section 1 */}
-      <HeaderDashboard />
+      <HeaderDashboard mensaje={"Has vuelto"}/>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
         {/* Card 1 */}
         <div className="bg-primary/90 p-8 rounded-xl text-gray-300 flex flex-col gap-6">

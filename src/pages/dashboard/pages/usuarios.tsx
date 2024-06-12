@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { RiLineChartLine } from "react-icons/ri";
 import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
+import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
+import { CommentSection } from "../../../components/comment-dashboard/comment";
 
 interface Usuario {
   id: string;
@@ -58,17 +60,11 @@ export const Usuarios = () => {
 
   return (
     <div>
-      <header className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <h1 className="text-2xl md:text-3xl font-bold">
-          Usuarios <span className="text-primary">IoT</span>
-        </h1>
-      </header>
+      <HeaderDashboard mensaje="Usuarios en el sistema"/>
       <div className="p-8">
-        <p className="mb-8 text-lg">
-          Bienvenido a la sección de administración de usuarios del sistema. Aquí
+        <CommentSection mensaje="Bienvenido a la sección de administración de usuarios del sistema. Aquí
           puedes ver la lista de usuarios registrados, sus roles, y realizar acciones
-          como visualizar detalles adicionales.
-        </p>
+          como visualizar detalles adicionales."/>
         <DataTable columns={columns} data={usuarios} />
       </div>
     </div>
