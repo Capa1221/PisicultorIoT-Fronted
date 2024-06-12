@@ -22,7 +22,7 @@ export const actualizarHibernadero = async (
     hibernadero,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     }
   );
@@ -37,7 +37,7 @@ export const insertarHibernadero = async (
     hibernadero,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     }
   );
@@ -49,7 +49,7 @@ export const buscarHibernaderoPorId = async (
 ): Promise<AxiosResponse<Hibernadero>> => {
   return axios.get<Hibernadero>(`${API_URL}/v1/hibernadero/buscar?id=${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
   });
 };
@@ -59,9 +59,9 @@ export const buscarTodosLosHibernaderos = async (
 ): Promise<AxiosResponse<Hibernadero[]>> => {
   return axios.get<Hibernadero[]>(`${API_URL}/v1/hibernadero/buscarTodos`, {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+      'authorization': `Bearer ${token}`,
+    }
+  })
 };
 
 export const eliminarHibernadero = async (
@@ -72,7 +72,7 @@ export const eliminarHibernadero = async (
     `${API_URL}/v1/hibernadero/eliminar?id=${id}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     }
   );

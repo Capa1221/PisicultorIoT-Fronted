@@ -38,14 +38,15 @@ const Home = () => {
   const [sensor, setSensor] = useState<Sensor[]>([]);
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const token = sessionStorage.getItem("authToken");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (token) {
-          const responseHibernaderos = await buscarTodosLosHibernaderos(token);
+          console.log(`Bearer ${token}`);
+          const responseHibernaderos = await buscarTodosLosHibernaderos(token)
           const responseSensores = await obtenerSensoresTodos(token);
           const responseUsuarios = await buscarTodosLosUsuarios(token);
+          
           setHibernaderos(responseHibernaderos.data);
           setSensor(responseSensores.data);
           setUsuarios(responseUsuarios.data);

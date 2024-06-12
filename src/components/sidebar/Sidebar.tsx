@@ -81,8 +81,8 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
               </Link>
             </nav>
           </ScrollShadow>
-          <div className="bg-primary-900/50 text-white p-4 rounded-xl hover:bg-white hover:text-green-900">
-            <button onClick={handleLogout}>
+          <div className="bg-primary-900/50 text-white p-4 rounded-xl hover:bg-white hover:text-green-900 text-center" onClick={handleLogout}>
+            <button>
               Cerrar sesión
             </button>
           </div>

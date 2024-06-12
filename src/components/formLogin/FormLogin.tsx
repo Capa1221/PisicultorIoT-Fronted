@@ -16,9 +16,10 @@ export const FormLogin = () => {
       const response = await postLogin({ usuario: email, clave: password });
 
       if (response.status === 200) {
-        const token = response.data.bearer;
+        const token = response.headers.authorization;
         sessionStorage.setItem('authToken', token);
         sessionStorage.setItem('userEmail', email);
+        console.log(token);
         navigate('/dashboard');
       }
     } catch (err) {

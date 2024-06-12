@@ -15,7 +15,7 @@ interface Hibernadero {
 }
 
 const Hibernaderos: React.FC = () => {
-  const [hibernaderos, setHibernaderos] = useState<Hibernadero[]>([]);
+  const [hibernaderos] = useState<Hibernadero[]>([]);
   const [selectedHibernadero, setSelectedHibernadero] = useState<string | null>(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const token = sessionStorage.getItem("authToken");
@@ -25,7 +25,7 @@ const Hibernaderos: React.FC = () => {
       try {
         if (token) {
           const response = await buscarTodosLosHibernaderos(token);
-          //setHibernaderos(response.data);
+          window.alert(response.status);
         } else {
           console.error("Token is null");
         }
