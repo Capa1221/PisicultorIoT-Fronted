@@ -34,7 +34,6 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
             alt="Profile"
           />
-          {/* Mostrar el correo electrónico del usuario */}
           <h1 className="text-xl text-black font-bold">{userEmail}</h1>
           <p className="bg-primary-100 py-2 px-4 rounded-full text-black">
             Usuario
