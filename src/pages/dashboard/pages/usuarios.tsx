@@ -1,63 +1,61 @@
 import { Button } from "@nextui-org/react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { RiLineChartLine } from "react-icons/ri";
+import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
+
+interface Usuario {
+  id: string;
+  usuario: string;
+  nombres: string;
+  email: string;
+  clave: string;
+}
 
 const columns = [
   {
     name: "ID",
-    selector: (row) => row.id,
+    selector: (row: Usuario) => row.id,
   },
   {
     name: "Nombre",
-    selector: (row) => row.nombre,
+    selector: (row: Usuario) => row.nombres,
   },
   {
     name: "Correo",
-    selector: (row) => row.correo,
-  },
-  {
-    name: "Rol",
-    selector: (row) => row.rol,
+    selector: (row: Usuario) => row.email,
   },
   {
     name: "Acciones",
-    cell: (row) => (
-      <Button auto flat color="primary" icon={<RiLineChartLine />}>
-        Ver
+    cell: () => (
+      <Button color="primary">
+        Ver<RiLineChartLine />
       </Button>
     ),
   },
 ];
 
-const data = [
-  {
-    id: 1,
-    nombre: "Juan Pérez",
-    correo: "juan.perez@example.com",
-    rol: "Administrador",
-  },
-  {
-    id: 2,
-    nombre: "María García",
-    correo: "maria.garcia@example.com",
-    rol: "Usuario",
-  },
-  {
-    id: 3,
-    nombre: "Carlos López",
-    correo: "carlos.lopez@example.com",
-    rol: "Usuario",
-  },
-  {
-    id: 4,
-    nombre: "Ana Fernández",
-    correo: "ana.fernandez@example.com",
-    rol: "Moderador",
-  },
-];
-
 export const Usuarios = () => {
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const token = sessionStorage.getItem("authToken");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const response = await buscarTodosLosUsuarios(token);
+          setUsuarios(response.data);
+        } else {
+          console.error("Token is null");
+        }
+      } catch (error) {
+        console.error("Failed to fetch usuarios:", error);
+      }
+    };
+
+    fetchData();
+  }, [token]);
+
   return (
     <div>
       <header className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -66,7 +64,12 @@ export const Usuarios = () => {
         </h1>
       </header>
       <div className="p-8">
-        <DataTable columns={columns} data={data} />
+        <p className="mb-8 text-lg">
+          Bienvenido a la sección de administración de usuarios del sistema. Aquí
+          puedes ver la lista de usuarios registrados, sus roles, y realizar acciones
+          como visualizar detalles adicionales.
+        </p>
+        <DataTable columns={columns} data={usuarios} />
       </div>
     </div>
   );

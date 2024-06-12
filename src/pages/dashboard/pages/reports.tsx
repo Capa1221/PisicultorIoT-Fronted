@@ -1,30 +1,74 @@
-import React from "react";
-import { ChartComponent } from "../../../components/graphics/CharComponent";
+import React, { useEffect, useState } from "react";
+import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 
-const initialData = [
-  { time: '2018-12-22', value: 32.51 },
-  { time: '2018-12-23', value: 31.11 },
-  { time: '2018-12-24', value: 27.02 },
-  { time: '2018-12-25', value: 27.32 },
-  { time: '2018-12-26', value: 25.17 },
-  { time: '2018-12-27', value: 28.89 },
-  { time: '2018-12-28', value: 25.46 },
-  { time: '2018-12-29', value: 23.92 },
-  { time: '2018-12-30', value: 22.68 },
-  { time: '2018-12-31', value: 22.67 },
-];
 
-export default function reports() {
+interface Sensor {
+  id: string;
+  nombre: string;
+  descripcion: string;
+}
+
+const SensorCard: React.FC<{ sensor: Sensor }> = ({ sensor }) => {
+  
+
+  const handleVerDatos = () => {
+    
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <h3>Sensor ID: {sensor.id}</h3>
+      </CardHeader>
+      <CardBody>
+        <p>Tipo: {sensor.nombre}</p>
+        <p>Ubicación: {sensor.descripcion}</p>
+        <Button onClick={handleVerDatos}>Ver datos del sensor</Button>
+      </CardBody>
+    </Card>
+  );
+};
+
+const Reports = () => {
+  const [sensores, setSensores] = useState<Sensor[]>([]); // Aquí se especifica el tipo de la matriz
+
+  const token = sessionStorage.getItem("authToken");
+
+  useEffect(() => {
+    const fetchSensores = async () => {
+      if (token) {
+        try {
+          const response = await obtenerSensoresTodos(token);
+          //setSensores(response);
+        } catch (error) {
+          console.error("Failed to fetch sensors:", error);
+        }
+      } else {
+        console.error("Token is null");
+      }
+    };
+
+    fetchSensores();
+  }, [token]);
+
   return (
     <>
       <header className="flex flex-col md:flex-row items-center justify-between gap-4">
         <h1 className="text-2xl md:text-3xl font-bold">
-          Sensor de <span className="text-secondary">Humedad</span>
+          Sensores Asociados
         </h1>
       </header>
       <div className="p-4">
-        <ChartComponent data={initialData}/>
-        </div>      
+        {sensores.map((sensor) => (
+          <SensorCard key={sensor.id} sensor={sensor} />
+        ))}
+      </div>
     </>
   );
+};
+
+export default Reports;
+function obtenerSensoresTodos(token: string) {
+  throw new Error("Function not implemented.");
 }
+

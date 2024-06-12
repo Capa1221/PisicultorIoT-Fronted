@@ -36,7 +36,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
           />
           <h1 className="text-xl text-black font-bold">{userEmail}</h1>
           <p className="bg-primary-100 py-2 px-4 rounded-full text-black">
-            Usuario
+            {userEmail == 'ROOT' ? 'Administrador' : 'Usuario'}
           </p>
         </div>
         {/* Nav */}
@@ -64,7 +64,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
               <RiUser3Line /> Usuarios
             </Link>
             <Link
-              to="/dashboard/reports"
+              to="/dashboard/usuario-hibernadero"
               className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >

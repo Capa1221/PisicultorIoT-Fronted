@@ -1,39 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
 import ActionModal from "../../../components/modals/ActionModalHibernadero";
 import { useDisclosure } from "@nextui-org/react";
+import { buscarTodosLosHibernaderos } from "../../../services/hibernadero-controller";
 
 interface Hibernadero {
-  id: number;
+  id: string;
   nombre: string;
   ubicacion: string;
   imagen: string;
   descripcion: string;
 }
 
-const hibernaderos: Hibernadero[] = [
-  {
-    id: 1,
-    nombre: "Hibernadero de Papa",
-    ubicacion: "Pamplona - Norte de Santander",
-    imagen:
-      "https://static.vecteezy.com/system/resources/previews/013/618/940/large_2x/rows-of-young-bushes-potato-plantation-farming-and-agriculture-agroindustry-agribusiness-growing-food-vegetables-growing-potatoes-in-plastic-wrap-tunnels-in-early-spring-greenhouse-effect-photo.jpg",
-    descripcion: "Un lugar ideal para el cultivo de papa.",
-  },
-  {
-    id: 2,
-    nombre: "Hibernadero de Yuca",
-    ubicacion: "Cacota - Norte de Santander",
-    imagen:
-      "https://www.agrosavia.co/media/0n0g5qrg/sol-mara-regino-herna-ndez.jpg",
-    descripcion: "Espacio especializado para la producción de yuca.",
-  },
-  // Añade más hibernaderos si es necesario
-];
-
 const Hibernaderos: React.FC = () => {
-  const [selectedHibernadero, setSelectedHibernadero] = useState<number | null>(null);
+  const [hibernaderos, setHibernaderos] = useState<Hibernadero[]>([]);
+  const [selectedHibernadero, setSelectedHibernadero] = useState<string | null>(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const token = sessionStorage.getItem("authToken");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const response = await buscarTodosLosHibernaderos(token);
+          setHibernaderos(response.data);
+        } else {
+          console.error("Token is null");
+        }
+      } catch (error) {
+        console.error("Failed to fetch hibernaderos:", error);
+      }
+    };
+
+    fetchData();
+  }, [token]);
 
   const handleAction = (action: string) => {
     if (selectedHibernadero === null) return;
@@ -64,14 +64,17 @@ const Hibernaderos: React.FC = () => {
         </h1>
       </header>
       <div className="p-8">
+        <p className="mb-8 text-lg">
+          Bienvenido a la sección de administración de tus invernaderos. Aquí puedes ver
+          información detallada sobre cada uno de ellos y realizar acciones como editar,
+          eliminar o asociar usuarios. Explora tus invernaderos y mantén todo bajo control.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {hibernaderos.map((hibernadero) => (
             <Card key={hibernadero.id} className="py-4">
               <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 <h4 className="font-bold text-large">{hibernadero.nombre}</h4>
-                <small className="text-default-500">
-                  {hibernadero.ubicacion}
-                </small>
+                <small className="text-default-500">{hibernadero.ubicacion}</small>
                 <p className="text-default-500">{hibernadero.descripcion}</p>
               </CardHeader>
               <CardBody className="overflow-visible py-2">
@@ -99,8 +102,7 @@ const Hibernaderos: React.FC = () => {
       <ActionModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        onAction={handleAction}
-      />
+        onAction={handleAction} children={undefined}      />
     </>
   );
 };

@@ -5,6 +5,7 @@ import Hibernaderos from "./pages/Invernaderos";
 import { Usuarios } from "./pages/usuarios";
 import Reports from "./pages/reports";
 import Home from "./pages/Home";
+import UsuarioHibernaderoComponent from "./pages/Usuario-Hibernadero";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ export const Dashboard = () => {
           <Route path="/hibernaderos" element={<Hibernaderos />} />
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/usuario-hibernadero" element={<UsuarioHibernaderoComponent/>}/>
         </Routes>
       </main>
     </div>
