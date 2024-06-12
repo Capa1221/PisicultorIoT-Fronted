@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  RiHome3Line,
-  RiFileCopyLine,
-  RiWalletLine,
-  RiPieChartLine,
-  RiMore2Fill,
-  RiCloseFill,
+  RiHome3Line,    // Inicio
+  RiSeedlingLine, // Hibernadero
+  RiUser3Line,    // Usuarios
+  RiBarChartLine, // Usuario - Hibernadero
+  RiSensorLine,   // Sensores
+  RiMore2Fill,    // Icono de menú desplegable
+  RiCloseFill     // Icono de cerrar
 } from "react-icons/ri";
 
 const Sidebar = ({ userEmail }: { userEmail: string }) => {
@@ -54,28 +55,28 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
               className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiHome3Line /> Hibernadero
+              <RiSeedlingLine /> Hibernadero
             </Link>
             <Link
               to="/dashboard/usuarios"
               className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiWalletLine /> Usuarios
+              <RiUser3Line /> Usuarios
             </Link>
             <Link
               to="/dashboard/reports"
               className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiPieChartLine /> Usuario - <br />Hibernadero
+              <RiBarChartLine /> Usuario - <br />Hibernadero
             </Link>
             <Link
               to="/dashboard/reports"
               className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiPieChartLine /> Sensores
+              <RiSensorLine /> Sensores
             </Link>
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl hover:bg-white hover:text-green-900">
