@@ -63,9 +63,9 @@ const Hibernaderos: React.FC = () => {
     <>
       <HeaderDashboard mensaje="Tus Invernaderos "/>
       <div className="p-8">
-        <CommentSection mensaje="Bienvenido a la secciÃ³n de administraciÃ³n de usuarios del sistema. AquÃ­
-      puedes ver la lista de usuarios registrados, sus roles, y realizar acciones
-      como visualizar detalles adicionales."/>
+        <CommentSection mensaje=" Bienvenido a la sección de administración de tus invernaderos. Aquí puedes ver
+          información detallada sobre cada uno de ellos y realizar acciones como editar,
+          eliminar o asociar usuarios. Explora tus invernaderos y mantén todo bajo control."/>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {hibernaderos.map((hibernadero) => (
             <Card key={hibernadero.id} className="py-4">
