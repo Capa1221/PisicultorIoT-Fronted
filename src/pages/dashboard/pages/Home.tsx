@@ -6,6 +6,7 @@ import { obtenerSensoresTodos } from "../../../services/sensor-controller";
 import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
 import { CardHibernaderos } from "../../../components/homeDashboard/CardHibernaderos";
 import Hibernaderos from "./Invernaderos";
+import { CardInformationAplicattion } from "../../../components/homeDashboard/CardInformationAplicattion";
 
 interface Hibernadero {
   id: string;
@@ -65,7 +66,7 @@ const Home = () => {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
   return (
-    <div>
+    <div className="text-lg">
       {/* Section 1 */}
       <HeaderDashboard mensaje={"Has vuelto"}/>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
@@ -73,26 +74,7 @@ const Home = () => {
         <CardHibernaderos numero={Hibernaderos.length}/>
         {/* Card 2 */}
         <div className="p-4 bg-white rounded-xl flex flex-col justify-between gap-4 drop-shadow-2xl">
-          <div className="flex items-center gap-4 bg-primary-100/10 rounded-xl p-4">
-            <span className="bg-primary-500 text-gray-300 text-2xl font-bold p-4 rounded-xl">
-              {sensor.length}
-            </span>
-            <div>
-              <h3 className="font-bold">Sensores</h3>
-              <p className="text-gray-500">en el sistema</p>
-            </div>
-          </div>
-          <div className="bg-primary-100/10 rounded-xl p-4">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="bg-primary-500 text-gray-300 text-2xl font-bold p-4 rounded-xl">
-                {usuarios.length}
-              </span>
-              <div>
-                <h3 className="font-bold">Usuarios</h3>
-                <p className="text-gray-500">en el sistema</p>
-              </div>
-            </div>
-          </div>
+          <CardInformationAplicattion usuarios={usuarios.length} sensores={sensor.length}/>
         </div>
         {/* Card 3 */}
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between">
