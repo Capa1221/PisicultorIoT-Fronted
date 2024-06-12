@@ -30,9 +30,5 @@ export const postRegister = async (registerData: RegisterData, bearerToken: stri
 
 export const postLogin = async (loginData: LoginData): Promise<AxiosResponse<AuthResponse>> => {
   return axios.post<AuthResponse>(`${API_URL}/login`, loginData,{
-    headers:{
-      "Content-Type": "application/json",
-      Authorization: `Bearer uajdjusajndsajdoa`
-    }
   });
 };
