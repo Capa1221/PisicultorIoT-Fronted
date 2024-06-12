@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 
 export const CommentSection = ({ mensaje }: { mensaje: string }) => {
   return (

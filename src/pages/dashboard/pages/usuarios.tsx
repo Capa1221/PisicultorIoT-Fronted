@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { RiLineChartLine } from "react-icons/ri";
 import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";

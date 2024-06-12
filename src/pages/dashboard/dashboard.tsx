@@ -3,9 +3,9 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Hibernaderos from "./pages/Invernaderos";
 import { Usuarios } from "./pages/usuarios";
-import Reports from "./pages/reports";
 import Home from "./pages/Home";
 import UsuarioHibernaderoComponent from "./pages/Usuario-Hibernadero";
+import Sensores from "./pages/Sensores";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export const Dashboard = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/hibernaderos" element={<Hibernaderos />} />
           <Route path="/usuarios" element={<Usuarios />} />
-          <Route path="/reports" element={<Reports />} />
+          <Route path="/Sensores" element={<Sensores />} />
           <Route path="/usuario-hibernadero" element={<UsuarioHibernaderoComponent/>}/>
         </Routes>
       </main>

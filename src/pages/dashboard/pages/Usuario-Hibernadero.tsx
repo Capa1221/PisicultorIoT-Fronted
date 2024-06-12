@@ -5,6 +5,8 @@ import {
   crearUsuarioHibernadero,
   borrarUsuarioHibernadero,
 } from "../../../services/usuario-hibernadero-controller";
+import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
+import { CommentSection } from "../../../components/comment-dashboard/comment";
 
 interface UsuarioHibernadero {
   id: string;
@@ -69,19 +71,11 @@ const UsuarioHibernaderoComponent: React.FC = () => {
 
   return (
     <div>
-      <header className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <h1 className="text-2xl md:text-3xl font-bold">
-          Asociaciones Usuario-Hibernadero
-        </h1>
-        <Button onClick={() => setIsOpen(true)}>Crear Asociación</Button>
-      </header>
-
+      <HeaderDashboard mensaje="Asociaciones Usuario-Hibernadero"/>
       <div className="p-8">
-        <p className="mb-8 text-lg">
-          Aquí puedes gestionar las asociaciones entre usuarios e hibernaderos.
+        <CommentSection mensaje="Aquí puedes gestionar las asociaciones entre usuarios e hibernaderos.
           Puedes crear nuevas asociaciones, buscar por usuario o hibernadero, y
-          eliminar asociaciones existentes.
-        </p>
+          eliminar asociaciones existentes."/>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {asociaciones.map((asociacion) => (

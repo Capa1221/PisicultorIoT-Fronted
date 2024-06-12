@@ -73,7 +73,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 <RiBarChartLine /> Usuario - <br />Hibernadero
               </Link>
               <Link
-                to="/dashboard/reports"
+                to="/dashboard/Sensores"
                 className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >

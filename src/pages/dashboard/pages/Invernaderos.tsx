@@ -19,7 +19,6 @@ const Hibernaderos: React.FC = () => {
   const [selectedHibernadero, setSelectedHibernadero] = useState<string | null>(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const token = sessionStorage.getItem("authToken");
-  const email = sessionStorage.getItem('userEmail');
 
   useEffect(() => {
     const fetchData = async () => {
