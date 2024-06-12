@@ -44,35 +44,42 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
           <nav className="flex flex-col gap-8">
             <Link
               to="/dashboard/home"
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
               <RiHome3Line /> Inicio
             </Link>
             <Link
               to="/dashboard/hibernaderos"
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiFileCopyLine /> Invernaderos
+              <RiHome3Line /> Hibernadero
             </Link>
             <Link
               to="/dashboard/usuarios"
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
               <RiWalletLine /> Usuarios
             </Link>
             <Link
               to="/dashboard/reports"
-              className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
+              className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <RiPieChartLine /> Reportes
+              <RiPieChartLine /> Usuario - <br />Hibernadero
+            </Link>
+            <Link
+              to="/dashboard/reports"
+              className="flex items-center gap-4 text-white py-2 rounded-xl hover:bg-primary-900/50 transition-colors"
+              onClick={() => setShowMenu(false)}
+            >
+              <RiPieChartLine /> Sensores
             </Link>
           </nav>
-          <div className="bg-primary-900/50 text-white p-4 rounded-xl">
-            <button onClick={handleLogout} className="hover:text-red-500">
+          <div className="bg-primary-900/50 text-white p-4 rounded-xl hover:bg-white hover:text-green-900">
+            <button onClick={handleLogout}>
               Cerrar sesión
             </button>
           </div>
