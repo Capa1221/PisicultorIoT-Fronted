@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const API_URL = "http://179.1.133.13/apiOrion";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface Hibernadero {
   id: string;

@@ -4,7 +4,7 @@ import { buscarTodosLosHibernaderos } from "../../../services/hibernadero-contro
 import { useEffect, useState } from "react";
 import { obtenerSensoresTodos } from "../../../services/sensor-controller";
 import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
-import { CardHibernaderos } from "../../../components/homeDashboard/CardHibernaderos";
+import { CardHibernaderos } from "../../../components/homeDashboard/CardInformationHibernaderos";
 import Hibernaderos from "./Invernaderos";
 import { CardInformationAplicattion } from "../../../components/homeDashboard/CardInformationAplicattion";
 
@@ -52,6 +52,7 @@ const Home = () => {
           setHibernaderos(responseHibernaderos.data);
           setSensor(responseSensores.data);
           setUsuarios(responseUsuarios.data);
+          console.log(responseHibernaderos.data, responseSensores.data,responseUsuarios.data);
         } else {
           console.error("Token is null");
         }
