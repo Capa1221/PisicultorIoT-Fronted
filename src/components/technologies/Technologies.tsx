@@ -9,6 +9,8 @@ import {
   Tabs,
   Image,
 } from "@nextui-org/react";
+import imageVite from '../../assets/react.svg';
+
 
 export const Technologies = () => {
   return (
@@ -26,18 +28,18 @@ export const Technologies = () => {
                   alt="nextui logo"
                   height={40}
                   radius="sm"
-                  src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+                  src={imageVite}
                   width={40}
                 />
                 <div className="flex flex-col">
-                  <p className="text-md">NextUI</p>
-                  <p className="text-small text-default-500">nextui.org</p>
+                  <p className="text-md">React + Vite</p>
+                  <p className="text-small text-default-500">vitejs.dev/</p>
                 </div>
               </CardHeader>
               <Divider />
               <CardBody>
                 <p>
-                  Make beautiful websites regardless of your design experience.
+                Usamos React con Vite porque combina la flexibilidad y eficiencia de React para crear interfaces de usuario dinámicas con la rapidez y simplicidad de Vite para un desarrollo rápido y una excelente experiencia de usuario. Esto permite construir aplicaciones web modernas y optimizadas sin complicaciones, independientemente de tu experiencia en desarrollo.
                 </p>
               </CardBody>
               <Divider />
@@ -45,9 +47,9 @@ export const Technologies = () => {
                 <Link
                   isExternal
                   showAnchorIcon
-                  href="https://github.com/nextui-org/nextui"
+                  href="https://vitejs.dev"
                 >
-                  Visit source code on GitHub.
+                  Visita su pagina Principal.
                 </Link>
               </CardFooter>
             </Card>
@@ -61,14 +63,14 @@ export const Technologies = () => {
                   width={40}
                 />
                 <div className="flex flex-col">
-                  <p className="text-md">NextUI</p>
-                  <p className="text-small text-default-500">nextui.org</p>
+                  <p className="text-md">Spring Boot</p>
+                  <p className="text-small text-default-500">spring.io</p>
                 </div>
               </CardHeader>
               <Divider />
               <CardBody>
                 <p>
-                  Make beautiful websites regardless of your design experience.
+                Utilizamos Spring Boot como backend porque proporciona una plataforma robusta y escalable para desarrollar aplicaciones Java con facilidad. Con su configuración mínima y su extensa colección de herramientas integradas, Spring Boot permite crear servicios backend potentes y seguros, simplificando el desarrollo y acelerando la entrega de aplicaciones empresariales modernas.
                 </p>
               </CardBody>
               <Divider />
@@ -76,9 +78,9 @@ export const Technologies = () => {
                 <Link
                   isExternal
                   showAnchorIcon
-                  href="https://github.com/nextui-org/nextui"
+                  href="https://spring.io"
                 >
-                  Visit source code on GitHub.
+                  Visita su pagina Principal.
                 </Link>
               </CardFooter>
             </Card>

@@ -9,6 +9,7 @@ import {
   RiMore2Fill,    // Icono de menú desplegable
   RiCloseFill     // Icono de cerrar
 } from "react-icons/ri";
+import imageUser   from '../../assets/RegisterAgricultor.jpeg';
 
 const Sidebar = ({ userEmail }: { userEmail: string }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,7 +31,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
         {/* Profile */}
         <div className="flex flex-col items-center justify-center p-8 gap-2 h-[30vh]">
           <img
-            src="https://img.freepik.com/foto-gratis/anciano-sonriente-gafas_23-2148740051.jpg"
+            src={imageUser}
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
             alt="Profile"
           />
