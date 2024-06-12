@@ -1,10 +1,11 @@
-import { Accordion, AccordionItem, Button, Link } from "@nextui-org/react";
-import { RiLineChartLine } from "react-icons/ri";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { buscarTodosLosHibernaderos } from "../../../services/hibernadero-controller";
 import { useEffect, useState } from "react";
 import { obtenerSensoresTodos } from "../../../services/sensor-controller";
 import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
+import { CardHibernaderos } from "../../../components/homeDashboard/CardHibernaderos";
+import Hibernaderos from "./Invernaderos";
 
 interface Hibernadero {
   id: string;
@@ -69,14 +70,7 @@ const Home = () => {
       <HeaderDashboard mensaje={"Has vuelto"}/>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
         {/* Card 1 */}
-        <div className="bg-primary/90 p-8 rounded-xl text-gray-300 flex flex-col gap-6">
-          <RiLineChartLine className="text-5xl" />
-          <h4 className="text-xl">Total Hibernaderos</h4>
-          <span className="text-5xl text-white">+ {hibernaderos.length}</span>
-          <Button color="secondary" variant="bordered">
-            <Link href="/dashboard/hibernaderos" className="text-white">Mis Hibernaderos</Link>
-          </Button>
-        </div>
+        <CardHibernaderos numero={Hibernaderos.length}/>
         {/* Card 2 */}
         <div className="p-4 bg-white rounded-xl flex flex-col justify-between gap-4 drop-shadow-2xl">
           <div className="flex items-center gap-4 bg-primary-100/10 rounded-xl p-4">
