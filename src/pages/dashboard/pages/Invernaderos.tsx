@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Image,
-  Button,
-  Modal,
-  Input,
-  Textarea,
-  ModalFooter,
-  ModalContent,
-  ModalBody,
-  ModalHeader,
-} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { useDisclosure } from "@nextui-org/react";
-import {
-  buscarTodosLosHibernaderos,
-  eliminarHibernadero,
-  buscarHibernaderoPorId,
-  actualizarHibernadero,
-} from "../../../services/hibernadero-controller";
+import { buscarTodosLosHibernaderos, eliminarHibernadero, buscarHibernaderoPorId, actualizarHibernadero, insertarHibernadero } from "../../../services/hibernadero-controller";
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { CommentSection } from "../../../components/comment-dashboard/comment";
 import ActionModalHibernadero from "../../../components/modals/ActionModalHibernadero";
+import HibernaderoList from "../../../components/Hibernadero/listHibernadero";
+import EditHibernaderoModal from "../../../components/Hibernadero/modalEdital";
+import NewHibernaderoModal from "../../../components/Hibernadero/modalAgregar";
 
 interface Hibernadero {
   id: string;
@@ -39,7 +24,18 @@ const Hibernaderos: React.FC = () => {
   const [hibernaderos, setHibernaderos] = useState<Hibernadero[]>([]);
   const [selectedHibernadero, setSelectedHibernadero] = useState<string | null>(null);
   const [editHibernadero, setEditHibernadero] = useState<Hibernadero | null>(null);
+  const [newHibernadero, setNewHibernadero] = useState<Hibernadero>({
+    id: '',
+    imagen: '',
+    ciudad: '',
+    departamento: '',
+    nombre: '',
+    encargado: '',
+    detalles: '',
+    estado: ''
+  });
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isNewOpen, onOpen: onNewOpen, onClose: onNewClose } = useDisclosure();
   const token = sessionStorage.getItem("authToken");
 
   useEffect(() => {
@@ -121,7 +117,7 @@ const Hibernaderos: React.FC = () => {
     if (!editHibernadero || !editHibernadero.id) return;
 
     try {
-      const response = await actualizarHibernadero(editHibernadero.id, editHibernadero, token!);
+      const response = await actualizarHibernadero(editHibernadero, token!);
       console.log("Hibernadero actualizado:", response.data);
       onClose();
       const fetchResponse = await buscarTodosLosHibernaderos(token!);
@@ -135,103 +131,78 @@ const Hibernaderos: React.FC = () => {
     }
   };
 
+  const handleGuardarNuevo = async () => {
+    if (!newHibernadero) return;
+
+    // Asegúrate de que los campos no sean null antes de enviar la solicitud
+    const hibernaderoToSave = {
+      ...newHibernadero,
+      ciudad: newHibernadero.ciudad || '',
+      departamento: newHibernadero.departamento || '',
+      nombre: newHibernadero.nombre || '',
+      encargado: newHibernadero.encargado || '',
+      detalles: newHibernadero.detalles || '',
+      estado: newHibernadero.estado || ''
+    };
+
+    try {
+      const response = await insertarHibernadero(hibernaderoToSave, token!);
+      console.log("Hibernadero creado:", response.data);
+      onNewClose();
+      const fetchResponse = await buscarTodosLosHibernaderos(token!);
+      if (fetchResponse.data) {
+        setHibernaderos(fetchResponse.data);
+      } else {
+        console.error("Response data is empty");
+      }
+    } catch (error) {
+      console.error("Error al crear hibernadero", error);
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!editHibernadero) return;
     const { name, value } = e.target;
     setEditHibernadero({ ...editHibernadero, [name]: value });
   };
 
+  const handleChangeNuevo = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setNewHibernadero({ ...newHibernadero, [name]: value });
+  };
+
   return (
     <>
       <HeaderDashboard mensaje="Tus Invernaderos " />
       <div className="p-8">
-        <CommentSection mensaje=" Bienvenido a la sección de administración de tus invernaderos. Aquí puedes ver
+        <CommentSection mensaje="Bienvenido a la sección de administración de tus invernaderos. Aquí puedes ver
           información detallada sobre cada uno de ellos y realizar acciones como editar,
           eliminar o asociar usuarios. Explora tus invernaderos y mantén todo bajo control."/>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 ">
-          {hibernaderos.map((hibernadero) => (
-            <Card key={hibernadero.id} className="py-4">
-              <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                <h4 className="font-bold text-large">{hibernadero.nombre}</h4>
-                <small className="text-default-500">{`${hibernadero.ciudad}, ${hibernadero.departamento}`}</small>
-                <p className="text-default-500">{hibernadero.detalles}</p>
-              </CardHeader>
-              <CardBody className="overflow-visible py-2">
-                <Image
-                  alt={hibernadero.nombre}
-                  className="object-cover rounded-xl"
-                  src={hibernadero.imagen || 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.berger.ca%2Fes%2Frecursos-para-los-productores%2Ftips-y-consejos-practicos%2Fcultivar-invernadero-ventajas-desventajas%2F&psig=AOvVaw1RLTEx0Qz7g9Ds2-Wvqo0a&ust=1718331305320000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOiCn4rB14YDFQAAAAAdAAAAABAI'}
-                  width={270}
-                />
-                <div className="flex justify-around mt-4">
-                  <Button
-                    onPress={() => {
-                      setSelectedHibernadero(hibernadero.id);
-                      onOpen();
-                    }}
-                  >
-                    Opciones
-                  </Button>
-                </div>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
+        <Button onPress={onNewOpen} color="primary" className="mb-4">
+          Agregar Hibernadero
+        </Button>
+        <HibernaderoList hibernaderos={hibernaderos} setSelectedHibernadero={setSelectedHibernadero} onOpen={onOpen} />
       </div>
       <ActionModalHibernadero
         isOpen={isOpen}
         onOpenChange={onClose}
-        onAction={handleAction} children={undefined} />
-      <Modal
+        onAction={handleAction}
+        children={undefined}
+      />
+      <EditHibernaderoModal
         isOpen={editHibernadero !== null}
         onClose={() => setEditHibernadero(null)}
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Editar Hibernadero</ModalHeader>
-              <ModalBody>
-                <Input
-                  label="Nombre"
-                  name="nombre"
-                  value={editHibernadero?.nombre || ""}
-                  onChange={handleChange}
-                  width="100%"
-                />
-                <Input
-                  label="Ciudad"
-                  name="ciudad"
-                  value={editHibernadero?.ciudad || ""}
-                  onChange={handleChange}
-                  width="100%"
-                />
-                <Input
-                  label="Departamento"
-                  name="departamento"
-                  value={editHibernadero?.departamento || ""}
-                  onChange={handleChange}
-                  width="100%"
-                />
-                <Textarea
-                  label="Detalles"
-                  name="detalles"
-                  value={editHibernadero?.detalles || ""}
-                  onChange={handleChange}
-                  width="100%"
-                />
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={() => { onClose(); setEditHibernadero(null); }}>
-                  Cancelar
-                </Button>
-                <Button color="primary" onPress={handleGuardarEdicion}>
-                  Guardar
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+        editHibernadero={editHibernadero}
+        handleChange={handleChange}
+        handleGuardarEdicion={handleGuardarEdicion}
+      />
+      <NewHibernaderoModal
+        isOpen={isNewOpen}
+        onClose={onNewClose}
+        newHibernadero={newHibernadero}
+        handleChangeNuevo={handleChangeNuevo}
+        handleGuardarNuevo={handleGuardarNuevo}
+      />
     </>
   );
 };
