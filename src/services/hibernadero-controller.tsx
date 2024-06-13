@@ -60,6 +60,7 @@ export const buscarTodosLosHibernaderos = async (
   return axios.get<Hibernadero[]>(`${API_URL}/v1/hibernadero/buscarTodos`, {
     headers: {
       'authorization': `Bearer ${token}`,
+      "Content-Type": "application/json"
     }
   })
 };

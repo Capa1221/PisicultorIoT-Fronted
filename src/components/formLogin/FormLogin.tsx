@@ -24,7 +24,6 @@ export const FormLogin = () => {
       }
     } catch (err) {
       console.error('Error en la solicitud', err);
-      window.alert('Hubo un problema con la solicitud, revise que las credenciales sean las correctas');
     }
   };
 

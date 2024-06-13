@@ -1,6 +1,7 @@
 import Grafica1 from '../../assets/GRAFICA.png'
 
 export const Characteristics = () => {
+  throw new Error('Characteristics')
   return (
     <div id="aboutUs" className="p-8 xl:p-20">
       <div className="mb-8">

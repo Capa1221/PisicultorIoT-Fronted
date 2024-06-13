@@ -8,6 +8,7 @@ import UsuarioHibernaderoComponent from "./pages/Usuario-Hibernadero";
 import Sensores from "./pages/Sensores";
 
 export const Dashboard = () => {
+  
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
 
@@ -40,3 +41,5 @@ export const Dashboard = () => {
     </div>
   );
 };
+
+export default Dashboard;

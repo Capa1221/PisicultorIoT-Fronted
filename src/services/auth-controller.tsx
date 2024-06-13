@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_AUTH;
 
 interface RegisterData {
   id: string;
@@ -20,7 +20,7 @@ interface AuthResponse {
 }
 
 export const postRegister = async (registerData: RegisterData, bearerToken: string): Promise<AxiosResponse<AuthResponse>> => {
-    return axios.post<AuthResponse>(`${API_URL}auth/register`, registerData, {
+    return axios.post<AuthResponse>(`${API_URL}/auth/register`, registerData, {
       headers: {
         "Authorization": `Bearer ${bearerToken}`
       }
@@ -29,6 +29,5 @@ export const postRegister = async (registerData: RegisterData, bearerToken: stri
   
 
 export const postLogin = async (loginData: LoginData): Promise<AxiosResponse<AuthResponse>> => {
-  return axios.post<AuthResponse>(`${API_URL}auth/login`, loginData,{
-  });
+  return axios.post<AuthResponse>(`${API_URL}/auth/login`, loginData);
 };

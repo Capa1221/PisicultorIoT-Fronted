@@ -1,11 +1,16 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { NextUIProvider } from "@nextui-org/react";
+import { Interceptor } from "./components/interceptor/interceptor.tsx";
+import { ErrorBoundary } from "./components/errorBoundary/ErrorBoundary.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
-    <NextUIProvider>
+    // <NextUIProvider >
+      <Interceptor>
+        <ErrorBoundary>
       <App />
-    </NextUIProvider>
+      </ErrorBoundary>
+      </Interceptor>
+    // </NextUIProvider>
   // </React.StrictMode>
 );
