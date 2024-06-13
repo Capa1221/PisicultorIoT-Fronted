@@ -15,13 +15,6 @@ interface Usuario {
   clave: string;
 }
 
-interface RegisterData {
-  usuario: string;
-  nombres: string;
-  email: string;
-  clave: string;
-}
-
 const columns = [
   {
     name: "ID",

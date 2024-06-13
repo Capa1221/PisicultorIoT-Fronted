@@ -24,7 +24,7 @@ export const obtenerDatosPorRangoFechasYSensor = async (fechaInicial: string, fe
     `${API_URL}/v1/datos/rangoFechasporSensor?fechaInicial=${fechaInicial}&fechafinal=${fechaFinal}&idSensor=${idSensor}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`  
       }
     }
   );

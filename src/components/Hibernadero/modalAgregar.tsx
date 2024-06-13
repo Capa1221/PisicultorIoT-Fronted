@@ -1,17 +1,6 @@
 import React from "react";
 import { Modal, Input, Textarea, ModalFooter, ModalContent, ModalBody, ModalHeader, Button } from "@nextui-org/react";
 
-interface Hibernadero {
-  id: string;
-  imagen: string;
-  ciudad: string;
-  departamento: string;
-  nombre: string;
-  encargado: string;
-  detalles: string;
-  estado: string;
-}
-
 interface NewHibernaderoModalProps {
   isOpen: boolean;
   onClose: () => void;

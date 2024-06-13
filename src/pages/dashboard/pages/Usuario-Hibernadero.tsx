@@ -25,7 +25,7 @@ const UsuarioHibernaderoComponent: React.FC = () => {
     const fetchAsociaciones = async () => {
       if (token) {
         try {
-          const response = await buscarHibernaderosUsuario(token,"1");
+          const response = await buscarHibernaderosUsuario(token,"6661d63ccab6fafb76a26a14");
           setAsociaciones(response.data);
         } catch (error) {
           console.error("Failed to fetch asociaciones:", error);

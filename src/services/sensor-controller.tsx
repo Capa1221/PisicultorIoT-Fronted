@@ -10,8 +10,15 @@ interface Sensor {
   config: boolean;
 }
 
-export const crearSensor = async (sensor: Sensor, token: string): Promise<AxiosResponse<Sensor>> => {
-  return axios.post<Sensor>(
+interface newSensor {
+  idHibernadero: string;
+  nombre: string;
+  descripcion: string;
+  config: boolean;
+}
+
+export const crearSensor = async (sensor: newSensor, token: string): Promise<AxiosResponse<newSensor>> => {
+  return axios.post<newSensor>(
     `${API_URL}/v1/sensor/crearSensor`,
     sensor,
     {
