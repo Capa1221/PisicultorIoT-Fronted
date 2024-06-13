@@ -3,7 +3,6 @@ import axios, { AxiosResponse } from "axios";
 const API_URL = import.meta.env.VITE_API_AUTH;
 
 interface RegisterData {
-  id: string;
   usuario: string;
   nombres: string;
   email: string;

@@ -14,9 +14,7 @@ interface Hibernadero {
 }
 
 export const actualizarHibernadero = async (
-  hibernadero: Hibernadero,
-  token: string
-): Promise<AxiosResponse<Hibernadero>> => {
+id: string, hibernadero: Hibernadero, token: string): Promise<AxiosResponse<Hibernadero>> => {
   return axios.put<Hibernadero>(
     `${API_URL}/v1/hibernadero/actualizar`,
     hibernadero,

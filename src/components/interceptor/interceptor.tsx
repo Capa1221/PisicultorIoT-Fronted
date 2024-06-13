@@ -78,7 +78,25 @@ export function Interceptor({ children }: IInterceptorProps) {
       </ModalContent>
     </Modal>
       }
-      {isRequest && !loading && !message && <div>exito</div>}
+      {isRequest && !loading && !message && <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">Error</ModalHeader>
+            <ModalBody>
+              <p>
+                {message}
+              </p>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" variant="light" onPress={() => onClose()}>
+                Cerrar
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>}
       {children}
     </>
   );
