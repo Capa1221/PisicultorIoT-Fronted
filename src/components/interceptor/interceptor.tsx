@@ -10,6 +10,7 @@ interface IInterceptorProps {
 export function Interceptor({ children }: IInterceptorProps) {
 
   const [loading, setLoading] = useState(false);
+  const { isOpen, onOpenChange } = useDisclosure();
   const [message, setMessage] = useState<string | null>(null);
   const [isRequest, setIsRequest] = useState(false);
 
@@ -40,6 +41,7 @@ export function Interceptor({ children }: IInterceptorProps) {
       },
       async (error: AxiosError) => {
         setLoading(false);
+        onOpenChange();
         return await handleResponseError(error);
       }
     );
@@ -49,37 +51,33 @@ export function Interceptor({ children }: IInterceptorProps) {
       axios.interceptors.response.eject(responseInterceptor);
     };
   }, []);
-  const { isOpen, onOpenChange } = useDisclosure();
   return (
     <>
       {isRequest && loading &&
-      <div className='text-lg absolute flex justify-center items-center text-center w-full h-screen bg-gray-500/50'>
-        <Spinner color="success" className='text-white' />
-      </div>
+        <div className='text-lg absolute flex justify-center items-center text-center w-full h-screen bg-gray-500/50'>
+          <Spinner color="success" className='text-white' />
+        </div>
       }
       {isRequest && message &&
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Error</ModalHeader>
-              <ModalBody>
-                <p> 
-                  {message}
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">Error</ModalHeader>
+            <ModalBody>
+              <p>
+                {message}
+              </p>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" variant="light" onPress={() => onClose()}>
+                Close
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
       }
       {isRequest && !loading && !message && <div>exito</div>}
       {children}
