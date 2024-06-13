@@ -6,6 +6,7 @@ import { Usuarios } from "./pages/usuarios";
 import Home from "./pages/Home";
 import UsuarioHibernaderoComponent from "./pages/Usuario-Hibernadero";
 import Sensores from "./pages/Sensores";
+import { ErrorBoundary } from "../../components/errorBoundary/ErrorBoundary";
 
 export const Dashboard = () => {
   

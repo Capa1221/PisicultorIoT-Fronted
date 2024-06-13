@@ -13,12 +13,12 @@ import imagenSistema from "../../assets/54705961_transparen.png";
 
 export const Header = () => {
   const menuItems = [
-    "Inicio",
-    "TecnologÃ­as",
-    "CaracterÃ­sticas",
-    "Desarrolladores",
-    "Formulario de Solicitud",
-    "Iniciar SesiÃ³n",
+    { name: "Inicio", href: "/inicio" },
+    { name: "Tecnologías", href: "/tecnologias" },
+    { name: "Características", href: "/caracteristicas" },
+    { name: "Desarrolladores", href: "/desarrolladores" },
+    { name: "Formulario de Solicitud", href: "/formulario-de-solicitud" },
+    { name: "Iniciar Sesión", href: "/iniciar-sesion" },
   ];
 
   return (
@@ -47,37 +47,37 @@ export const Header = () => {
         </NavbarBrand>
         {menuItems.slice(1, -1).map((item, index) => (
           <NavbarItem key={index}>
-            <Link href="#" aria-current="page" className="text-white hover:text-blue-500">
-              {item}
+            <Link href={item.href} aria-current="page" className="text-white hover:text-blue-500">
+              {item.name}
             </Link>
           </NavbarItem>
         ))}
       </NavbarContent>
-      
+
       <NavbarContent justify="end" className="hidden lg:flex sm:flex">
         <NavbarItem>
           <Button
             as={Link}
             color="success"
-            href="/Iniciar-Sesion"
+            href={menuItems[menuItems.length - 1].href}
             variant="bordered"
             className="text-white hover:text-blue-300"
           >
-            {menuItems[menuItems.length - 1]}
+            {menuItems[menuItems.length - 1].name}
           </Button>
         </NavbarItem>
       </NavbarContent>
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               className="w-full"
               color="foreground"
-              href="#"
+              href={item.href}
               size="lg"
             >
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}

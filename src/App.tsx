@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './App.css';
+import Spinnerlazyload from './components/spinner/spinner-lazy-load';
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Suspense fallback={<div>cargando ...</div>}>
+      <Suspense fallback={<Spinnerlazyload/>}>
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/Iniciar-Sesion' element={<Login />} />

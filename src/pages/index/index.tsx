@@ -12,10 +12,8 @@ export const Index  =() => {
     <div>
       <Header />
       <Hero />
-      <Technologies />
-      <ErrorBoundary>
+      <Technologies />   
       <Characteristics />
-      </ErrorBoundary>
       <Developers />
       <Applicationform />
       <Footer />

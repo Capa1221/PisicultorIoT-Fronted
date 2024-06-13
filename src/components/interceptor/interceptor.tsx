@@ -1,6 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spinner, useDisclosure } from '@nextui-org/react';
+import Spinnerlazyload from '../spinner/spinner-lazy-load';
 
 
 interface IInterceptorProps {
@@ -54,9 +55,7 @@ export function Interceptor({ children }: IInterceptorProps) {
   return (
     <>
       {isRequest && loading &&
-        <div className='text-lg absolute flex justify-center items-center text-center w-full h-screen bg-gray-500/50'>
-          <Spinner color="success" className='text-white' />
-        </div>
+        <Spinnerlazyload/>
       }
       {isRequest && message &&
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
@@ -71,7 +70,7 @@ export function Interceptor({ children }: IInterceptorProps) {
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={() => onClose()}>
-                Close
+                Cerrar
               </Button>
             </ModalFooter>
           </>
