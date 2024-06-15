@@ -1,3 +1,4 @@
+import { Button } from '@nextui-org/react';
 import heroImage from '../../assets/AgricultorIoT.jpeg';
 import {
   RiCheckboxBlankCircleFill,
@@ -23,9 +24,9 @@ export const Hero = () => {
           Optimiza tu producción agrícola con soluciones intuitivas y tecnológicas, alineadas con tus objetivos.
           </p>
           <div className="flex flex-col md:flex-row items-center gap-4">
-            <button className="w-full xl:w-auto bg-primary text-white py-2 px-8 rounded-xl text-xl">
-            ¿Deseas participar?
-            </button>
+            <Button color="primary" className="w-full xl:w-auto bg-primary text-white p-6 rounded-xl text-xl">
+              ¿Deseas participar?
+            </Button> 
           </div>
         </div>
       </div>

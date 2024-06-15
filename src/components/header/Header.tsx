@@ -59,7 +59,7 @@ export const Header = () => {
             color="success"
             href={menuItems[menuItems.length - 1].href}
             variant="bordered"
-            className="text-white bg-green-500 hover:bg-green-600"
+            className="bg-primary text-white border-opacity-hover"
           >
             {menuItems[menuItems.length - 1].name}
           </Button>
