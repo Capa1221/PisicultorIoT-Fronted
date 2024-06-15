@@ -75,13 +75,13 @@ const Hibernaderos: React.FC = () => {
           break;
         case "associate":
           console.log(`Asociar usuario al hibernadero con id: ${selectedHibernadero}`);
-          // Lógica para asociar un usuario al hibernadero
+          // Lï¿½gica para asociar un usuario al hibernadero
           break;
         default:
           break;
       }
     } catch (error) {
-      console.error(`Error al ejecutar acción ${action} en hibernadero ${selectedHibernadero}`, error);
+      console.error(`Error al ejecutar acciï¿½n ${action} en hibernadero ${selectedHibernadero}`, error);
     }
   };
 
@@ -89,7 +89,7 @@ const Hibernaderos: React.FC = () => {
     try {
       const response = await buscarHibernaderoPorId(id, token!);
       if (response.data) {
-        setEditHibernadero(response.data); // Cargar el hibernadero en el estado de edición
+        setEditHibernadero(response.data); // Cargar el hibernadero en el estado de ediciï¿½n
       } else {
         console.error("Response data is empty");
       }
@@ -101,7 +101,7 @@ const Hibernaderos: React.FC = () => {
   const handleEliminar = async (id: string) => {
     try {
       await eliminarHibernadero(id, token!);
-      // Actualizar la lista de hibernaderos después de eliminar
+      // Actualizar la lista de hibernaderos despuï¿½s de eliminar
       const response = await buscarTodosLosHibernaderos(token!);
       if (response.data) {
         setHibernaderos(response.data);
@@ -134,7 +134,7 @@ const Hibernaderos: React.FC = () => {
   const handleGuardarNuevo = async () => {
     if (!newHibernadero) return;
 
-    // Asegúrate de que los campos no sean null antes de enviar la solicitud
+    // Asegï¿½rate de que los campos no sean null antes de enviar la solicitud
     const hibernaderoToSave = {
       ...newHibernadero,
       ciudad: newHibernadero.ciudad || '',
@@ -175,9 +175,7 @@ const Hibernaderos: React.FC = () => {
     <>
       <HeaderDashboard mensaje="Tus Invernaderos " />
       <div className="p-8">
-        <CommentSection mensaje="Bienvenido a la sección de administración de tus invernaderos. Aquí puedes ver
-          información detallada sobre cada uno de ellos y realizar acciones como editar,
-          eliminar o asociar usuarios. Explora tus invernaderos y mantén todo bajo control."/>
+        <CommentSection mensaje="Bienvenido a la secciÃ³n de gestiÃ³n de sus invernaderos. En esta Ã¡rea, encontrarÃ¡ datos completos sobre cada invernadero y podrÃ¡ ejecutar tareas como la modificaciÃ³n, la eliminaciÃ³n o la asociaciÃ³n de usuarios. AdÃ©ntrate en tus invernaderos para mantener la supervisiÃ³n y la regulaciÃ³n de todas las operaciones."/>
         <Button onPress={onNewOpen} color="primary" className="mb-4">
           Agregar Hibernadero
         </Button>

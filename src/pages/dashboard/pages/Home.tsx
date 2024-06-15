@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Accordion, AccordionItem, Link, User } from "@nextui-org/react";
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { buscarTodosLosHibernaderos } from "../../../services/hibernadero-controller";
 import { useEffect, useState } from "react";
@@ -48,11 +48,11 @@ const Home = () => {
           const responseHibernaderos = await buscarTodosLosHibernaderos(token)
           const responseSensores = await obtenerSensoresTodos(token);
           const responseUsuarios = await buscarTodosLosUsuarios(token);
-          
+
           setHibernaderos(responseHibernaderos.data);
           setSensor(responseSensores.data);
           setUsuarios(responseUsuarios.data);
-          console.log(responseHibernaderos.data, responseSensores.data,responseUsuarios.data);
+          console.log(responseHibernaderos.data, responseSensores.data, responseUsuarios.data);
         } else {
           console.error("Token is null");
         }
@@ -63,19 +63,16 @@ const Home = () => {
     fetchData();
   }, [token]);
 
-  const defaultContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
   return (
     <div className="text-lg">
       {/* Section 1 */}
-      <HeaderDashboard mensaje={"Has vuelto"}/>
+      <HeaderDashboard mensaje={"Has vuelto"} />
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
         {/* Card 1 */}
-        <CardHibernaderos numero={Hibernaderos.length}/>
+        <CardHibernaderos numero={Hibernaderos.length} />
         {/* Card 2 */}
         <div className="p-4 bg-white rounded-xl flex flex-col justify-between gap-4 drop-shadow-2xl">
-          <CardInformationAplicattion usuarios={usuarios.length} sensores={sensor.length}/>
+          <CardInformationAplicattion usuarios={usuarios.length} sensores={sensor.length} />
         </div>
         {/* Card 3 */}
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between">
@@ -97,12 +94,9 @@ const Home = () => {
               </div>
             ))}
             <div className="flex justify-end">
-              <a
-                href="#"
-                className="hover:text-primary-100 transition-colors hover:underline"
-              >
-                Ver todos
-              </a>
+            <Link href="" size="md" isExternal>
+             Ver todos
+            </Link>
             </div>
           </div>
         </div>
@@ -137,7 +131,7 @@ const Home = () => {
           <h1 className="text-2xl font-bold mb-8">Documentación</h1>
           <div className="bg-white p-8 rounded-xl shadow-2xl mb-8 flex flex-col gap-8">
             <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 w-full">
                 <Accordion>
                   <AccordionItem
                     key="1"
@@ -149,7 +143,17 @@ const Home = () => {
                     }
                     title="Documentacion Sistema"
                   >
-                    {defaultContent}
+                    <User
+                      name={(
+                        <Link href="" size="md" isExternal>
+                          SistemaDocumentation.pdf
+                        </Link>
+                      )}
+                      description="Este manual tiene como objetivo ayudar a los usuarios a navegar y comprender las diversas funciones que ofrece el sistema."
+                      avatarProps={{
+                        src: "https://cdn0.iconfinder.com/data/icons/upload-download-files/128/file_pdf_document-512.png"
+                      }}
+                    />
                   </AccordionItem>
                   <AccordionItem
                     key="2"
@@ -161,7 +165,17 @@ const Home = () => {
                     }
                     title="Documentacion Backend"
                   >
-                    {defaultContent}
+                    <User
+                      name={(
+                        <Link href="" size="md" isExternal>
+                          BackendDocumentation.pdf
+                        </Link>
+                      )}
+                      description="Este manual está diseñado para guiar a los usuarios en la exploración y comprensión de las distintas funcionalidades que proporciona la API."
+                      avatarProps={{
+                        src: "https://cdn0.iconfinder.com/data/icons/upload-download-files/128/file_pdf_document-512.png"
+                      }}
+                    />
                   </AccordionItem>
                 </Accordion>
               </div>
@@ -174,4 +188,3 @@ const Home = () => {
 };
 
 export default Home;
-  

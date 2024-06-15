@@ -1,10 +1,11 @@
-import React from "react";
-import { Modal, Input, Textarea, ModalFooter, ModalContent, ModalBody, ModalHeader, Button } from "@nextui-org/react";
+import React, { useState } from "react";
+import { Modal, Input, Textarea, ModalFooter, ModalContent, ModalBody, ModalHeader, Button, Image } from "@nextui-org/react";
+import { BiImage } from "react-icons/bi";
 
 interface NewHibernaderoModalProps {
   isOpen: boolean;
   onClose: () => void;
-  newHibernadero: Hibernadero;
+  newHibernadero: any;
   handleChangeNuevo: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   handleGuardarNuevo: () => void;
 }
@@ -16,6 +17,19 @@ const NewHibernaderoModal: React.FC<NewHibernaderoModalProps> = ({
   handleChangeNuevo,
   handleGuardarNuevo,
 }) => {
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalContent>
@@ -23,6 +37,23 @@ const NewHibernaderoModal: React.FC<NewHibernaderoModalProps> = ({
           <>
             <ModalHeader className="flex flex-col gap-1">Agregar Nuevo Hibernadero</ModalHeader>
             <ModalBody>
+              <div className="flex items-center space-x-2 m-0">
+              <Input
+                type="file"
+                name="image"
+                startContent={<BiImage className="text-2xl" />}
+                onChange={handleImageChange}
+              />
+              {imagePreview && (
+                <div className="flex place-content-end">
+                  <Image
+                    width={100}
+                    alt="Vista previa de la imagen"
+                    src={imagePreview}
+                  />
+                </div>
+              )}
+              </div>
               <Input
                 label="Nombre"
                 name="nombre"
