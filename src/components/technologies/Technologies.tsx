@@ -14,7 +14,7 @@ import imageVite from '../../assets/react.svg';
 
 export const Technologies = () => {
   return (
-    <div className="flex flex-col m-12">
+    <div className="flex flex-col m-12" id="Technologies">
       <Tabs aria-label="Options" className="place-content-center">
         <Tab
           key="frameworks"
@@ -33,13 +33,13 @@ export const Technologies = () => {
                 />
                 <div className="flex flex-col">
                   <p className="text-md">React + Vite</p>
-                  <p className="text-small text-default-500">vitejs.dev/</p>
+                  <p className="text-small text-default-500">Front-end</p>
                 </div>
               </CardHeader>
               <Divider />
               <CardBody>
                 <p>
-                Usamos React con Vite porque combina la flexibilidad y eficiencia de React para crear interfaces de usuario din醡icas con la rapidez y simplicidad de Vite para un desarrollo r醦ido y una excelente experiencia de usuario. Esto permite construir aplicaciones web modernas y optimizadas sin complicaciones, independientemente de tu experiencia en desarrollo.
+                Usamos React con Vite porque combina la eficiencia y la flexibilidad de React para crear interfaces de usuario dinamicas con la rapidez y la simplicidad de Vite para un desarrollo rapido y una excelente experiencia de usuario. Independientemente de la experiencia en desarrollo, esto permite crear aplicaciones web modernas y optimizadas sin problemas.
                 </p>
               </CardBody>
               <Divider />
@@ -64,13 +64,13 @@ export const Technologies = () => {
                 />
                 <div className="flex flex-col">
                   <p className="text-md">Spring Boot</p>
-                  <p className="text-small text-default-500">spring.io</p>
+                  <p className="text-small text-default-500">Back-end</p>
                 </div>
               </CardHeader>
               <Divider />
               <CardBody>
                 <p>
-                Utilizamos Spring Boot como backend porque proporciona una plataforma robusta y escalable para desarrollar aplicaciones Java con facilidad. Con su configuraci髇 m韓ima y su extensa colecci髇 de herramientas integradas, Spring Boot permite crear servicios backend potentes y seguros, simplificando el desarrollo y acelerando la entrega de aplicaciones empresariales modernas.
+                Utilizamos Spring Boot como backend porque ofrece una plataforma s贸lida y escalable que facilita el desarrollo de aplicaciones Java. Spring Boot facilita la creaci贸n de servicios backend poderosos y seguros, simplifica el desarrollo y acelera la entrega de aplicaciones empresariales modernas gracias a su configuraci贸n m铆nima y su amplia gama de herramientas integradas.
                 </p>
               </CardBody>
               <Divider />
@@ -109,7 +109,7 @@ export const Technologies = () => {
               <Divider />
               <CardBody>
                 <p>
-                  Make beautiful websites regardless of your design experience.
+                Independientemente de su experiencia en dise帽o, con esta libreria podemos utilizar componentes para sitios web .
                 </p>
               </CardBody>
               <Divider />
@@ -119,7 +119,7 @@ export const Technologies = () => {
                   showAnchorIcon
                   href="https://github.com/nextui-org/nextui"
                 >
-                  Visit source code on GitHub.
+                  Visite el c贸digo fuente en GitHub.
                 </Link>
               </CardFooter>
             </Card>
