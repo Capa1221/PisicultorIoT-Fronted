@@ -14,19 +14,18 @@ import imagenSistema from "../../assets/54705961_transparen.png";
 export const Header = () => {
   const menuItems = [
     { name: "Inicio", href: "/inicio" },
-    { name: "Tecnologías", href: "/tecnologias" },
-    { name: "Características", href: "/caracteristicas" },
+    { name: "TecnologÃ­as", href: "/tecnologias" },
+    { name: "CaracterÃ­sticas", href: "/caracteristicas" },
     { name: "Desarrolladores", href: "/desarrolladores" },
     { name: "Formulario de Solicitud", href: "/formulario-de-solicitud" },
-    { name: "Iniciar Sesión", href: "/iniciar-sesion" },
+    { name: "Iniciar SesiÃ³n", href: "/iniciar-sesion" },
   ];
 
   return (
-    <Navbar disableAnimation isBordered className="bg-primary text-white">
+    <Navbar disableAnimation isBordered className="bg-primary text-white p-4">
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle />
       </NavbarContent>
-
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
           <img
@@ -36,7 +35,6 @@ export const Header = () => {
           />
         </NavbarBrand>
       </NavbarContent>
-
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
           <img
@@ -47,7 +45,7 @@ export const Header = () => {
         </NavbarBrand>
         {menuItems.slice(1, -1).map((item, index) => (
           <NavbarItem key={index}>
-            <Link href={item.href} aria-current="page" className="text-white hover:text-blue-500">
+            <Link href={item.href} aria-current="page" className="text-white text-xl hover:underline hover:text-gray-300 ">
               {item.name}
             </Link>
           </NavbarItem>
@@ -61,7 +59,7 @@ export const Header = () => {
             color="success"
             href={menuItems[menuItems.length - 1].href}
             variant="bordered"
-            className="text-white hover:text-blue-300"
+            className="text-white bg-green-500 hover:bg-green-600"
           >
             {menuItems[menuItems.length - 1].name}
           </Button>
