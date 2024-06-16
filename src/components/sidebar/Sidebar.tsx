@@ -11,6 +11,7 @@ import {
 } from "react-icons/ri";
 import { ScrollShadow } from "@nextui-org/react";
 import { ProfileSidebar } from "./ProfileSidebar";
+import { GrConfigure } from "react-icons/gr";
 
 const Sidebar = ({ userEmail }: { userEmail: string }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -68,6 +69,13 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 onClick={() => setShowMenu(false)}
               >
                 <RiSensorLine /> Sensores
+              </Link>
+              <Link
+                to="/dashboard/propiedades"
+                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
+                onClick={() => setShowMenu(false)}
+              >
+                <GrConfigure /> Propiedades
               </Link>
             </nav>
           </ScrollShadow>

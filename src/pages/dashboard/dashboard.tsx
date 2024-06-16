@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import UsuarioHibernaderoComponent from "./pages/Usuario-Hibernadero";
 import Sensores from "./pages/Sensores";
 import { Usuarios } from "./pages/usuarios";
+import { Propiedades } from "./pages/Propiedades";
 
 export const Dashboard = () => {
   
@@ -36,6 +37,7 @@ export const Dashboard = () => {
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/Sensores" element={<Sensores />} />
           <Route path="/usuario-hibernadero" element={<UsuarioHibernaderoComponent/>}/>
+          <Route path="/propiedades" element={<Propiedades/>}/>
         </Routes>
       </main>
     </div>

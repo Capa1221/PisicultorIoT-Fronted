@@ -73,9 +73,9 @@ export const Usuarios = () => {
     const errors: string[] = [];
     if (!registerData.usuario) errors.push("El nombre de usuario es requerido.");
     if (!registerData.nombres) errors.push("El nombre es requerido.");
-    if (!registerData.email) errors.push("El correo electr�nico es requerido.");
-    if (!registerData.clave) errors.push("La contrase�a es requerida.");
-    if (registerData.clave !== registerData.confirmarClave) errors.push("Las contrase�as no coinciden.");
+    if (!registerData.email) errors.push("El correo electrónico es requerido.");
+    if (!registerData.clave) errors.push("La contraseña es requerida.");
+    if (registerData.clave !== registerData.confirmarClave) errors.push("Las contraseñas no coinciden.");
     return errors;
   };
 
@@ -122,30 +122,30 @@ export const Usuarios = () => {
                   <ModalHeader className="justify-center">Agregar Usuario</ModalHeader>
                   <ModalBody>
                     <div className="flex space-x-2">
-                    <Input
-                      type="text"
-                      name="Usuario"
-                      label="Usuario"
-                      placeholder="Jhon_Example"
-                      isRequired
-                      maxLength={10}
-                      startContent={
-                        <BsPerson className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                      }
-                    />
-                    <Input
-                      type="email"
-                      name="email"
-                      label="Email"
-                      isRequired
-                      maxLength={50}
-                      placeholder="example@example.org"
-                      onChange={handleInputChange}
-                      value={registerData.email}
-                      startContent={
-                        <BiMailSend className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                      }
-                    />
+                      <Input
+                        type="text"
+                        name="Usuario"
+                        label="Usuario"
+                        placeholder="Jhon_Example"
+                        isRequired
+                        maxLength={10}
+                        startContent={
+                          <BsPerson className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                        }
+                      />
+                      <Input
+                        type="email"
+                        name="email"
+                        label="Email"
+                        isRequired
+                        maxLength={50}
+                        placeholder="example@example.org"
+                        onChange={handleInputChange}
+                        value={registerData.email}
+                        startContent={
+                          <BiMailSend className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                        }
+                      />
                     </div>
                     <Input
                       type="text"
