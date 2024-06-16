@@ -173,11 +173,11 @@ const Hibernaderos: React.FC = () => {
 
   return (
     <>
-      <HeaderDashboard mensaje="Tus Invernaderos " />
+      <HeaderDashboard mensaje="Tus Cultivos " />
       <div className="p-8">
-        <CommentSection mensaje="Bienvenido a la sección de gestión de sus invernaderos. En esta área, encontrará datos completos sobre cada invernadero y podrá ejecutar tareas como la modificación, la eliminación o la asociación de usuarios. Adéntrate en tus invernaderos para mantener la supervisión y la regulación de todas las operaciones."/>
+        <CommentSection mensaje="Bienvenido a la sección de gestión de sus cultivos. En esta área, encontrará datos completos sobre cada uno de sus cultivos y podrá ejecutar tareas como la modificación, la eliminación o la asociación de usuarios. Adéntrate en tus invernaderos para mantener la supervisión y la regulación de todas las operaciones."/>
         <Button onPress={onNewOpen} color="primary" className="mb-4">
-          Agregar Hibernadero
+          Agregar Cultivo
         </Button>
         <HibernaderoList hibernaderos={hibernaderos} setSelectedHibernadero={setSelectedHibernadero} onOpen={onOpen} />
       </div>
@@ -197,7 +197,6 @@ const Hibernaderos: React.FC = () => {
       <NewHibernaderoModal
         isOpen={isNewOpen}
         onClose={onNewClose}
-        newHibernadero={newHibernadero}
         handleChangeNuevo={handleChangeNuevo}
         handleGuardarNuevo={handleGuardarNuevo}
       />

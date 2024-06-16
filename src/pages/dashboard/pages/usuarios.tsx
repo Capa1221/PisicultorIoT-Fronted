@@ -1,11 +1,13 @@
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { RiLineChartLine } from "react-icons/ri";
+import { RiLineChartLine, RiLockPasswordLine } from "react-icons/ri";
 import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
 import { postRegister } from "../../../services/auth-controller";
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { CommentSection } from "../../../components/comment-dashboard/comment";
+import { BiMailSend, BiUserCircle } from "react-icons/bi";
+import { BsPerson } from "react-icons/bs";
 
 interface Usuario {
   id: string;
@@ -71,9 +73,9 @@ export const Usuarios = () => {
     const errors: string[] = [];
     if (!registerData.usuario) errors.push("El nombre de usuario es requerido.");
     if (!registerData.nombres) errors.push("El nombre es requerido.");
-    if (!registerData.email) errors.push("El correo electrónico es requerido.");
-    if (!registerData.clave) errors.push("La contraseña es requerida.");
-    if (registerData.clave !== registerData.confirmarClave) errors.push("Las contraseñas no coinciden.");
+    if (!registerData.email) errors.push("El correo electrï¿½nico es requerido.");
+    if (!registerData.clave) errors.push("La contraseï¿½a es requerida.");
+    if (registerData.clave !== registerData.confirmarClave) errors.push("Las contraseï¿½as no coinciden.");
     return errors;
   };
 
@@ -108,61 +110,81 @@ export const Usuarios = () => {
     <div>
       <HeaderDashboard mensaje="Usuarios en el sistema" />
       <div className="p-8">
-        <CommentSection mensaje="Bienvenido a la sección de administración de usuarios del sistema. Aquí puedes ver la lista de usuarios registrados, sus roles, y realizar acciones como visualizar detalles adicionales."/>
+        <CommentSection mensaje="Bienvenido a la secciÃ³n de administraciÃ³n de usuarios del sistema. AquÃ­ puedes ver la lista de usuarios registrados, realizar acciones como visualizar detalles adicionales." />
         <div className="my-8">
-          <Button color="success" className="text-black" variant="bordered" onPress={onOpen}>
+          <Button color="primary" onPress={onOpen}>
             Agregar Usuario
           </Button>
           <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
-            <ModalContent>
+            <ModalContent className="w-full">
               {(onClose) => (
                 <>
-                  <ModalHeader className="flex flex-col gap-1">Agregar Usuario al Sistema</ModalHeader>
+                  <ModalHeader className="justify-center">Agregar Usuario</ModalHeader>
                   <ModalBody>
+                    <div className="flex space-x-2">
                     <Input
                       type="text"
-                      name="usuario"
+                      name="Usuario"
                       label="Usuario"
-                      placeholder="Junior_Hibernadero"
-                      className="max-w-xs"
-                      onChange={handleInputChange}
-                      value={registerData.usuario}
+                      placeholder="Jhon_Example"
+                      isRequired
+                      maxLength={10}
+                      startContent={
+                        <BsPerson className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                      }
                     />
                     <Input
                       type="email"
                       name="email"
                       label="Email"
-                      placeholder="junior@nextui.org"
-                      className="max-w-xs"
+                      isRequired
+                      maxLength={50}
+                      placeholder="example@example.org"
                       onChange={handleInputChange}
                       value={registerData.email}
+                      startContent={
+                        <BiMailSend className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                      }
                     />
+                    </div>
                     <Input
                       type="text"
                       name="nombres"
                       label="Nombre"
-                      placeholder="Junior Doe"
-                      className="max-w-xs"
+                      placeholder="Junior Doe Example"
+                      isRequired
+                      maxLength={100}
                       onChange={handleInputChange}
                       value={registerData.nombres}
+                      startContent={
+                        <BiUserCircle className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                      }
                     />
                     <Input
                       type="password"
                       name="clave"
-                      label="Contraseña"
+                      label="ContraseÃ±a"
                       placeholder="********"
-                      className="max-w-xs"
+                      isRequired
+                      maxLength={15}
                       onChange={handleInputChange}
                       value={registerData.clave}
+                      startContent={
+                        <RiLockPasswordLine className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                      }
                     />
                     <Input
                       type="password"
                       name="confirmarClave"
-                      label="Repetir Contraseña"
+                      label="Repetir ContraseÃ±a"
                       placeholder="********"
-                      className="max-w-xs"
+                      isRequired
+                      maxLength={15}
                       onChange={handleInputChange}
                       value={registerData.confirmarClave}
+                      startContent={
+                        <RiLockPasswordLine className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                      }
                     />
                   </ModalBody>
                   <ModalFooter>
