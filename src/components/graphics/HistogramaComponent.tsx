@@ -36,7 +36,7 @@ export const HistogramChartComponent: React.FC<HistogramChartComponentProps> = (
             chartRef.current = createChart(chartContainerRef.current, {
                 layout: chartOptions.layout,
                 width: chartContainerRef.current.clientWidth,
-                height: 500,
+                height: 300,
             });
 
             histogramSeriesRef.current = chartRef.current.addHistogramSeries(seriesOptions);
