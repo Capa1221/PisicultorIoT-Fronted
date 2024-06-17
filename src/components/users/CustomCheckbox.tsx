@@ -19,7 +19,7 @@ interface CustomCheckboxProps {
 // Definir el componente con tipos
 export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
   return (
-    <Button variant="light" className="my-4 w-full">
+    <Button variant="light" className="my-4 w-full" onClick={()=>alert("si funciono bebe"+user.name)}>
       <div className="w-full flex justify-between gap-2">
         <User
           avatarProps={{ size: "md", src: user.avatar }}
