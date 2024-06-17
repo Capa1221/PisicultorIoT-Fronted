@@ -131,5 +131,5 @@ export const GraphicComponent: React.FC<ChartComponentProps> = (props) => {
         }
     }, [data, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor]);
 
-    return <div ref={chartContainerRef} style={{ position: 'relative', width: '100%', height: '500px' }} />;
+    return <div ref={chartContainerRef} style={{ position: 'relative', width: '100%', height: 'auto' }} />;
 };
