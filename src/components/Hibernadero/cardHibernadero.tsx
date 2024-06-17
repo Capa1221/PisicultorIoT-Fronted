@@ -4,6 +4,7 @@ import { AiTwotoneEnvironment } from "react-icons/ai";
 import { ModalAsociarUsuario } from './modalAsociarUsuario';
 import { ModalEditar } from './modalEditar';
 import { ModalEliminar } from './modalEliminar';
+import { BiUser } from "react-icons/bi";
 
 export const CardHibernadero = () => {
     
@@ -25,9 +26,9 @@ export const CardHibernadero = () => {
                         <p>Tipo: Hibernadero</p>
                         <p className="text-white bg-green-900 rounded-md p-1">activo</p>
                     </div>
-                    <div className="py-2 flex items-center self-center">
-                        <span><AiTwotoneEnvironment className="text-red-500" /></span>
-                        <small className="font-sans">Norte de Santander / Pamplona</small>
+                    <div className="py-2 flex items-center justify-around">
+                        <p className="flex items-center space-x-1"><BiUser className="text-primary text-md"/><span className="font-sans font-semibold text-primary">2</span></p>
+                        <p className="flex items-center space-x-1"><AiTwotoneEnvironment className="text-red-500 text-md" /><small className="font-sans">Norte de Santander / Pamplona</small></p>
                     </div>
                     <Accordion variant="splitted">
                         <AccordionItem title="Detalles" indicator={
