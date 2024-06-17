@@ -9,20 +9,7 @@ import { ModalEditar } from './modalEditar';
 import { ModalEliminar } from './modalEliminar';
 
 export const CardHibernadero = () => {
-    const [selectedModal, setSelectedModal] = useState<null | "editar" | "eliminar">(null);
-
-  const handleOptionModal = (key: string) => {
-    switch (key) {
-      case "edit":
-        setSelectedModal("editar");
-        break;
-      case "delete":
-        setSelectedModal("eliminar");
-        break;
-      default:
-        break;
-    }
-  };
+    
     return (
         <>
             <Card>
@@ -54,41 +41,13 @@ export const CardHibernadero = () => {
                     </Accordion>
                 </CardBody>
                 <CardFooter className="space-x-2 justify-around flex">
-                    <Dropdown>
-                        <DropdownTrigger>
-                            <Button
-                                color="primary"
-                                variant="ghost"
-                                startContent={<SlOptionsVertical className="text-2xl" />}
-                            >
-                                Opciones
-                            </Button>
-                        </DropdownTrigger>
-                        <DropdownMenu aria-label="Static Actions" onAction={handleOptionModal}>
-                            <DropdownItem
-                                className="text-warning"
-                                key="edit"
-                                startContent={<BiPencil className="text-2xl" />}
-                                showDivider
-                            >
-                                Editar
-                            </DropdownItem>
-                            <DropdownItem key="delete" className="text-danger" color="danger"
-                                startContent={<BiTrash className="text-2xl" />}>
-                                Eliminar
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                    <ModalAsociarUsuario />
+                    <div>
+                    <ModalEliminar/>
+                    <ModalEditar/>
+                    </div>
+                    <ModalAsociarUsuario/>
                 </CardFooter>
             </Card>
-            {/* Renderiza el modal de edición si está seleccionado */}
-            {selectedModal === "editar" && (
-                <ModalEditar />
-            )}
-            {selectedModal === "eliminar" && (
-                <ModalEliminar />
-            )}
         </>
     )
 }

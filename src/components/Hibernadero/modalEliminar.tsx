@@ -1,18 +1,16 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Textarea } from "@nextui-org/react";
-import { useEffect } from "react";
+import { BiTrash } from "react-icons/bi";
 
 export const ModalEliminar = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  useEffect(() => {
-    onOpen();
-  }, [onOpen]);  
   return (
     <>
+    <Button className="text-danger" onPress={onOpen} variant="light" startContent={<BiTrash className="text-2xl" />}></Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal eliminar componente</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
               <ModalBody>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -1,4 +1,4 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, AutocompleteItem, Autocomplete, CheckboxGroup } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, CheckboxGroup } from "@nextui-org/react";
 import React from "react";
 import { FaUsersCog } from "react-icons/fa";
 import { CustomCheckbox } from "../users/CustomCheckbox";
@@ -41,7 +41,6 @@ export const ModalAsociarUsuario = () => {
                                                 role: "Software Developer",
                                                 status: "Active",
                                             }}
-                                            statusColor="secondary"
                                         />
                                         <CustomCheckbox
                                             value="johndoe"
@@ -53,7 +52,6 @@ export const ModalAsociarUsuario = () => {
                                                 role: "Product Designer",
                                                 status: "Vacation",
                                             }}
-                                            statusColor="warning"
                                         />
                                         <CustomCheckbox
                                             value="zoeylang"
@@ -65,7 +63,6 @@ export const ModalAsociarUsuario = () => {
                                                 role: "Technical Writer",
                                                 status: "Out of office",
                                             }}
-                                            statusColor="danger"
                                         />
                                         <CustomCheckbox
                                             value="william"
@@ -77,7 +74,6 @@ export const ModalAsociarUsuario = () => {
                                                 role: "Sales Manager",
                                                 status: "Active",
                                             }}
-                                            statusColor="secondary"
                                         />
                                     </CheckboxGroup>
                                     <p className="mt-4 ml-1 text-default-500">

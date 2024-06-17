@@ -1,18 +1,17 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Textarea } from "@nextui-org/react";
-import { useEffect } from "react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { BiPencil } from "react-icons/bi";
 
 export const ModalEditar = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  useEffect(() => {
-    onOpen();
-  }, [onOpen]);  
+
   return (
     <>
+      <Button className="text-warning" onPress={onOpen} variant="light" startContent={<BiPencil className="text-2xl" />}></Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Editar Componente</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
               <ModalBody>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.

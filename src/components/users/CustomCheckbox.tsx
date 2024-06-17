@@ -13,12 +13,11 @@ interface User {
 
 interface CustomCheckboxProps {
   user: User;
-  statusColor: string;
   value: string;
 }
 
 // Definir el componente con tipos
-export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user, statusColor, value }) => {
+export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user, value }) => {
   return (
     <Checkbox
       aria-label={user.name}
@@ -45,7 +44,7 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user, statusColo
         />
         <div className="flex flex-col items-end gap-1">
           <span className="text-tiny text-default-500">{user.role}</span>
-          <Chip color={statusColor} size="sm" variant="flat">
+          <Chip size="sm" variant="flat">
             {user.status}
           </Chip>
         </div>
