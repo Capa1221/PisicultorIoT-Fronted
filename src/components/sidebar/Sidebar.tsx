@@ -47,7 +47,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
-                <RiSeedlingLine /> Hibernadero
+                <RiSeedlingLine /> Mis Cultivos
               </Link>
               <Link
                 to="/dashboard/usuarios"
@@ -61,7 +61,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
-                <RiBarChartLine /> Usuario - <br />Hibernadero
+                <RiBarChartLine /> Hibernaderos Sistema
               </Link>
               <Link
                 to="/dashboard/Sensores"
