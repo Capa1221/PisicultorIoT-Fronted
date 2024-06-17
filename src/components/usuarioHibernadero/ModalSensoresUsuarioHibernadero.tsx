@@ -14,7 +14,7 @@ export const ModalSensoresUsuarioHibernadero = () => {
             <>
               <ModalHeader>Sensores Asociados al Cultivo</ModalHeader>
               <ModalBody>
-              <ScrollShadow hideScrollBar className="w-full h-[400px] space-y-6">
+              <ScrollShadow className="w-full h-[350px] space-y-6">
                   <Button variant="light" className="w-full" startContent={<RiSensorLine className="text-xl"/>} onClick={()=>{navigate("/dashboard/Sensor/Grafica")}}>Sensor de agua</Button>
                   <Button variant="light" className="w-full" startContent={<RiSensorLine className="text-xl"/>} onClick={()=>{navigate("/dashboard/Sensor/Grafica")}}>Sensor de agua</Button>
                   <Button variant="light" className="w-full" startContent={<RiSensorLine className="text-xl"/>} onClick={()=>{navigate("/dashboard/Sensor/Grafica")}}>Sensor de agua</Button>
