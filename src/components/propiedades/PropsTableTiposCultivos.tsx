@@ -25,7 +25,7 @@ export const PropsTableTiposCultivos = () => {
             </Tooltip>
           </TableCell>
         </TableRow>
-        <TableRow key="4">
+        <TableRow key="5">
           <TableCell className="text-center">William Howard</TableCell>
           <TableCell className="flex place-content-center">
             <Tooltip content="Edit user">
@@ -40,7 +40,7 @@ export const PropsTableTiposCultivos = () => {
             </Tooltip>
           </TableCell>
         </TableRow>
-        <TableRow key="4">
+        <TableRow key="6">
           <TableCell className="text-center">William Howard</TableCell>
           <TableCell className="flex place-content-center">
             <Tooltip content="Edit user">
@@ -55,7 +55,7 @@ export const PropsTableTiposCultivos = () => {
             </Tooltip>
           </TableCell>
         </TableRow>
-        <TableRow key="4">
+        <TableRow key="7">
           <TableCell className="text-center">William Howard</TableCell>
           <TableCell className="flex place-content-center">
             <Tooltip content="Edit user">
