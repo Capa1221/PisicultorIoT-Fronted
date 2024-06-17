@@ -1,7 +1,7 @@
 
 export const CommentSection = ({ mensaje }: { mensaje: string }) => {
   return (
-    <div><p className="mb-8 text-lg text-gray-500">
+    <div><p className="m-4 text-lg text-gray-500">
       {mensaje}
     </p></div>
   )
