@@ -1,121 +1,58 @@
-import React, { useEffect, useState } from "react";
-import { Button, Modal, Input, Card, CardBody, CardHeader } from "@nextui-org/react";
-import {
-  buscarHibernaderosUsuario,
-  crearUsuarioHibernadero,
-  borrarUsuarioHibernadero,
-} from "../../../services/usuario-hibernadero-controller";
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { CommentSection } from "../../../components/comment-dashboard/comment";
-
-interface UsuarioHibernadero {
-  id: string;
-  idHibernadero: string;
-  idUsuario: string;
-}
+import { Accordion, AccordionItem, Button, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import { BiUser } from "react-icons/bi";
+import { AiTwotoneEnvironment } from "react-icons/ai";
+import { CgDetailsMore } from "react-icons/cg";
+import { RiSensorLine } from "react-icons/ri";
 
 const UsuarioHibernaderoComponent: React.FC = () => {
-  const [asociaciones, setAsociaciones] = useState<UsuarioHibernadero[]>([]);
-  const [usuarioId, setUsuarioId] = useState<string>("");
-  const [hibernaderoId, setHibernaderoId] = useState<string>("");
-  const [isOpen, setIsOpen] = useState(false);
-  const token = sessionStorage.getItem("authToken");
-
-  useEffect(() => {
-    const fetchAsociaciones = async () => {
-      if (token) {
-        try {
-          const response = await buscarHibernaderosUsuario(token,"6661d63ccab6fafb76a26a14");
-          setAsociaciones(response.data);
-        } catch (error) {
-          console.error("Failed to fetch asociaciones:", error);
-        }
-      } else {
-        console.error("Token is null");
-      }
-    };
-
-    fetchAsociaciones();
-  }, [token]);
-
-  const handleCreateAsociacion = async () => {
-    if (usuarioId && hibernaderoId) {
-      try {
-        if (token != null) {
-          const response = await crearUsuarioHibernadero(
-            usuarioId,
-            hibernaderoId,
-            token
-          );
-          setAsociaciones([...asociaciones, response.data]);
-          setIsOpen(false);
-        }
-      } catch (error) {
-        console.error("Failed to create asociacion:", error);
-      }
-    }
-  };
-
-  const handleDeleteAsociacion = async (id: string) => {
-    if (token) {
-      try {
-        await borrarUsuarioHibernadero(id, token);
-        setAsociaciones(
-          asociaciones.filter((asociacion) => asociacion.id !== id)
-        );
-      } catch (error) {
-        console.error("Failed to delete asociacion:", error);
-      }
-    }
-  };
 
   return (
-    <div>
-      <HeaderDashboard mensaje="Asociaciones Usuario-Hibernadero"/>
-      <div className="p-8">
-        <CommentSection mensaje="Aquí puedes gestionar las asociaciones entre usuarios e hibernaderos.
+    <>
+      <HeaderDashboard mensaje="Asociaciones Usuario-Hibernadero" />
+      <CommentSection mensaje="Aqui puedes gestionar las asociaciones entre usuarios e hibernaderos.
           Puedes crear nuevas asociaciones, buscar por usuario o hibernadero, y
           eliminar asociaciones existentes."/>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {asociaciones.map((asociacion) => (
-            <Card key={asociacion.id}>
-              <CardHeader>
-                <h3>ID: {asociacion.id}</h3>
-              </CardHeader>
-              <CardBody>
-                <p>Usuario: {asociacion.idUsuario}</p>
-                <p>Hibernadero: {asociacion.idHibernadero}</p>
-                <Button onClick={() => handleDeleteAsociacion(asociacion.id)}>
-                  Eliminar
-                </Button>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
+      <div className="mt-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card>
+          <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
+            <h4 className="font-bold text-medium text-center uppercase text-green-800 py-2">Hibernadero De Yuca</h4>
+            <Image
+              alt="Card background"
+              className="object-cover rounded-3xl"
+              src="https://nextui.org/images/hero-card-complete.jpeg"
+              width={270}
+              isZoomed
+            />
+          </CardHeader>
+          <CardBody className="text-gray-600 w-full">
+            <div className="flex justify-around uppercase font-bold items-center">
+              <p>Tipo: Hibernadero</p>
+              <p className="text-white bg-green-900 rounded-md p-1">activo</p>
+            </div>
+            <div>
+              <p className="w-full text-center font-sans font-semibold uppercase text-warning">Propietario: Miguel Veroza</p>
+            </div>
+            <div className="py-2 flex items-center justify-around">
+              <p className="flex items-center space-x-1"><BiUser className="text-primary text-md" /><span className="font-sans font-semibold text-primary">2</span></p>
+              <p className="flex items-center space-x-1"><AiTwotoneEnvironment className="text-red-500 text-md" /><small className="font-sans">Norte de Santander / Pamplona</small></p>
+            </div>
+            <Accordion variant="splitted">
+              <AccordionItem title="Detalles" indicator={
+                <CgDetailsMore />
+              }>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti totam, aliquid dicta eum est laboriosam tenetur. Harum fugiat neque non cupiditate vero pariatur, ratione minima eos assumenda iusto, rem animi.
+              </AccordionItem>
+            </Accordion>
+          </CardBody>
+          <CardFooter className="flex place-content-center">
+            <Button color="primary" startContent={<RiSensorLine/>}>Sensores Asociado</Button>
+          </CardFooter>
+        </Card>
       </div>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <div>
-          <h4>Crear Nueva Asociación</h4>
-          <Input
-            label="ID Usuario"
-            placeholder="Ingresa el ID del usuario"
-            value={usuarioId}
-            onChange={(e) => setUsuarioId(e.target.value)}
-          />
-          <Input
-            label="ID Hibernadero"
-            placeholder="Ingresa el ID del hibernadero"
-            value={hibernaderoId}
-            onChange={(e) => setHibernaderoId(e.target.value)}
-          />
-          <Button color="primary" onClick={handleCreateAsociacion}>
-            Crear
-          </Button>
-        </div>
-      </Modal>
-    </div>
+    </>
   );
 };
 
