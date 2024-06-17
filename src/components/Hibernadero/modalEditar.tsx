@@ -1,7 +1,7 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Textarea } from "@nextui-org/react";
 import { useEffect } from "react";
 
-export const ModalEliminar = () => {
+export const ModalEditar = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   useEffect(() => {
     onOpen();
@@ -12,7 +12,7 @@ export const ModalEliminar = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal eliminar componente</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Modal Editar Componente</ModalHeader>
               <ModalBody>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.

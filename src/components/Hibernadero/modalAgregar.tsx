@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select, SelectItem, Image, Textarea } from "@nextui-org/react";
 import { BiImage, BiRename } from "react-icons/bi";
 import { HiSelector } from "react-icons/hi";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const ModalAgregar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,7 +34,7 @@ const ModalAgregar = () => {
 
   return (
     <>
-      <Button onPress={onOpen} color="primary">Agregar Cultivo</Button>
+      <Button onPress={onOpen} color="primary" startContent={<IoIosAddCircleOutline className="text-xl"/>}>Agregar Cultivo</Button>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
