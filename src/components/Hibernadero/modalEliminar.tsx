@@ -10,7 +10,7 @@ export const ModalEliminar = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Eliminar Invernadero</ModalHeader>
               <ModalBody>
                 <p>
                 ¿Confirma su intención de borrar el hibernadero?
