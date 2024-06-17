@@ -1,4 +1,4 @@
-import { Divider, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import { CommentSection } from "../../../components/comment-dashboard/comment";
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { PropsTableTiposCultivos } from "../../../components/propiedades/PropsTableTiposCultivos";
