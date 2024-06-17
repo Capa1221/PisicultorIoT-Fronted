@@ -1,12 +1,10 @@
-import { Accordion, AccordionItem, Button, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import { Accordion, AccordionItem, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
 import { BiUser } from "react-icons/bi";
 import { AiTwotoneEnvironment } from "react-icons/ai";
 import { CgDetailsMore } from "react-icons/cg";
-import { RiSensorLine } from "react-icons/ri";
-import { Navigate, useNavigate } from "react-router-dom";
+import { ModalSensoresUsuarioHibernadero } from "./ModalSensoresUsuarioHibernadero";
 
 export const CardHibernaderosUsuarios =()=> {
-  const navigate = useNavigate();
     return (
       <>
       <Card>
@@ -41,7 +39,7 @@ export const CardHibernaderosUsuarios =()=> {
             </Accordion>
           </CardBody>
           <CardFooter className="flex place-content-center">
-            <Button color="primary" startContent={<RiSensorLine/>} onClick={()=>{navigate("/dashboard/sensoresHibernadero")}}>Sensores Asociado</Button>
+            <ModalSensoresUsuarioHibernadero/>
           </CardFooter>
         </Card>
       </>

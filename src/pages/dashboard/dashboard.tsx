@@ -7,7 +7,7 @@ import UsuarioHibernaderoComponent from "./pages/Usuario-Hibernadero";
 import Sensores from "./pages/Sensores";
 import { Usuarios } from "./pages/usuarios";
 import { Propiedades } from "./pages/Propiedades";
-import { PageSensoresUsuarioHibernadero } from "../../components/usuarioHibernadero/PageSensoresUsuarioHibernadero";
+import { PageGraficasSensores } from "../../components/usuarioHibernadero/PageSensoresUsuarioHibernadero";
 
 export const Dashboard = () => {
   
@@ -39,7 +39,7 @@ export const Dashboard = () => {
           <Route path="/Sensores" element={<Sensores />} />
           <Route path="/usuario-hibernadero" element={<UsuarioHibernaderoComponent/>}/>
           <Route path="/propiedades" element={<Propiedades/>}/>
-          <Route path="/sensoresHibernadero" element={<PageSensoresUsuarioHibernadero/>}/>
+          <Route path="/Sensor/Grafica" element={<PageGraficasSensores/>}/>
         </Routes>
       </main>
     </div>
