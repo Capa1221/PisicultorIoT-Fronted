@@ -5,6 +5,7 @@ import { today, getLocalTimeZone } from '@internationalized/date';
 import { RiSensorLine } from "react-icons/ri";
 import { ChartComponent } from "../graphics/CharComponent";
 import { GraphicComponent } from "../graphics/GraphicComponent";
+import { HistogramChartComponent } from "../graphics/HistogramaComponent";
 
 export const PageGraficasSensores = () => {
   interface SensorData {
@@ -61,6 +62,9 @@ export const PageGraficasSensores = () => {
           </Tab>
           <Tab title="2 Grafica">
             <GraphicComponent data={sensorData}/>
+          </Tab>
+          <Tab title="3 Grafica">
+            <HistogramChartComponent data={sensorData}/>
           </Tab>
         </Tabs>
 
