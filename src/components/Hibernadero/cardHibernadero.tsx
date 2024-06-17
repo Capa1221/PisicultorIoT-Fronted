@@ -1,9 +1,6 @@
-import { useState } from 'react'
-import { Accordion, AccordionItem, Button, Card, CardBody, CardFooter, CardHeader, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Image } from "@nextui-org/react";
+import { Accordion, AccordionItem, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
 import { CgDetailsMore } from "react-icons/cg";
 import { AiTwotoneEnvironment } from "react-icons/ai";
-import { BiPencil, BiTrash } from "react-icons/bi";
-import { SlOptionsVertical } from "react-icons/sl";
 import { ModalAsociarUsuario } from './modalAsociarUsuario';
 import { ModalEditar } from './modalEditar';
 import { ModalEliminar } from './modalEliminar';
@@ -40,8 +37,8 @@ export const CardHibernadero = () => {
                         </AccordionItem>
                     </Accordion>
                 </CardBody>
-                <CardFooter className="space-x-2 justify-around flex">
-                    <div>
+                <CardFooter className="lg:space-x-2 justify-around flex">
+                    <div className='flex'>
                     <ModalEliminar/>
                     <ModalEditar/>
                     </div>
