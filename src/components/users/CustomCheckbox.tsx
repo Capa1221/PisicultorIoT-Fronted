@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Link, User, Chip, cn } from "@nextui-org/react";
+import { Link, User, Chip, Button } from "@nextui-org/react";
 
 // Definir la interfaz de las props
 interface User {
@@ -17,21 +17,9 @@ interface CustomCheckboxProps {
 }
 
 // Definir el componente con tipos
-export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user, value }) => {
+export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
   return (
-    <Checkbox
-      aria-label={user.name}
-      classNames={{
-        base: cn(
-          "inline-flex max-w-md w-full bg-content1 m-0",
-          "hover:bg-content2 items-center justify-start",
-          "cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent",
-          "data-[selected=true]:border-primary"
-        ),
-        label: "w-full",
-      }}
-      value={value}
-    >
+    <Button variant="light" className="my-4 w-full">
       <div className="w-full flex justify-between gap-2">
         <User
           avatarProps={{ size: "md", src: user.avatar }}
@@ -49,6 +37,6 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user, value }) =
           </Chip>
         </div>
       </div>
-    </Checkbox>
+    </Button>
   );
 };
