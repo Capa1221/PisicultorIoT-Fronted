@@ -6,7 +6,7 @@ export const ModalEliminar = () => {
   return (
     <>
     <Button className="text-danger" onPress={onOpen} variant="light" startContent={<BiTrash className="text-2xl" />}></Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}  placement="center">
         <ModalContent>
           {(onClose) => (
             <>

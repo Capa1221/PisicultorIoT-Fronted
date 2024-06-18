@@ -7,7 +7,7 @@ export const PropsModalEliminar = () => {
   return (
     <>
       <Button onPress={onOpen} variant="light" color="danger" startContent={<FaRegTrashAlt className="text-xl"/>}></Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
           {(onClose) => (
             <>

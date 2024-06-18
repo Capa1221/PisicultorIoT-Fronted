@@ -8,7 +8,7 @@ export const ModalSensoresUsuarioHibernadero = () => {
   return (
     <>
       <Button onPress={onOpen} color="primary" startContent={<RiSensorLine />}>Sensores Asociado</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="sm">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="sm" placement="center">
         <ModalContent>
           {() => (
             <>

@@ -7,7 +7,7 @@ export const PropsModalEditar=()=> {
   return (
     <>
       <Button onPress={onOpen} variant="light" color="warning" startContent={<BiEdit className="text-xl"/>}></Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
           {(onClose) => (
             <>

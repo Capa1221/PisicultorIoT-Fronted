@@ -7,7 +7,7 @@ export const PropsModalAgregar =()=> {
     return (
       <>
       <Button onPress={onOpen} color="primary" startContent={<VscSymbolProperty className="text-xl"/>} className="mb-2">Agregar Propiedad</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
           {(onClose) => (
             <>

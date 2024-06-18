@@ -31,7 +31,7 @@ export const PageGraficasSensores = () => {
         humedad, luminosidad y otros parámetros relevantes para el óptimo crecimiento de tus plantas. 
         Esta información te permitirá tomar decisiones oportunas y basadas en datos para optimizar el rendimiento 
         de tu cultivo y garantizar una cosecha exitosa."/>
-      <div className="m-4 lg:flex lg:justify-around space-y-4 lg:space-y-2">
+      <div className="m-4 flex lg:justify-around space-y-4 space-x-4 lg:space-y-2">
         <div className="flex flex-col w-min">
           <RangeCalendar
             aria-label="Date (Uncontrolled)"

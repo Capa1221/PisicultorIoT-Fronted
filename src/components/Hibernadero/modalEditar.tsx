@@ -8,7 +8,7 @@ export const ModalEditar = () => {
   return (
     <>
       <Button className="text-warning" onPress={onOpen} variant="light" startContent={<BiPencil className="text-2xl" />}></Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}  placement="center">
         <ModalContent>
           {(onClose) => (
             <>
