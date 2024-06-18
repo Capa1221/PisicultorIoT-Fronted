@@ -26,14 +26,14 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
   return (
     <>
       <div
-        className={`bg-secondary-900/10 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${showMenu ? "left-0" : "-left-full"
+        className={`bg-white h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${showMenu ? "left-0" : "-left-full"
           }`}
       >
         {/* Profile */}
         <ProfileSidebar email={userEmail}/>
         {/* Nav */}
         <div className="bg-primary p-8 rounded-tr-[100px] h-[70vh] flex flex-col justify-between gap-8">
-          <ScrollShadow hideScrollBar className="h-[400px]">
+          <ScrollShadow hideScrollBar className="h-auto">
             <nav className="flex flex-col gap-8">
               <Link
                 to="/dashboard/home"
