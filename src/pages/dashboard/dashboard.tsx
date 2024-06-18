@@ -3,11 +3,11 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Hibernaderos from "./pages/Invernaderos";
 import Home from "./pages/Home";
-import UsuarioHibernaderoComponent from "./pages/Usuario-Hibernadero";
 import Sensores from "./pages/Sensores";
 import { Usuarios } from "./pages/usuarios";
 import { Propiedades } from "./pages/Propiedades";
 import { PageGraficasSensores } from "../../components/usuarioHibernadero/PageSensoresUsuarioHibernadero";
+import HibernaderosSistemaComponent from "./pages/Usuario-Hibernadero";
 
 export const Dashboard = () => {
   
@@ -37,7 +37,7 @@ export const Dashboard = () => {
           <Route path="/hibernaderos" element={<Hibernaderos />} />
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/Sensores" element={<Sensores />} />
-          <Route path="/hibernaderos-sistema" element={<UsuarioHibernaderoComponent/>}/>
+          <Route path="/hibernaderos-sistema" element={<HibernaderosSistemaComponent/>}/>
           <Route path="/propiedades" element={<Propiedades/>}/>
           <Route path="/Sensor/Grafica" element={<PageGraficasSensores/>}/>
         </Routes>

@@ -3,7 +3,7 @@ import { CommentSection } from "../../../components/comment-dashboard/comment";
 import { CardHibernaderosUsuarios } from "../../../components/usuarioHibernadero/CardHibernaderosUsuarios";
 
 
-const UsuarioHibernaderoComponent: React.FC = () => {
+const HibernaderosSistemaComponent: React.FC = () => {
 
   return (
     <>
@@ -16,4 +16,4 @@ const UsuarioHibernaderoComponent: React.FC = () => {
   );
 };
 
-export default UsuarioHibernaderoComponent;
+export default HibernaderosSistemaComponent;
