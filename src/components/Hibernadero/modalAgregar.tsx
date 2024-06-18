@@ -37,7 +37,7 @@ const ModalAgregar = () => {
       <Button onPress={onOpen} color="primary" startContent={<IoIosAddCircleOutline className="text-xl"/>}>Agregar Cultivo</Button>
       <Modal isOpen={isOpen} onClose={handleModalClose} placement="center">
         <ModalContent>
-          <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">Agregar Cultivo</ModalHeader>
           <ModalBody>
             <div className="flex">
             <Input
