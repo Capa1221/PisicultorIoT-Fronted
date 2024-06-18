@@ -52,7 +52,7 @@ const Home = () => {
           setHibernaderos(responseHibernaderos.data);
           setSensor(responseSensores.data);
           setUsuarios(responseUsuarios.data);
-          console.log(responseHibernaderos.data, responseSensores.data, responseUsuarios.data);
+          console.log( responseUsuarios.data.length);
         } else {
           console.error("Token is null");
         }
@@ -72,7 +72,7 @@ const Home = () => {
         <CardHibernaderos numero={Hibernaderos.length} />
         {/* Card 2 */}
         <div className="p-4 bg-white rounded-xl flex flex-col justify-between gap-4 drop-shadow-2xl">
-          <CardInformationAplicattion usuarios={usuarios.length} sensores={sensor.length} />
+          <CardInformationAplicattion numerousuario={usuarios.length} numerosensor={sensor.length} />
         </div>
         {/* Card 3 */}
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between">

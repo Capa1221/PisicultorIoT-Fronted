@@ -1,16 +1,17 @@
 import React from 'react'
 
 interface Information{
-  sensores:number;
-  usuarios:number;
+  numerosensor: number;
+  numerousuario: number;
 }
 
-export const CardInformationAplicattion: React.FC<Information> = ({sensores},{usuarios}) => {
+export const CardInformationAplicattion: React.FC<Information> = ({numerosensor,numerousuario}) => {
+
   return (
     <>
       <div className="flex items-center gap-4 bg-primary-100/10 rounded-xl p-4">
         <span className="bg-primary-500 text-gray-300 text-2xl font-bold p-4 rounded-xl">
-          {sensores}
+          {numerosensor}
         </span>
         <div>
           <h3 className="font-bold">Sensores</h3>
@@ -20,7 +21,7 @@ export const CardInformationAplicattion: React.FC<Information> = ({sensores},{us
       <div className="bg-primary-100/10 rounded-xl p-4">
         <div className="flex items-center gap-4 mb-4">
           <span className="bg-primary-500 text-gray-300 text-2xl font-bold p-4 rounded-xl">
-            {usuarios}
+            {numerousuario}
           </span>
           <div>
             <h3 className="font-bold">Usuarios</h3>
