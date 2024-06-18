@@ -78,7 +78,7 @@ const Home = () => {
         </div>
         {/* Card 3 */}
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between">
-          <h1 className="text-2xl font-bold mb-8">Ultimos hibernaderos</h1>
+          <h1 className="text-2xl font-bold mb-8">Últimos hibernaderos</h1>
           <div className="bg-white p-8 rounded-xl shadow-2xl">
             {hibernaderos.slice(0, 2).map((hibernadero) => (
               <div key={hibernadero.id} className="flex items-center gap-4 mb-4">
@@ -129,7 +129,7 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <h1 className="text-2xl font-bold mb-8">DocumentaciÃ³n</h1>
+          <h1 className="text-2xl font-bold mb-8">DocumentaciÓn</h1>
           <div className="bg-white p-8 rounded-xl shadow-2xl mb-8 flex flex-col gap-8">
             <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
               <div className="flex items-center gap-4 w-full">
