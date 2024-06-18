@@ -57,7 +57,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 <RiUser3Line /> Usuarios
               </Link>
               <Link
-                to="/dashboard/usuario-hibernadero"
+                to="/dashboard/hibernaderos-sistema"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >

@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem, Link, User } from "@nextui-org/react";
+import { Accordion, AccordionItem, User } from "@nextui-org/react";
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { buscarTodosLosHibernaderos } from "../../../services/hibernadero-controller";
 import { useEffect, useState } from "react";
@@ -7,6 +7,8 @@ import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
 import { CardHibernaderos } from "../../../components/homeDashboard/CardInformationHibernaderos";
 import Hibernaderos from "./Invernaderos";
 import { CardInformationAplicattion } from "../../../components/homeDashboard/CardInformationAplicattion";
+import { Link } from "react-router-dom";
+import defaultImg from '../../../assets/default_img_inv.jpg';
 
 interface Hibernadero {
   id: string;
@@ -52,7 +54,7 @@ const Home = () => {
           setHibernaderos(responseHibernaderos.data);
           setSensor(responseSensores.data);
           setUsuarios(responseUsuarios.data);
-          console.log( responseUsuarios.data.length);
+          console.log(responseHibernaderos.data.length);
         } else {
           console.error("Token is null");
         }
@@ -72,7 +74,7 @@ const Home = () => {
         <CardHibernaderos numero={Hibernaderos.length} />
         {/* Card 2 */}
         <div className="p-4 bg-white rounded-xl flex flex-col justify-between gap-4 drop-shadow-2xl">
-          <CardInformationAplicattion numerousuario={usuarios.length} numerosensor={sensor.length} />
+          <CardInformationAplicattion numerousuario={usuarios.length} numerosensor={sensor.length} numeroinvernaderos={hibernaderos.length}/>
         </div>
         {/* Card 3 */}
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between">
@@ -81,7 +83,7 @@ const Home = () => {
             {hibernaderos.slice(0, 2).map((hibernadero) => (
               <div key={hibernadero.id} className="flex items-center gap-4 mb-4">
                 <img
-                  src={hibernadero.imagen}
+                  src={hibernadero.imagen === null ? defaultImg : hibernadero.imagen}
                   alt={hibernadero.nombre}
                   className="w-14 h-14 object-cover rounded-full"
                 />
@@ -94,9 +96,9 @@ const Home = () => {
               </div>
             ))}
             <div className="flex justify-end">
-            <Link href="" size="md" isExternal>
-             Ver todos
-            </Link>
+              <Link to="/dashboard/hibernaderos-sistema" className="text-small text-gray-600 font-semibold">
+                Ver todos
+              </Link>
             </div>
           </div>
         </div>
@@ -104,7 +106,7 @@ const Home = () => {
       {/* Section 2 */}
       <section className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-8">
         <div>
-          <h1 className="text-2xl font-bold mb-8">Formularios Recientes</h1>
+          <h1 className="text-2xl font-bold mb-8">Últimos usuarios registrados</h1>
           <div className="bg-white p-8 rounded-xl shadow-2xl mb-8 flex flex-col gap-8">
             {/* Usuario Cards */}
             {usuarios.slice(0, 4).map((usuario) => (
@@ -117,11 +119,10 @@ const Home = () => {
                   />
                   <div>
                     <h3 className="font-bold">{usuario.nombres}</h3>
-                    <p className="text-gray-500">{usuario.email}</p>
                   </div>
                 </div>
                 <div>
-                  <span className="font-bold">2024-01-01</span>
+                  <small className="text-gray-600 font-semibold">{usuario.email}</small>
                 </div>
               </div>
             ))}
@@ -145,7 +146,7 @@ const Home = () => {
                   >
                     <User
                       name={(
-                        <Link href="" size="md" isExternal>
+                        <Link to={""} className="text-primary font-semibold">
                           SistemaDocumentation.pdf
                         </Link>
                       )}
@@ -167,7 +168,7 @@ const Home = () => {
                   >
                     <User
                       name={(
-                        <Link href="" size="md" isExternal>
+                        <Link to={""} className="text-primary font-semibold">
                           BackendDocumentation.pdf
                         </Link>
                       )}

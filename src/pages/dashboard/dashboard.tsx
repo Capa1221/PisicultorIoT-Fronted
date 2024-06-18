@@ -37,7 +37,7 @@ export const Dashboard = () => {
           <Route path="/hibernaderos" element={<Hibernaderos />} />
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/Sensores" element={<Sensores />} />
-          <Route path="/usuario-hibernadero" element={<UsuarioHibernaderoComponent/>}/>
+          <Route path="/hibernaderos-sistema" element={<UsuarioHibernaderoComponent/>}/>
           <Route path="/propiedades" element={<Propiedades/>}/>
           <Route path="/Sensor/Grafica" element={<PageGraficasSensores/>}/>
         </Routes>
