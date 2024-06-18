@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, User, Chip, Button } from "@nextui-org/react";
 
-// Definir la interfaz de las props
 interface User {
   name: string;
   avatar: string;
