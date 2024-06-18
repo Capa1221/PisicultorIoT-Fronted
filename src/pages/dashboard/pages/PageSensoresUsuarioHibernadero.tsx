@@ -1,11 +1,11 @@
 import { Card, CardBody, CardFooter, RangeCalendar, Tab, Tabs } from "@nextui-org/react"
-import { CommentSection } from "../comment-dashboard/comment"
-import { HeaderDashboard } from "../header/HeaderDashboard"
+import { CommentSection } from "../../../components/comment-dashboard/comment"
+import { HeaderDashboard } from "../../../components/header/HeaderDashboard"
 import { today, getLocalTimeZone } from '@internationalized/date';
 import { RiSensorLine } from "react-icons/ri";
-import { ChartComponent } from "../graphics/CharComponent";
-import { GraphicComponent } from "../graphics/GraphicComponent";
-import { HistogramChartComponent } from "../graphics/HistogramaComponent";
+import { ChartComponent } from "../../../components/graphics/CharComponent";
+import { GraphicComponent } from "../../../components/graphics/GraphicComponent";
+import { HistogramChartComponent } from "../../../components/graphics/HistogramaComponent";
 
 export const PageGraficasSensores = () => {
   interface SensorData {
