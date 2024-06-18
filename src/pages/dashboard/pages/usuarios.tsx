@@ -1,6 +1,8 @@
 import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { CommentSection } from "../../../components/comment-dashboard/comment";
 import { TableUser } from "../../../components/users/TableUser";
+import { Divider } from "@nextui-org/react";
+import { TableFormUsers } from "../../../components/users/TableFormUsers";
 
 export const Usuarios = () => {
 
@@ -10,6 +12,9 @@ export const Usuarios = () => {
       <CommentSection mensaje="Bienvenido a la sección de administración de usuarios del sistema. Aquí puedes ver la lista de usuarios registrados, realizar acciones como visualizar detalles adicionales." />
       <div className="my-8">
         <TableUser/>
+        <Divider className="my-8"/>
+        <p className="font-bold uppercase text-primary pb-4">Formularios de acceso</p>
+        <TableFormUsers/>
       </div>
     </div>
   );
