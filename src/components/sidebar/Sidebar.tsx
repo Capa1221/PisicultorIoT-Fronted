@@ -68,14 +68,14 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
-                <RiSensorLine /> Sensores
+                <RiSensorLine /> Mis Sensores
               </Link>
               <Link
                 to="/dashboard/propiedades"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
-                <GrConfigure /> Propiedades
+                <GrConfigure /> Propiedades del Sistema
               </Link>
             </nav>
           </ScrollShadow>
