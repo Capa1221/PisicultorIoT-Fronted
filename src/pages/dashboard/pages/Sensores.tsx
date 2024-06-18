@@ -6,6 +6,8 @@ import { MdSensors } from "react-icons/md";
 import { BsCheckAll } from "react-icons/bs";
 import { ModalEliminarSensor } from "../../../components/sensores/ModalEliminarSensor";
 import { ModalEditarSensor } from "../../../components/sensores/ModalEditarSensor";
+import { Link } from "react-router-dom";
+import { CgData } from "react-icons/cg";
 
 const Sensores = () => {
 
@@ -34,10 +36,10 @@ const Sensores = () => {
             <Divider />
             <CardFooter className="justify-around">
               <div className="space-x-2">
-                <ModalEliminarSensor/>
-                <ModalEditarSensor/>
+                <ModalEliminarSensor />
+                <ModalEditarSensor />
               </div>
-              <Button color="primary">Ver datos</Button>
+                <Link to={"/dashboard/Sensor/Grafica"}><Button color="primary" startContent={<CgData className="text-xl"/>}>Ver datos</Button></Link>
             </CardFooter>
           </Card>
         </div>
