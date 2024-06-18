@@ -3,8 +3,9 @@ import { CommentSection } from "../../../components/comment-dashboard/comment";
 import { ModalAgregarSensor } from "../../../components/sensores/ModalAgregarSensor";
 import { Button, Card, CardBody, CardFooter, CardHeader, Divider } from "@nextui-org/react";
 import { MdSensors } from "react-icons/md";
-import { BsCheckAll, BsTrash } from "react-icons/bs";
-import { TiEdit } from "react-icons/ti";
+import { BsCheckAll } from "react-icons/bs";
+import { ModalEliminarSensor } from "../../../components/sensores/ModalEliminarSensor";
+import { ModalEditarSensor } from "../../../components/sensores/ModalEditarSensor";
 
 const Sensores = () => {
 
@@ -12,7 +13,7 @@ const Sensores = () => {
     <>
       <HeaderDashboard mensaje="Sensores asociados" />
       <div className="m-4">
-        <CommentSection mensaje="Aquï¿½ puedes gestionar los sensores asociados a los invernaderos. Puedes agregar nuevos sensores, buscar sensores especï¿½ficos y eliminar sensores existentes." />
+        <CommentSection mensaje="Aquí puedes gestionar los sensores asociados a los invernaderos. Puedes agregar nuevos sensores, buscar sensores especï¿½ficos y eliminar sensores existentes." />
         <ModalAgregarSensor />
         <div className="my-4">
           <Card className="max-w-[400px]">
@@ -33,8 +34,8 @@ const Sensores = () => {
             <Divider />
             <CardFooter className="justify-around">
               <div className="space-x-2">
-                <Button color="danger"  variant="bordered" startContent={<BsTrash className="text-2xl"/>}></Button>
-                <Button color="warning" variant="bordered" startContent={<TiEdit className="text-2xl"/>}></Button>
+                <ModalEliminarSensor/>
+                <ModalEditarSensor/>
               </div>
               <Button color="primary">Ver datos</Button>
             </CardFooter>
