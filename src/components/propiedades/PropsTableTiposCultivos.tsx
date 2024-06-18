@@ -1,10 +1,13 @@
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
 import { PropsModalEditar } from "./PropsModalEditar";
 import { PropsModalEliminar } from "./PropsModalEliminar";
+import { PropsModalAgregar } from "./PropsModalAgregar";
 
 export const PropsTableTiposCultivos = () => {
   return (
-    <><Table aria-label="Example static collection table">
+    <>
+    <PropsModalAgregar/>
+    <Table aria-label="Example static collection table">
       <TableHeader>
         <TableColumn className="text-center uppercase">Nombre Propiedad</TableColumn>
         <TableColumn className="text-center uppercase">Opciones</TableColumn>
