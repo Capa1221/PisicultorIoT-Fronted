@@ -3,6 +3,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { BiImage, BiRename } from "react-icons/bi";
 import { HiSelector } from "react-icons/hi";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { FaCity, FaMapPin } from "react-icons/fa";
 
 const ModalAgregar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -65,38 +66,40 @@ const ModalAgregar = () => {
               label="Nombre del Cultivo"
               name="nombre"
               isRequired
-              placeholder="Nombre del cultivo"
               startContent={<BiRename className="text-2xl" />}
             />
             <Select
               label="Tipo de Cultivo"
               isRequired
               placeholder="Seleccione el tipo de cultivo"
-              startContent={<HiSelector className="text-2xl text-gray-500" />}
+              startContent={<HiSelector className="text-2xl" />}
             >
               <SelectItem key="Helllouuda">Helllouuda</SelectItem>
               <SelectItem key="Helllouudad">Helllouudad</SelectItem>
               <SelectItem key="Helllouudas">Helllouudas</SelectItem>
               <SelectItem key="Helllouudaa">Helllouudaa</SelectItem>
             </Select>
+            <div className="flex space-x-2">
             <Input
               label="Ciudad"
               name="ciudad"
-              placeholder="Ciudad del cultivo"
               isRequired
               width="100%"
+              startContent={<FaCity className="text-2xl" />}
             />
             <Input
               label="Departamento"
               name="departamento"
-              placeholder="Departamento del cultivo"
               isRequired
               width="100%"
+              startContent={<FaMapPin className="text-2xl" />}
             />
+            </div>
             <Textarea
               label="Detalles"
               name="detalles"
               width="100%"
+              startContent={<FaCity className="text-2xl" />}
             />
           </ModalBody>
           <ModalFooter>
