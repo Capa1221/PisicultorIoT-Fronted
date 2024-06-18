@@ -25,7 +25,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
         <ProfileSidebar email={userEmail}/>
         {/* Nav */}
         <div className="bg-primary p-8 rounded-tr-[100px] h-[70vh] flex flex-col justify-between gap-8">
-          <ScrollShadow hideScrollBar className="h-auto">
+          <ScrollShadow hideScrollBar className="h-[500px]">
             <nav className="flex flex-col gap-8">
               <Link
                 to="/dashboard/home"

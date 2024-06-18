@@ -31,8 +31,8 @@ export const PageGraficasSensores = () => {
         humedad, luminosidad y otros parámetros relevantes para el óptimo crecimiento de tus plantas. 
         Esta información te permitirá tomar decisiones oportunas y basadas en datos para optimizar el rendimiento 
         de tu cultivo y garantizar una cosecha exitosa."/>
-      <div className="m-4 flex lg:justify-around space-y-4 space-x-4 lg:space-y-2">
-        <div className="flex flex-col w-min">
+      <div className="flex md:justify-around lg:justify-around place-content-center">
+        <div className="flex flex-col lg:w-max">
           <RangeCalendar
             aria-label="Date (Uncontrolled)"
             defaultValue={{
@@ -40,9 +40,9 @@ export const PageGraficasSensores = () => {
               end: today(getLocalTimeZone()).add({ weeks: 1 }),
             }}
           />
-          <small className="text-gray-600 text-center">Por favor ingrese un rango de fechas.</small>
+          <small className="text-gray-600 text-center mb-4">Por favor ingrese un rango de fechas.</small>
         </div>
-        <div className="flex flex-col w-min self-center">
+        <div className="lg:flex md:flex hidden flex-col w-min self-center">
           <Card shadow="sm" isPressable>
             <CardBody className="place-content-center flex">
               <RiSensorLine className="text-8xl" />
