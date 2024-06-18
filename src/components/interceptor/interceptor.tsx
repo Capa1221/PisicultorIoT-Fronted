@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spinner, useDisclosure } from '@nextui-org/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
 import Spinnerlazyload from '../spinner/spinner-lazy-load';
 
 

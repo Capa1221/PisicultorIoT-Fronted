@@ -1,14 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  RiHome3Line,    // Inicio
-  RiSeedlingLine, // Hibernadero
-  RiUser3Line,    // Usuarios
-  RiBarChartLine, // Usuario - Hibernadero
-  RiSensorLine,   // Sensores
-  RiMore2Fill,    // Icono de menú desplegable
-  RiCloseFill     // Icono de cerrar
-} from "react-icons/ri";
+import {  RiHome3Line, RiSeedlingLine, RiUser3Line, RiBarChartLine, RiSensorLine, RiMore2Fill, RiCloseFill} from "react-icons/ri";
 import { ScrollShadow } from "@nextui-org/react";
 import { ProfileSidebar } from "./ProfileSidebar";
 import { GrConfigure } from "react-icons/gr";
@@ -50,11 +42,18 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 <RiSeedlingLine /> Mis Cultivos
               </Link>
               <Link
+                to="/dashboard/Sensores"
+                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
+                onClick={() => setShowMenu(false)}
+              >
+                <RiSensorLine /> Mis Sensores
+              </Link>
+              <Link
                 to="/dashboard/usuarios"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
-                <RiUser3Line /> Usuarios
+                <RiUser3Line /> Usuarios Sistema
               </Link>
               <Link
                 to="/dashboard/hibernaderos-sistema"
@@ -62,13 +61,6 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 onClick={() => setShowMenu(false)}
               >
                 <RiBarChartLine /> Hibernaderos Sistema
-              </Link>
-              <Link
-                to="/dashboard/Sensores"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <RiSensorLine /> Mis Sensores
               </Link>
               <Link
                 to="/dashboard/propiedades"
@@ -81,7 +73,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
           </ScrollShadow>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl hover:bg-white hover:text-green-900 text-center" onClick={handleLogout}>
             <button>
-              Cerrar sesión
+              Cerrar sesi�n
             </button>
           </div>
         </div>

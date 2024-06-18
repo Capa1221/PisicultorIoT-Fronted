@@ -83,7 +83,7 @@ const Home = () => {
             {hibernaderos.slice(0, 2).map((hibernadero) => (
               <div key={hibernadero.id} className="flex items-center gap-4 mb-4">
                 <img
-                  src={hibernadero.imagen === null ? defaultImg : hibernadero.imagen}
+                  src={(hibernadero.imagen === null || hibernadero.imagen == "") ? defaultImg : hibernadero.imagen}
                   alt={hibernadero.nombre}
                   className="w-14 h-14 object-cover rounded-full"
                 />
