@@ -10,7 +10,7 @@ import { PageGraficasSensores } from "./pages/PageSensoresUsuarioHibernadero";
 import HibernaderosSistemaComponent from "./pages/HibernaderosSistema";
 
 export const Dashboard = () => {
-  
+
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
 
@@ -37,9 +37,9 @@ export const Dashboard = () => {
           <Route path="/hibernaderos" element={<Hibernaderos />} />
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/Sensores" element={<Sensores />} />
-          <Route path="/hibernaderos-sistema" element={<HibernaderosSistemaComponent/>}/>
-          <Route path="/propiedades" element={<Propiedades/>}/>
-          <Route path="/Sensor/Grafica" element={<PageGraficasSensores/>}/>
+          <Route path="/hibernaderos-sistema" element={<HibernaderosSistemaComponent />} />
+          <Route path="/propiedades" element={<Propiedades />} />
+          <Route path="/Sensor/Grafica" element={<PageGraficasSensores />} />
         </Routes>
       </main>
     </div>
