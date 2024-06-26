@@ -1,4 +1,3 @@
-// src/utils/utils.ts
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 export const handleInputChange = <T>(

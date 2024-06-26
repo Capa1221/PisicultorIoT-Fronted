@@ -4,7 +4,7 @@ import logoSistema from '../../assets/54705961_transparente.png';
 import heroImage from '../../assets/AgricultorIoT.jpeg';
 import { postLogin } from '../../services/auth-controller';
 import { LoginUser } from '../../services/interfaces/auth-interface';
-import { handleInputChange } from '../../utils/utils';
+import { handleInputChange } from '../../utils/utilsHandle';
 
 export const FormLogin = () => {
 
