@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import defaultImg from '../../../assets/default_img_inv.jpg';
 
 
+
 const Home = () => {
   const [hibernaderos, setHibernaderos] = useState<HibernaderoInterface[]>([]);
   const [sensor, setSensor] = useState<SensorInterface[]>([]);
