@@ -41,7 +41,7 @@ export const CardHibernadero = (hibernadero: HibernaderoInterface) => {
                 </CardBody>
                 <CardFooter className="lg:space-x-2 justify-around flex">
                     <div className='flex'>
-                        <ModalEliminar />
+                        <ModalEliminar id={hibernadero.id}/>
                         <ModalEditar />
                     </div>
                     <ModalAsociarUsuario />

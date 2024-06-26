@@ -2,13 +2,14 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { BiTrash } from "react-icons/bi";
 import { eliminarHibernadero } from "../../services/hibernadero-controller";
 
-export const ModalEliminar = (id: string) => {
+export const ModalEliminar = ({ id }: { id: string }) => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const token = sessionStorage.getItem("authToken");
 
   const handleDeleteHibernadero = async () => {
     try {
       if (token) {
+        console.log("Contenido de las variables a pasar ",id,token)
         const response = await eliminarHibernadero(id, token);
         console.log("Hibernadero eliminado", response.status);
         onClose();

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { HibernaderoInterface } from "../../../services/interfaces";
 import { CardHibernadero, CommentSection, HeaderDashboard, ModalAgregar } from "../../../components";
 import { decodeToken } from "../../../utils/utilsToken";
 
