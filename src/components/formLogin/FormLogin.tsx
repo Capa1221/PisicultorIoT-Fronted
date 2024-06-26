@@ -4,7 +4,7 @@ import logoSistema from '../../assets/54705961_transparente.png';
 import heroImage from '../../assets/AgricultorIoT.jpeg';
 import { postLogin } from '../../services/auth-controller';
 import { LoginUser } from '../../services/interfaces/auth-interface';
-import { handleInputChange } from '../../utils/utilsHandle';
+import { decodeToken, handleInputChange } from '../../utils/utils';
 
 export const FormLogin = () => {
 
@@ -20,11 +20,7 @@ export const FormLogin = () => {
       if (response.status === 200) {
         const token = response.headers.authorization;
         sessionStorage.setItem('authToken', token);
-        sessionStorage.setItem('userEmail', authUser.usuario);
-        console.log(token);
-        const decodedToken: any = jwt_decode(token);
-        console.log('Decoded Token:', decodedToken);
-        //navigate('/dashboard');
+        navigate('/dashboard');
       }
     } catch (err) {
       console.error('Error en la solicitud', err);
