@@ -7,7 +7,7 @@ import Sensores from "./pages/Sensores";
 import { Usuarios } from "./pages/usuarios";
 import { Propiedades } from "./pages/Propiedades";
 import { PageGraficasSensores } from "./pages/PageSensoresUsuarioHibernadero";
-import HibernaderosSistemaComponent from "./pages/HibernaderosSistema";
+import { HibernaderosSistemaComponent } from "./pages/HibernaderosSistema";
 
 export const Dashboard = () => {
 

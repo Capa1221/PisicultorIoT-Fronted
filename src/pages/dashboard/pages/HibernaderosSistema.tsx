@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import { HibernaderoInterface } from "../../../services/interfaces";
-import { decodeToken } from "../../../utils/utils";
 import { CardHibernaderosUsuarios, CommentSection, HeaderDashboard } from "../../../components";
+import { buscarTodosLosHibernaderos } from "../../../services";
 
 export const HibernaderosSistemaComponent = () => {
 
-  const token = decodeToken(sessionStorage.getItem("authToken")!);
-  const [hibernaderos, setHibernadero] = useState<HibernaderoInterface[]>([]);
+  const token = sessionStorage.getItem("authToken")!;
+  const [hibernaderos, setHibernaderos] = useState<HibernaderoInterface[]>();
 
   useEffect(() => {
-    try {
-
-    } catch (error) {
-
-    }
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const responseHibernaderos = await buscarTodosLosHibernaderos(token)
+          setHibernaderos(responseHibernaderos.data);
+          console.log(hibernaderos)
+        } else {
+          console.error("Token is null");
+        }
+      } catch (error) {
+        console.error("Failed to fetch hibernaderos:", error);
+      }
+    };
+    fetchData();
   }, [token])
 
   return (
