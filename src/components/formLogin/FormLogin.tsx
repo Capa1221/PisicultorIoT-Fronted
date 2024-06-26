@@ -4,16 +4,12 @@ import logoSistema from '../../assets/54705961_transparente.png';
 import heroImage from '../../assets/AgricultorIoT.jpeg';
 import { postLogin } from '../../services/auth-controller';
 import { LoginUser } from '../../services/interfaces/auth-interface';
+import { handleInputChange } from '../../utils/utils';
 
 export const FormLogin = () => {
 
   const [authUser, setAuthUser] = useState<LoginUser>({ usuario: '', clave: '' });
   const navigate = useNavigate();
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setAuthUser({ ...authUser, [name]: value });
-  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +22,9 @@ export const FormLogin = () => {
         sessionStorage.setItem('authToken', token);
         sessionStorage.setItem('userEmail', authUser.usuario);
         console.log(token);
-        navigate('/dashboard');
+        const decodedToken: any = jwt_decode(token);
+        console.log('Decoded Token:', decodedToken);
+        //navigate('/dashboard');
       }
     } catch (err) {
       console.error('Error en la solicitud', err);
@@ -52,7 +50,7 @@ export const FormLogin = () => {
                 className="w-full max-w-md py-2 px-4 rounded-lg outline-none"
                 placeholder="Usuario"
                 value={authUser.usuario}
-                onChange={handleInputChange}
+                onChange={(e)=>handleInputChange(e, setAuthUser, authUser)}
               />
             </div>
             <div className="flex justify-center mb-6">
@@ -62,7 +60,7 @@ export const FormLogin = () => {
                 className="w-full max-w-md py-2 px-4 rounded-lg outline-none"
                 placeholder="Password"
                 value={authUser.clave}
-                onChange={handleInputChange}
+                onChange={(e)=>handleInputChange(e, setAuthUser, authUser)}
               />
             </div>
             <div className="w-full max-w-md mx-auto flex items-center justify-between text-gray-500 mb-8">
@@ -110,3 +108,7 @@ export const FormLogin = () => {
     </div>
   );
 };
+function jwt_decode(token: any): any {
+  throw new Error('Function not implemented.');
+}
+
