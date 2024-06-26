@@ -10,7 +10,7 @@ const Invernaderos: React.FC = () => {
 
   useEffect(()=>{
     try {
-      setHibernadero
+      
     } catch (error) {
       
     }

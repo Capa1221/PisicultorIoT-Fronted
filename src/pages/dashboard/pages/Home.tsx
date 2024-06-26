@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionItem, User } from "@nextui-org/react";
 import { HibernaderoInterface, SensorInterface, UserInterface } from "../../../services/interfaces";
-import { buscarTodosLosHibernaderos, buscarTodosLosUsuarios, obtenerSensoresTodos } from "../../../services/services";
+import { buscarTodosLosHibernaderos, buscarTodosLosUsuarios, obtenerSensoresTodos } from "../../../services";
 import { CardHibernaderos, CardInformationAplicattion, HeaderDashboard } from "../../../components";
 import defaultImg from '../../../assets/default_img_inv.jpg';
 
