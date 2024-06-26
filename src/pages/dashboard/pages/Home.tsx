@@ -10,37 +10,10 @@ import { CardInformationAplicattion } from "../../../components/homeDashboard/Ca
 import { Link } from "react-router-dom";
 import defaultImg from '../../../assets/default_img_inv.jpg';
 
-interface Hibernadero {
-  id: string;
-  imagen: string;
-  ciudad: string;
-  departamento: string;
-  nombre: string;
-  encargado: string;
-  detalles: string;
-  estado: string;
-}
-
-interface Sensor {
-  id: string;
-  idHibernadero: string;
-  nombre: string;
-  descripcion: string;
-  config: boolean;
-}
-
-interface Usuario {
-  id: string;
-  usuario: string;
-  nombres: string;
-  email: string;
-  clave: string;
-}
-
 const Home = () => {
-  const [hibernaderos, setHibernaderos] = useState<Hibernadero[]>([]);
+  const [hibernaderos, setHibernaderos] = useState<HibernaderoInterface[]>([]);
   const [sensor, setSensor] = useState<Sensor[]>([]);
-  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const [usuarios, setUsuarios] = useState<User[]>([]);
   const token = sessionStorage.getItem("authToken");
   useEffect(() => {
     const fetchData = async () => {
