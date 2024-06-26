@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CardHibernadero, CommentSection, HeaderDashboard, ModalAgregar } from "../../../components";
 import { decodeToken } from "../../../utils/utilsToken";
 
