@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { LoginUser, RegisterUser } from "./interfaces/auth-interface";
+import { LoginUser, RegisterUser } from "./interfaces";
 
 const API_URL = import.meta.env.VITE_API_AUTH;
 

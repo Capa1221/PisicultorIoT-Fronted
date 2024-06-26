@@ -10,7 +10,7 @@ export interface HibernaderoInterface {
 }
 
 export interface SensorInterface {
-  id: string;
+  id?: string;
   idHibernadero: string;
   nombre: string;
   descripcion: string;
@@ -35,4 +35,10 @@ export interface RegisterUser {
 export interface LoginUser {
   usuario: string,
   clave: string
+}
+
+export interface UserHibernaderoInterface {
+  id: string;
+  idHibernadero: string;
+  idUsuario: string;
 }

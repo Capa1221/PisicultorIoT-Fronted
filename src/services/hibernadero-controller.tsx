@@ -1,23 +1,13 @@
 import axios, { AxiosResponse } from "axios";
+import { HibernaderoInterface } from "./interfaces";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-interface Hibernadero {
-  id: string;
-  imagen: string;
-  ciudad: string;
-  departamento: string;
-  nombre: string;
-  encargado: string;
-  detalles: string;
-  estado: string;
-}
-
 export const actualizarHibernadero = async (
-  hibernadero: Hibernadero,
+  hibernadero: HibernaderoInterface,
   token: string
-): Promise<AxiosResponse<Hibernadero>> => {
-  return axios.put<Hibernadero>(
+): Promise<AxiosResponse<HibernaderoInterface>> => {
+  return axios.put<HibernaderoInterface>(
     `${API_URL}/v1/hibernadero/actualizar`,
     hibernadero,
     {
@@ -29,10 +19,10 @@ export const actualizarHibernadero = async (
 };
 
 export const insertarHibernadero = async (
-  hibernadero: Hibernadero,
+  hibernadero: HibernaderoInterface,
   token: string
-): Promise<AxiosResponse<Hibernadero>> => {
-  return axios.post<Hibernadero>(
+): Promise<AxiosResponse<HibernaderoInterface>> => {
+  return axios.post<HibernaderoInterface>(
     `${API_URL}/v1/hibernadero/insertar`,
     hibernadero,
     {
@@ -46,8 +36,8 @@ export const insertarHibernadero = async (
 export const buscarHibernaderoPorId = async (
   id: string,
   token: string
-): Promise<AxiosResponse<Hibernadero>> => {
-  return axios.get<Hibernadero>(`${API_URL}/v1/hibernadero/buscar?id=${id}`, {
+): Promise<AxiosResponse<HibernaderoInterface>> => {
+  return axios.get<HibernaderoInterface>(`${API_URL}/v1/hibernadero/buscar?id=${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -56,8 +46,8 @@ export const buscarHibernaderoPorId = async (
 
 export const buscarTodosLosHibernaderos = async (
   token: string
-): Promise<AxiosResponse<Hibernadero[]>> => {
-  return axios.get<Hibernadero[]>(`${API_URL}/v1/hibernadero/buscarTodos`, {
+): Promise<AxiosResponse<HibernaderoInterface[]>> => {
+  return axios.get<HibernaderoInterface[]>(`${API_URL}/v1/hibernadero/buscarTodos`, {
     headers: {
       'authorization': `Bearer ${token}`,
       "Content-Type": "application/json"

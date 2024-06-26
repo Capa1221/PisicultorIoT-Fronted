@@ -1,11 +1,20 @@
-import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
-import { CommentSection } from "../../../components/comment-dashboard/comment";
-import ModalAgregar from "../../../components/Hibernadero/modalAgregar";
-import { CardHibernadero } from "../../../components/Hibernadero/cardHibernadero";
-
+import { useEffect, useState } from "react";
+import { HibernaderoInterface } from "../../../services/interfaces";
+import { CardHibernadero, CommentSection, HeaderDashboard, ModalAgregar } from "../../../components";
+import { decodeToken } from "../../../utils/utilsToken";
 
 const Invernaderos: React.FC = () => {
-  
+
+  const token = decodeToken(sessionStorage.getItem("authToken")!);
+  const [hibernadero,setHibernadero] = useState <HibernaderoInterface[]>([]);
+
+  useEffect(()=>{
+    try {
+      setHibernadero
+    } catch (error) {
+      
+    }
+  },[token])
 
   return (
     <>

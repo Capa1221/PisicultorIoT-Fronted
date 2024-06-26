@@ -5,7 +5,7 @@ import { HiSelector } from "react-icons/hi";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaCity, FaMapPin } from "react-icons/fa";
 
-const ModalAgregar = () => {
+export const ModalAgregar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isImageValid, setIsImageValid] = useState<boolean>(true); 
@@ -115,5 +115,3 @@ const ModalAgregar = () => {
     </>
   );
 };
-
-export default ModalAgregar;

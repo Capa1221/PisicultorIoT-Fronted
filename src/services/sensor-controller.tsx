@@ -1,24 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
+import { SensorInterface } from './interfaces';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-interface Sensor {
-  id: string;
-  idHibernadero: string;
-  nombre: string;
-  descripcion: string;
-  config: boolean;
-}
-
-interface newSensor {
-  idHibernadero: string;
-  nombre: string;
-  descripcion: string;
-  config: boolean;
-}
-
-export const crearSensor = async (sensor: newSensor, token: string): Promise<AxiosResponse<newSensor>> => {
-  return axios.post<newSensor>(
+export const crearSensor = async (sensor: SensorInterface, token: string): Promise<AxiosResponse<SensorInterface>> => {
+  return axios.post<SensorInterface>(
     `${API_URL}/v1/sensor/crearSensor`,
     sensor,
     {
@@ -29,8 +15,8 @@ export const crearSensor = async (sensor: newSensor, token: string): Promise<Axi
   );
 };
 
-export const obtenerSensoresTodos = async (token: string): Promise<AxiosResponse<Sensor[]>> => {
-  return axios.get<Sensor[]>(
+export const obtenerSensoresTodos = async (token: string): Promise<AxiosResponse<SensorInterface[]>> => {
+  return axios.get<SensorInterface[]>(
     `${API_URL}/v1/sensor/obtenerTodos`,
     {
       headers: {
@@ -40,8 +26,8 @@ export const obtenerSensoresTodos = async (token: string): Promise<AxiosResponse
   );
 };
 
-export const obtenerSensorPorId = async (id: string, token: string): Promise<AxiosResponse<Sensor>> => {
-  return axios.get<Sensor>(
+export const obtenerSensorPorId = async (id: string, token: string): Promise<AxiosResponse<SensorInterface>> => {
+  return axios.get<SensorInterface>(
     `${API_URL}/v1/sensor/obtenerPorId?id=${id}`,
     {
       headers: {
@@ -51,8 +37,8 @@ export const obtenerSensorPorId = async (id: string, token: string): Promise<Axi
   );
 };
 
-export const obtenerSensorPorHibernadero = async (idHibernadero: string, token: string): Promise<AxiosResponse<Sensor>> => {
-  return axios.get<Sensor>(
+export const obtenerSensorPorHibernadero = async (idHibernadero: string, token: string): Promise<AxiosResponse<SensorInterface>> => {
+  return axios.get<SensorInterface>(
     `${API_URL}/v1/sensor/obtenerPorHibernadero?idHibernadero=${idHibernadero}`,
     {
       headers: {

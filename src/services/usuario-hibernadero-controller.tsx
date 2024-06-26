@@ -1,15 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
+import { UserHibernaderoInterface } from './interfaces';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-interface UsuarioHibernadero {
-  id: string;
-  idHibernadero: string;
-  idUsuario: string;
-}
 
-export const crearUsuarioHibernadero = async (idUsuario: string, idHibernadero: string, token: string): Promise<AxiosResponse<UsuarioHibernadero>> => {
-  return axios.post<UsuarioHibernadero>(
+
+export const crearUsuarioHibernadero = async (idUsuario: string, idHibernadero: string, token: string): Promise<AxiosResponse<UserHibernaderoInterface>> => {
+  return axios.post<UserHibernaderoInterface>(
     `${API_URL}/v1/usuarioHibernadero/crearUsuarioHibernadero?idUsuario=${idUsuario}&idHibernadero=${idHibernadero}`,
     null,
     {
@@ -20,8 +17,8 @@ export const crearUsuarioHibernadero = async (idUsuario: string, idHibernadero: 
   );
 };
 
-export const buscarPorUsuario = async (idUsuario: string, token: string): Promise<AxiosResponse<UsuarioHibernadero>> => {
-  return axios.get<UsuarioHibernadero>(
+export const buscarPorUsuario = async (idUsuario: string, token: string): Promise<AxiosResponse<UserHibernaderoInterface>> => {
+  return axios.get<UserHibernaderoInterface>(
     `${API_URL}/v1/usuarioHibernadero/buscarPorUsuario?idUsuario=${idUsuario}`,
     {
       headers: {
@@ -31,8 +28,8 @@ export const buscarPorUsuario = async (idUsuario: string, token: string): Promis
   );
 };
 
-export const buscarPorId = async (id: string, token: string): Promise<AxiosResponse<UsuarioHibernadero>> => {
-  return axios.get<UsuarioHibernadero>(
+export const buscarPorId = async (id: string, token: string): Promise<AxiosResponse<UserHibernaderoInterface>> => {
+  return axios.get<UserHibernaderoInterface>(
     `${API_URL}/v1/usuarioHibernadero/buscarPorId?id=${id}`,
     {
       headers: {
@@ -42,8 +39,8 @@ export const buscarPorId = async (id: string, token: string): Promise<AxiosRespo
   );
 };
 
-export const buscarPorHibernadero = async (idHibernadero: string, token: string): Promise<AxiosResponse<UsuarioHibernadero>> => {
-  return axios.get<UsuarioHibernadero>(
+export const buscarPorHibernadero = async (idHibernadero: string, token: string): Promise<AxiosResponse<UserHibernaderoInterface>> => {
+  return axios.get<UserHibernaderoInterface>(
     `${API_URL}/v1/usuarioHibernadero/buscarPorHibernadero?idHibernadero=${idHibernadero}`,
     {
       headers: {
@@ -53,8 +50,8 @@ export const buscarPorHibernadero = async (idHibernadero: string, token: string)
   );
 };
 
-export const buscarHibernaderosUsuario = async (id: string, token: string): Promise<AxiosResponse<UsuarioHibernadero[]>> => {
-  return axios.get<UsuarioHibernadero[]>(
+export const buscarHibernaderosUsuario = async (id: string, token: string): Promise<AxiosResponse<UserHibernaderoInterface[]>> => {
+  return axios.get<UserHibernaderoInterface[]>(
     `${API_URL}/v1/usuarioHibernadero/buscarHibernaderosUsuario?id=${id}`,
     {
       headers: {
