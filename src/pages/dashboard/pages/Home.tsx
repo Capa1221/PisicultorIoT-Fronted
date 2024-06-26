@@ -1,15 +1,18 @@
-import { Accordion, AccordionItem, User } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Accordion, AccordionItem, User } from "@nextui-org/react";
+import { HibernaderoInterface, SensorInterface, UserInterface } from "../../../services/interfaces";
+import { buscarTodosLosHibernaderos, buscarTodosLosUsuarios, obtenerSensoresTodos } from "../../../services/services";
+import { CardHibernaderos, CardInformationAplicattion, HeaderDashboard } from "../../../components/component";
 import defaultImg from '../../../assets/default_img_inv.jpg';
 
-
-
 const Home = () => {
+
   const [hibernaderos, setHibernaderos] = useState<HibernaderoInterface[]>([]);
   const [sensor, setSensor] = useState<SensorInterface[]>([]);
   const [usuarios, setUsuarios] = useState<UserInterface[]>([]);
   const token = sessionStorage.getItem("authToken");
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -77,7 +80,7 @@ const Home = () => {
           <h1 className="text-2xl font-bold mb-8">Últimos usuarios registrados</h1>
           <div className="bg-white p-8 rounded-xl shadow-2xl mb-8 flex flex-col gap-8">
             {/* Usuario Cards */}
-            {usuarios.slice(0, 4).map((usuario) => (
+            {usuarios.slice(0, 3).map((usuario) => (
               <div key={usuario.id} className="grid grid-cols-1 xl:grid-cols-4 items-center gap-4 mb-4">
                 <div className="col-span-2 flex items-center gap-4">
                   <img
