@@ -10,5 +10,4 @@ interface LoginUser {
   "clave": string
 }
 
-
 export type {RegisterUser,LoginUser};
