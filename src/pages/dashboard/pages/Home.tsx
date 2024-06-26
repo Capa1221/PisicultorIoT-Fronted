@@ -1,11 +1,5 @@
 import { Accordion, AccordionItem, User } from "@nextui-org/react";
-import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
-import { buscarTodosLosHibernaderos } from "../../../services/hibernadero-controller";
 import { useEffect, useState } from "react";
-import { obtenerSensoresTodos } from "../../../services/sensor-controller";
-import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
-import { CardHibernaderos } from "../../../components/homeDashboard/CardInformationHibernaderos";
-import { CardInformationAplicattion } from "../../../components/homeDashboard/CardInformationAplicattion";
 import { Link } from "react-router-dom";
 import defaultImg from '../../../assets/default_img_inv.jpg';
 
