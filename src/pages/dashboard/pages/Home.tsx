@@ -12,7 +12,7 @@ const Home = () => {
   const [sensor, setSensor] = useState<SensorInterface[]>([]);
   const [usuarios, setUsuarios] = useState<UserInterface[]>([]);
   const token = sessionStorage.getItem("authToken");
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,16 +45,16 @@ const Home = () => {
         <CardHibernaderos numero={hibernaderos.length} />
         {/* Card 2 */}
         <div className="p-4 bg-white rounded-xl flex flex-col justify-between gap-4 drop-shadow-2xl">
-          <CardInformationAplicattion numerousuario={usuarios.length} numerosensor={sensor.length} numeroinvernaderos={hibernaderos.length}/>
+          <CardInformationAplicattion numerousuario={usuarios.length} numerosensor={sensor.length} numeroinvernaderos={hibernaderos.length} />
         </div>
         {/* Card 3 */}
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between">
           <h1 className="text-2xl font-bold mb-8">Últimos hibernaderos</h1>
           <div className="bg-white p-8 rounded-xl shadow-2xl">
-            {hibernaderos.slice(0, 2).map((hibernadero) => (
+            {Array.isArray(hibernaderos) && hibernaderos.slice(0, 2).map((hibernadero) => (
               <div key={hibernadero.id} className="flex items-center gap-4 mb-4">
                 <img
-                  src={(hibernadero.imagen === null || hibernadero.imagen == "") ? defaultImg : hibernadero.imagen}
+                  src={(hibernadero.imagen === null || hibernadero.imagen === "") ? defaultImg : hibernadero.imagen}
                   alt={hibernadero.nombre}
                   className="w-14 h-14 object-cover rounded-full"
                 />

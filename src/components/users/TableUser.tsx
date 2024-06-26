@@ -23,7 +23,7 @@ export const TableUser = () => {
       }
     }
     fetchApi();
-  },[token])
+  },[token]);
 
   return (
     <>
