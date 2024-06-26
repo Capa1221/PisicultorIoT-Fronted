@@ -23,7 +23,7 @@ const Invernaderos: React.FC = () => {
         <CommentSection mensaje="Bienvenido a la sección de gestión de sus cultivos. En esta área, encontrará datos completos sobre cada uno de sus cultivos y podrá ejecutar tareas como la modificación, la eliminación o la asociación de usuarios. Adéntrate en tus invernaderos para mantener la supervisión y la regulación de todas las operaciones." />
         <ModalAgregar />
         <div className="mt-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <CardHibernadero/>
+          <CardHibernadero id={""} imagen={""} ciudad={""} departamento={""} nombre={""} encargado={""} detalles={""} estado={""}/>
         </div>
       </div>
     </>
