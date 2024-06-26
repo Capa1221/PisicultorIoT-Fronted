@@ -9,8 +9,9 @@ export const actualizarUsuario = async (
 ): Promise<AxiosResponse<UserInterface>> => {
   return axios.put<UserInterface>(`${API_URL}/v1/usuario/actualizar`, usuario, {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      'authorization': `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
   });
 };
 
@@ -20,8 +21,9 @@ export const buscarUsuarioPorId = async (
 ): Promise<AxiosResponse<UserInterface>> => {
   return axios.get<UserInterface>(`${API_URL}/v1/usuario/buscar?id=${id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      'authorization': `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
   });
 };
 
@@ -30,7 +32,8 @@ export const buscarTodosLosUsuarios = async (
 ): Promise<AxiosResponse<UserInterface[]>> => {
   return axios.get<UserInterface[]>(`${API_URL}/v1/usuario/buscarTodos`, {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      'authorization': `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
   });
 };

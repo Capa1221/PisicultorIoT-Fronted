@@ -9,7 +9,8 @@ export const crearSensor = async (sensor: SensorInterface, token: string): Promi
     sensor,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -20,7 +21,8 @@ export const obtenerSensoresTodos = async (token: string): Promise<AxiosResponse
     `${API_URL}/v1/sensor/obtenerTodos`,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -31,7 +33,8 @@ export const obtenerSensorPorId = async (id: string, token: string): Promise<Axi
     `${API_URL}/v1/sensor/obtenerPorId?id=${id}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );

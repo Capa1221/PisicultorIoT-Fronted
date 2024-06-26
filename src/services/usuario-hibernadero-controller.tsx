@@ -11,7 +11,8 @@ export const crearUsuarioHibernadero = async (idUsuario: string, idHibernadero: 
     null,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -22,7 +23,8 @@ export const buscarPorUsuario = async (idUsuario: string, token: string): Promis
     `${API_URL}/v1/usuarioHibernadero/buscarPorUsuario?idUsuario=${idUsuario}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -33,7 +35,8 @@ export const buscarPorId = async (id: string, token: string): Promise<AxiosRespo
     `${API_URL}/v1/usuarioHibernadero/buscarPorId?id=${id}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -44,7 +47,8 @@ export const buscarPorHibernadero = async (idHibernadero: string, token: string)
     `${API_URL}/v1/usuarioHibernadero/buscarPorHibernadero?idHibernadero=${idHibernadero}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -55,7 +59,8 @@ export const buscarHibernaderosUsuario = async (id: string, token: string): Prom
     `${API_URL}/v1/usuarioHibernadero/buscarHibernaderosUsuario?id=${id}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );

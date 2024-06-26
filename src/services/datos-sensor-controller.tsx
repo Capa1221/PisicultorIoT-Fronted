@@ -13,7 +13,8 @@ export const insertarDatosSensor = async (datosSensor: DatosSensor, token: strin
     datosSensor,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -24,7 +25,8 @@ export const obtenerDatosPorRangoFechasYSensor = async (fechaInicial: string, fe
     `${API_URL}/v1/datos/rangoFechasporSensor?fechaInicial=${fechaInicial}&fechafinal=${fechaFinal}&idSensor=${idSensor}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`  
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );

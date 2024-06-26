@@ -8,7 +8,8 @@ export const validarCodigo = async (usuario: string, codigo: string, token: stri
     null,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );
@@ -20,7 +21,8 @@ export const crearCodigo = async (usuario: string, token: string): Promise<Axios
     null,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
     }
   );

@@ -12,8 +12,9 @@ export const actualizarHibernadero = async (
     hibernadero,
     {
       headers: {
-        authorization: `Bearer ${token}`,
-      },
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
     }
   );
 };
@@ -27,8 +28,9 @@ export const insertarHibernadero = async (
     hibernadero,
     {
       headers: {
-        authorization: `Bearer ${token}`,
-      },
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
     }
   );
 };
@@ -39,8 +41,9 @@ export const buscarHibernaderoPorId = async (
 ): Promise<AxiosResponse<HibernaderoInterface>> => {
   return axios.get<HibernaderoInterface>(`${API_URL}/v1/hibernadero/buscar?id=${id}`, {
     headers: {
-      authorization: `Bearer ${token}`,
-    },
+      'authorization': `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
   });
 };
 
@@ -63,8 +66,9 @@ export const eliminarHibernadero = async (
     `${API_URL}/v1/hibernadero/eliminar?id=${id}`,
     {
       headers: {
-        authorization: `Bearer ${token}`,
-      },
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
     }
   );
 };
