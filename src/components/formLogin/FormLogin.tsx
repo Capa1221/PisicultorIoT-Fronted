@@ -4,7 +4,7 @@ import logoSistema from '../../assets/54705961_transparente.png';
 import heroImage from '../../assets/AgricultorIoT.jpeg';
 import { postLogin } from '../../services/auth-controller';
 import { LoginUser } from '../../services/interfaces/auth-interface';
-import { decodeToken, handleInputChange } from '../../utils/utils';
+import { handleInputChange } from '../../utils/utils';
 
 export const FormLogin = () => {
 
@@ -104,7 +104,4 @@ export const FormLogin = () => {
     </div>
   );
 };
-function jwt_decode(token: any): any {
-  throw new Error('Function not implemented.');
-}
 
