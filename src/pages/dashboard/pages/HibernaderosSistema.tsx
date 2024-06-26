@@ -1,9 +1,20 @@
-import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
-import { CommentSection } from "../../../components/comment-dashboard/comment";
-import { CardHibernaderosUsuarios } from "../../../components/usuarioHibernadero/CardHibernaderosUsuarios";
+import { useEffect, useState } from "react";
+import { HibernaderoInterface } from "../../../services/interfaces";
+import { decodeToken } from "../../../utils/utils";
+import { CardHibernaderosUsuarios, CommentSection, HeaderDashboard } from "../../../components";
 
+export const HibernaderosSistemaComponent = () => {
 
-const HibernaderosSistemaComponent: React.FC = () => {
+  const token = decodeToken(sessionStorage.getItem("authToken")!);
+  const [hibernaderos, setHibernadero] = useState<HibernaderoInterface[]>([]);
+
+  useEffect(() => {
+    try {
+
+    } catch (error) {
+
+    }
+  }, [token])
 
   return (
     <>
@@ -15,5 +26,3 @@ const HibernaderosSistemaComponent: React.FC = () => {
     </>
   );
 };
-
-export default HibernaderosSistemaComponent;

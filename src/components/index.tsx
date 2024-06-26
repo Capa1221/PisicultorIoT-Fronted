@@ -7,3 +7,4 @@ export { CardHibernadero }            from "./Hibernadero/cardHibernadero";
 export { ModalAsociarUsuario }        from './Hibernadero/modalAsociarUsuario';
 export { ModalEditar }                from './Hibernadero/modalEditar';
 export { ModalEliminar }              from './Hibernadero/modalEliminar';
+export { CardHibernaderosUsuarios }   from "./usuarioHibernadero/CardHibernaderosUsuarios";
