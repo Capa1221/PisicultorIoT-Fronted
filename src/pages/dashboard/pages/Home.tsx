@@ -5,15 +5,15 @@ import { useEffect, useState } from "react";
 import { obtenerSensoresTodos } from "../../../services/sensor-controller";
 import { buscarTodosLosUsuarios } from "../../../services/usuario-controller";
 import { CardHibernaderos } from "../../../components/homeDashboard/CardInformationHibernaderos";
-import Hibernaderos from "./Invernaderos";
 import { CardInformationAplicattion } from "../../../components/homeDashboard/CardInformationAplicattion";
 import { Link } from "react-router-dom";
 import defaultImg from '../../../assets/default_img_inv.jpg';
 
+
 const Home = () => {
   const [hibernaderos, setHibernaderos] = useState<HibernaderoInterface[]>([]);
-  const [sensor, setSensor] = useState<Sensor[]>([]);
-  const [usuarios, setUsuarios] = useState<User[]>([]);
+  const [sensor, setSensor] = useState<SensorInterface[]>([]);
+  const [usuarios, setUsuarios] = useState<UserInterface[]>([]);
   const token = sessionStorage.getItem("authToken");
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +44,7 @@ const Home = () => {
       <HeaderDashboard mensaje={"Has vuelto"} />
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
         {/* Card 1 */}
-        <CardHibernaderos numero={Hibernaderos.length} />
+        <CardHibernaderos numero={hibernaderos.length} />
         {/* Card 2 */}
         <div className="p-4 bg-white rounded-xl flex flex-col justify-between gap-4 drop-shadow-2xl">
           <CardInformationAplicattion numerousuario={usuarios.length} numerosensor={sensor.length} numeroinvernaderos={hibernaderos.length}/>

@@ -4,7 +4,7 @@ import ModalAgregar from "../../../components/Hibernadero/modalAgregar";
 import { CardHibernadero } from "../../../components/Hibernadero/cardHibernadero";
 
 
-const Hibernaderos: React.FC = () => {
+const Invernaderos: React.FC = () => {
   
 
   return (
@@ -21,4 +21,4 @@ const Hibernaderos: React.FC = () => {
   );
 };
 
-export default Hibernaderos;
+export default Invernaderos;
