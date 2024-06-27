@@ -15,7 +15,6 @@ export const ModalFormEdit = ({ id }: { id: string }) => {
     email: "",
     telefono: "",
     observacion: "",
-    estado: "",
     clave: "",
   }
   );

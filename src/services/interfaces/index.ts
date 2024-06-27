@@ -50,6 +50,5 @@ export interface FormularioInterface{
   email: string;
   telefono: string;
   observacion: string;
-  estado: string;
   clave: string;
 };

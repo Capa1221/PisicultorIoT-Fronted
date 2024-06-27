@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
-import { BiUser, BiEnvelope, BiPhone, BiNote, BiCheckCircle, BiLock } from 'react-icons/bi';
+import { BiUser, BiEnvelope, BiPhone, BiNote, BiLock } from 'react-icons/bi';
 import { FormularioInterface } from '../../services/interfaces';
 import { handleInputChange } from '../../utils/utilsHandle';
 import { crearFormulario } from '../../services/Formulario-Sesion';
@@ -15,7 +15,6 @@ export const ModalNewFormulario = () => {
     email: "",
     telefono: "",
     observacion: "",
-    estado: "",
     clave: ""
   });
 
@@ -40,13 +39,13 @@ export const ModalNewFormulario = () => {
         onPress={onOpen}
         className="absolute font-semibold py-2 px-6 bg-primary text-white rounded-xl top-1/2 -translate-y-1/2 right-2"
       >
-        Editar Formulario
+        Realizar Formulario
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
           {onClose => (
             <>
-              <ModalHeader className="flex flex-col text-center">Editar Formulario de Solicitud</ModalHeader>
+              <ModalHeader className="flex flex-col text-center">Formulario de Solicitud</ModalHeader>
               <ModalBody className="">
                 <div className='flex space-x-2'>
                   <Input
@@ -94,15 +93,6 @@ export const ModalNewFormulario = () => {
                   value={formulario.observacion}
                   onChange={(e) => handleInputChange(e, setFormulario, formulario)}
                   startContent={<BiNote className="text-2xl" />}
-                />
-                <Input
-                  type="text"
-                  name="estado"
-                  label="Estado"
-                  isRequired
-                  value={formulario.estado}
-                  onChange={(e) => handleInputChange(e, setFormulario, formulario)}
-                  startContent={<BiCheckCircle className="text-2xl" />}
                 />
                 <Input
                   type="password"
