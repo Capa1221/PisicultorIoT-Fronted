@@ -3,7 +3,7 @@ import { Input } from "@nextui-org/react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 
-export const InputPasswordUser = () => {
+export const InputPasswordUser = ({claveUser}:{claveUser:string}) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -11,7 +11,7 @@ export const InputPasswordUser = () => {
     <>
     <Input
       variant="bordered"
-      defaultValue="adandkjandjnasd"
+      defaultValue={claveUser}
       disabled
       endContent={
         <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
@@ -23,7 +23,7 @@ export const InputPasswordUser = () => {
         </button>
       }
       type={isVisible ? "text" : "password"}
-      className="max-w-xs" />
+      className="w-max" />
       </>
   )
 }
