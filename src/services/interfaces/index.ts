@@ -42,3 +42,14 @@ export interface UserHibernaderoInterface {
   idHibernadero: string;
   idUsuario: string;
 }
+
+export interface FormularioInterface{
+  id: string;
+  usuario: string;
+  nombres: string;
+  email: string;
+  telefono: string;
+  observacion: string;
+  estado: string;
+  clave: string;
+};
