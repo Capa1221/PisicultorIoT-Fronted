@@ -37,3 +37,15 @@ export const buscarTodosLosUsuarios = async (
     }
   });
 };
+
+export const eliminarUsuario = async (
+  id: string,
+  token: string
+): Promise<AxiosResponse<{ message: string }>> => {
+  return axios.delete<{ message: string }>(`${API_URL}/v1/usuario/eliminar?id=${id}`, {
+    headers: {
+      'authorization': `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  });
+};

@@ -1,9 +1,10 @@
 import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
-import { BiEdit } from "react-icons/bi";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { UserInterface } from "../../services/interfaces";
 import { useEffect, useState } from "react";
 import { buscarTodosLosUsuarios } from "../../services";
+import { ModalUserEdit } from "./ModalUserEdit";
+import { ModalUserDelete } from "./ModalUserDelete";
 
 export const TableUser = () => {
   const [usersSistema, setUsersSistema] = useState<UserInterface[]>([]);
@@ -43,12 +44,12 @@ export const TableUser = () => {
           <TableCell className="flex place-content-center">
             <Tooltip content="Edit user">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <Button color="warning" startContent={<BiEdit className="text-xl" />} variant="light"></Button>
+                <ModalUserEdit id={usersSistema.id}/>
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Delete user">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <Button color="danger" startContent={<FaRegTrashAlt className="text-xl" />} variant="light"></Button>
+                <ModalUserDelete id={usersSistema.id}/>
               </span>
             </Tooltip>
           </TableCell>
