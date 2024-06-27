@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { HibernaderoInterface } from "../../../services/interfaces";
+import { EstacionInterface } from "../../../services/interfaces";
 import { CardHibernadero, CommentSection, HeaderDashboard } from "../../../components";
-import { buscarTodosLosHibernaderos } from "../../../services";
+import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
 
 export const HibernaderosSistemaComponent = () => {
   const token = sessionStorage.getItem("authToken")!;
-  const [hibernaderos, setHibernaderos] = useState<HibernaderoInterface[]>();
+  const [hibernaderos, setHibernaderos] = useState<EstacionInterface[]>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (token) {
-          const responseHibernaderos = await buscarTodosLosHibernaderos(token);
+          const responseHibernaderos = await buscarTodaslasEstaciones(token);
           setHibernaderos(responseHibernaderos.data);
         } else {
           console.error("Token is null");

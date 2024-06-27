@@ -35,7 +35,7 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 <RiHome3Line /> Inicio
               </Link>
               <Link
-                to="/dashboard/hibernaderos"
+                to="/dashboard/Mis-Estaciones"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >

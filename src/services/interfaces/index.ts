@@ -1,4 +1,4 @@
-export interface HibernaderoInterface {
+export interface EstacionInterface {
   id?: string;
   imagen: string;
   ciudad: string;
@@ -7,6 +7,10 @@ export interface HibernaderoInterface {
   encargado: string;
   detalles: string;
   estado: string;
+  idTipoCultivo: string;
+  descripcionTipoCultivo: string;
+  numero_Asociados: string;
+    
 }
 
 export interface SensorInterface {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
-import Hibernaderos from "./pages/Invernaderos";
+import { EstacionesUser } from "./pages/EstacionesUser";
 import Home from "./pages/Home";
 import Sensores from "./pages/Sensores";
 import { Usuarios } from "./pages/usuarios";
@@ -34,7 +34,7 @@ export const Dashboard = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/hibernaderos" element={<Hibernaderos />} />
+          <Route path="/Mis-Estaciones" element={<EstacionesUser />} />
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/Sensores" element={<Sensores />} />
           <Route path="/hibernaderos-sistema" element={<HibernaderosSistemaComponent />} />

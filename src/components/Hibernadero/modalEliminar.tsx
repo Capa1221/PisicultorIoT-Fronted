@@ -1,6 +1,6 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { BiTrash } from "react-icons/bi";
-import { eliminarHibernadero } from "../../services/hibernadero-controller";
+import { eliminarEstacion } from "../../services/Estaciones";
 
 export const ModalEliminar = ({ id }: { id: string }) => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -10,7 +10,7 @@ export const ModalEliminar = ({ id }: { id: string }) => {
     try {
       if (token) {
         console.log("Contenido de las variables a pasar ",id,token)
-        const response = await eliminarHibernadero(id, token);
+        const response = await eliminarEstacion(id, token);
         console.log("Hibernadero eliminado", response.status);
         onClose();
       }

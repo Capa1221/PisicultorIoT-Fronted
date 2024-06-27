@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionItem, User } from "@nextui-org/react";
-import { HibernaderoInterface, SensorInterface, UserInterface } from "../../../services/interfaces";
-import { buscarTodosLosHibernaderos, buscarTodosLosUsuarios, obtenerSensoresTodos } from "../../../services";
+import { EstacionInterface, SensorInterface, UserInterface } from "../../../services/interfaces";
+import { buscarTodosLosUsuarios, obtenerSensoresTodos } from "../../../services";
 import { CardHibernaderos, CardInformationAplicattion, HeaderDashboard } from "../../../components";
 import defaultImg from '../../../assets/default_img_inv.jpg';
+import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
 
 const Home = () => {
 
-  const [hibernaderos, setHibernaderos] = useState<HibernaderoInterface[]>([]);
+  const [hibernaderos, setHibernaderos] = useState<EstacionInterface[]>([]);
   const [sensor, setSensor] = useState<SensorInterface[]>([]);
   const [usuarios, setUsuarios] = useState<UserInterface[]>([]);
   const token = sessionStorage.getItem("authToken");
@@ -18,7 +19,7 @@ const Home = () => {
       try {
         if (token) {
           console.log(`Bearer ${token}`);
-          const responseHibernaderos = await buscarTodosLosHibernaderos(token)
+          const responseHibernaderos = await buscarTodaslasEstaciones(token)
           const responseSensores = await obtenerSensoresTodos(token);
           const responseUsuarios = await buscarTodosLosUsuarios(token);
 
