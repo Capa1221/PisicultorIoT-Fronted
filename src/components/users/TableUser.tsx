@@ -1,5 +1,4 @@
-import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
 import { UserInterface } from "../../services/interfaces";
 import { useEffect, useState } from "react";
 import { buscarTodosLosUsuarios } from "../../services";

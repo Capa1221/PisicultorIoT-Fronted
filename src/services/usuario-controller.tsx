@@ -7,7 +7,9 @@ export const actualizarUsuario = async (
   usuario: UserInterface,
   token: string
 ): Promise<AxiosResponse<UserInterface>> => {
-  return axios.put<UserInterface>(`${API_URL}/v1/usuario/actualizar`, usuario, {
+  console.log(usuario);
+  return axios.put<UserInterface>(`${API_URL}/v1/usuario/actualizar`, 
+  usuario, {
     headers: {
       'authorization': `Bearer ${token}`,
       "Content-Type": "application/json"
