@@ -28,9 +28,12 @@ export const guardarTipoCultivo = async (
 };
 
 // Obtener todos los tipos de cultivo
-export const obtenerTodosLosTiposCultivo = async (): Promise<AxiosResponse<TipoCultivoInterface[]>> => {
+export const obtenerTodosLosTiposCultivo = async (
+  token: string
+): Promise<AxiosResponse<TipoCultivoInterface[]>> => {
   return axios.get<TipoCultivoInterface[]>(`${API_URL}/v1/tipoCultivo/buscarTodos`, {
     headers: {
+      'authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
   });
@@ -38,11 +41,13 @@ export const obtenerTodosLosTiposCultivo = async (): Promise<AxiosResponse<TipoC
 
 // Obtener tipo de cultivo por ID
 export const obtenerTipoCultivoPorId = async (
-  id: string
+  id: string,
+  token:string
 ): Promise<AxiosResponse<TipoCultivoInterface>> => {
   return axios.get<TipoCultivoInterface>(`${API_URL}/v1/tipoCultivo/buscarPorId`, {
     params: { id },
     headers: {
+      'authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
   });
