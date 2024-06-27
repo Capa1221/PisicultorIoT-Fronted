@@ -54,7 +54,7 @@ export interface FormularioInterface {
 };
 
 export interface TipoCultivoInterface {
-  id: string;
+  id?: string;
   nombre: string;
   descripcion: string;
 }

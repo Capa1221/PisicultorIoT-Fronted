@@ -18,10 +18,12 @@ export const actualizarTipoCultivo = async (
 
 // Guardar tipo de cultivo
 export const guardarTipoCultivo = async (
-  tipoCultivo: TipoCultivoInterface
+  tipoCultivo: TipoCultivoInterface,
+  token:string
 ): Promise<AxiosResponse<TipoCultivoInterface>> => {
   return axios.post<TipoCultivoInterface>(`${API_URL}/v1/tipoCultivo/guardar`, tipoCultivo, {
     headers: {
+      'authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
   });

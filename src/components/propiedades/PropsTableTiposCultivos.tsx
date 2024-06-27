@@ -44,12 +44,12 @@ export const PropsTableTiposCultivos = () => {
           <TableCell className="flex place-content-center">
             <Tooltip content="Edit user">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <PropsModalEditar id={TipoCultivo.id} />
+                <PropsModalEditar id={TipoCultivo.id!} />
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Delete user">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <PropsModalEliminar />
+                <PropsModalEliminar id={TipoCultivo.id!} />
               </span>
             </Tooltip>
           </TableCell>
