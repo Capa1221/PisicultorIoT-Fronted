@@ -1,5 +1,5 @@
 export interface HibernaderoInterface {
-  id: string;
+  id?: string;
   imagen: string;
   ciudad: string;
   departamento: string;
@@ -18,7 +18,7 @@ export interface SensorInterface {
 }
 
 export interface UserInterface {
-  id: string;
+  id?: string;
   usuario: string;
   nombres: string;
   email: string;
@@ -38,13 +38,13 @@ export interface LoginUser {
 }
 
 export interface UserHibernaderoInterface {
-  id: string;
+  id?: string;
   idHibernadero: string;
   idUsuario: string;
 }
 
 export interface FormularioInterface{
-  id: string;
+  id?: string;
   usuario: string;
   nombres: string;
   email: string;

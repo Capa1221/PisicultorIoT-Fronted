@@ -9,7 +9,6 @@ import { GrFormEdit } from 'react-icons/gr';
 export const ModalNewFormulario = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [formulario, setFormulario] = useState<FormularioInterface>({
-    id: "",
     usuario: "",
     nombres: "",
     email: "",
