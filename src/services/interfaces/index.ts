@@ -62,3 +62,9 @@ export interface TipoCultivoInterface {
   nombre: string;
   descripcion: string;
 }
+
+export interface ImageHandler {
+  imagePreview: string | null;
+  isImageValid: boolean;
+  handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
