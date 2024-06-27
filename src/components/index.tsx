@@ -3,9 +3,9 @@ export { CardHibernaderos }           from "./homeDashboard/CardInformationHiber
 export { CardInformationAplicattion } from "./homeDashboard/CardInformationAplicattion";
 export { HeaderDashboard }            from "./header/HeaderDashboard";
 export { CommentSection }             from "./comment-dashboard/comment";
-export { ModalAgregar }               from "./Hibernadero/modalAgregar";
-export { CardEstacion }            from "./Hibernadero/CardEstacion";
-export { ModalAsociarUsuario }        from './Hibernadero/modalAsociarUsuario';
-export { ModalEditar }                from './Hibernadero/modalEditar';
-export { ModalEliminar }              from './Hibernadero/modalEliminar';
+export { ModalAgregar }               from "./Estacion/modalAgregar";
+export { CardEstacion }            from "./Estacion/CardEstacion";
+export { ModalAsociarUsuario }        from './Estacion/modalAsociarUsuario';
+export { ModalEditar }                from './Estacion/modalEditar';
+export { ModalEliminar }              from './Estacion/modalEliminar';
 export { CardEstacionsUsuarios }   from "./usuarioHibernadero/CardEstacion";

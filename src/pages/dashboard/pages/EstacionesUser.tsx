@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CommentSection, HeaderDashboard, ModalAgregar } from "../../../components";
 import { EstacionInterface } from "../../../services/interfaces";
 import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
-import { CardEstacion } from "../../../components/Hibernadero/CardEstacion";
+import { CardEstacion } from "../../../components/Estacion/CardEstacion";
 
 export const EstacionesUser = () => {
   const [estaciones, setEstaciones] = useState<EstacionInterface[]>([]);
