@@ -18,12 +18,10 @@ export const actualizarFormulario = async (
 
 // Crear formulario
 export const crearFormulario = async (
-  formulario: FormularioInterface,
-  token: string
+  formulario: FormularioInterface
 ): Promise<AxiosResponse<FormularioInterface>> => {
   return axios.post<FormularioInterface>(`${API_URL}/v1/formulario/crear`, formulario, {
     headers: {
-      'authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
   });

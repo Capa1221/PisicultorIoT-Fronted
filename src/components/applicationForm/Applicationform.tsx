@@ -1,5 +1,6 @@
 // Icons
 import { RiDatabase2Fill, RiBarChart2Fill } from "react-icons/ri";
+import { ModalNewFormulario } from "./ModalNewFormulario";
 
 export const Applicationform = () => {
   return (
@@ -15,12 +16,7 @@ export const Applicationform = () => {
         </p>
         <form className="w-full">
           <div className="relative">
-            <button
-              type="submit"
-              className="absolute font-semibold py-2 px-6 bg-primary text-white rounded-xl top-1/2 -translate-y-1/2 right-2"
-            >
-              Iniciar formulario
-            </button>
+            <ModalNewFormulario/>
           </div>
         </form>
       </div>
