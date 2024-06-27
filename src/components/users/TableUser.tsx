@@ -41,14 +41,14 @@ export const TableUser = () => {
           <TableCell className="text-center">{usersSistema.nombres}</TableCell>
           <TableCell className="text-center">{usersSistema.email}</TableCell>
           <TableCell className="flex place-content-center">
-            <Tooltip content="Edit user">
+            <Tooltip content="Editar usuario">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <ModalUserEdit id={usersSistema.id}/>
+                <ModalUserEdit id={usersSistema.id!}/>
               </span>
             </Tooltip>
-            <Tooltip color="danger" content="Delete user">
+            <Tooltip color="danger" content="Eliminar usuario">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <ModalUserDelete id={usersSistema.id}/>
+                <ModalUserDelete id={usersSistema.id!}/>
               </span>
             </Tooltip>
           </TableCell>

@@ -56,12 +56,12 @@ export const TableFormUsers = () => {
               </Tooltip>
               <Tooltip content="Editar Usuario">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <ModalFormEdit id={formularioSistema.id}/>
+                <ModalFormEdit id={formularioSistema.id!}/>
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Eliminar Usuario">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <ModalFormDelete id={formularioSistema.id}/>
+                <ModalFormDelete id={formularioSistema.id!}/>
               </span>
             </Tooltip>
             </TableCell>
