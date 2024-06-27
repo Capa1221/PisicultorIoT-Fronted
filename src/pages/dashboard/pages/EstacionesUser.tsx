@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { CardHibernadero, CommentSection, HeaderDashboard, ModalAgregar } from "../../../components";
+import { CommentSection, HeaderDashboard, ModalAgregar } from "../../../components";
 import { EstacionInterface } from "../../../services/interfaces";
 import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
+import { CardEstacion } from "../../../components/Hibernadero/CardEstacion";
 
 export const EstacionesUser = () => {
   const [estaciones, setEstaciones] = useState<EstacionInterface[]>([]);
@@ -35,7 +36,7 @@ export const EstacionesUser = () => {
         <ModalAgregar />
         <div className="mt-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {estaciones.map((estacion) => (
-            <CardHibernadero 
+            <CardEstacion 
             id={estacion.id} 
             imagen={estacion.imagen} 
             ciudad={estacion.ciudad} 

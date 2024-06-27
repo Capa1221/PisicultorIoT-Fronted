@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, Button, useDisclosure, Scr
 import { RiSensorLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-export const ModalSensoresUsuarioHibernadero = () => {
+export const ModalSensoresEstacion = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
   return (

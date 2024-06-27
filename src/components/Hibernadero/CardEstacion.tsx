@@ -5,7 +5,7 @@ import { BiUser } from "react-icons/bi";
 import { ModalAsociarUsuario, ModalEditar, ModalEliminar } from "..";
 import { EstacionInterface } from "../../services/interfaces";
 
-export const CardHibernadero = (Estacion: EstacionInterface) => {
+export const CardEstacion = (Estacion: EstacionInterface) => {
 
     return (
         <>
