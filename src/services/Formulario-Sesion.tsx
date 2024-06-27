@@ -8,6 +8,7 @@ export const actualizarFormulario = async (
   formulario: FormularioInterface,
   token: string
 ): Promise<AxiosResponse<FormularioInterface>> => {
+  console.log(formulario);
   return axios.put<FormularioInterface>(`${API_URL}/v1/formulario/actualizar`, formulario, {
     headers: {
       'authorization': `Bearer ${token}`,
