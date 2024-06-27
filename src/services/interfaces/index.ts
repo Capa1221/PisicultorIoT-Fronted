@@ -43,7 +43,7 @@ export interface UserHibernaderoInterface {
   idUsuario: string;
 }
 
-export interface FormularioInterface{
+export interface FormularioInterface {
   id?: string;
   usuario: string;
   nombres: string;
@@ -52,3 +52,9 @@ export interface FormularioInterface{
   observacion: string;
   clave: string;
 };
+
+export interface TipoCultivoInterface {
+  id: string;
+  nombre: string;
+  descripcion: string;
+}
