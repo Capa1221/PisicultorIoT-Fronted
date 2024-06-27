@@ -1,11 +1,11 @@
-import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
 import { FormularioInterface } from "../../services/interfaces";
 import { useEffect, useState } from "react";
 import { obtenerTodosLosFormularios } from "../../services/Formulario-Sesion";
 import { InputPasswordUser } from "./InputPasswordUser";
 import { ModalFormEdit } from "./ModalFormEdit";
 import { ModalFormDelete } from "./ModalFormDelete";
+import { ModalFormAdd } from "./ModalFormAdd";
 
 export const TableFormUsers = () => {
   const [formulariosSistema, setFormulariosSistema] = useState<FormularioInterface[]>([]);
@@ -49,17 +49,17 @@ export const TableFormUsers = () => {
             <TableCell className="text-center">{formularioSistema.observacion}</TableCell>
             <TableCell className="justify-center"><InputPasswordUser claveUser={formularioSistema.clave}/></TableCell>
             <TableCell className="flex place-content-center">
-              <Tooltip content="Añadir Usuario">
+              <Tooltip content="Añadir Formulario">
                 <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                  <Button color="primary" startContent={<AiOutlineUserAdd className="text-xl" />} variant="light"></Button>
+                  <ModalFormAdd id={formularioSistema.id!}/>
                 </span>
               </Tooltip>
-              <Tooltip content="Editar Usuario">
+              <Tooltip content="Editar Formulario">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <ModalFormEdit id={formularioSistema.id!}/>
               </span>
             </Tooltip>
-            <Tooltip color="danger" content="Eliminar Usuario">
+            <Tooltip color="danger" content="Editar Formulario">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
                 <ModalFormDelete id={formularioSistema.id!}/>
               </span>
