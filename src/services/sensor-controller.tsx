@@ -40,9 +40,9 @@ export const obtenerSensorPorId = async (id: string, token: string): Promise<Axi
   );
 };
 
-export const obtenerSensorPorHibernadero = async (idHibernadero: string, token: string): Promise<AxiosResponse<SensorInterface>> => {
-  return axios.get<SensorInterface>(
-    `${API_URL}/v1/sensor/obtenerPorHibernadero?idHibernadero=${idHibernadero}`,
+export const obtenerSensoresPorEstacion = async (idEstacion: string, token: string): Promise<AxiosResponse<SensorInterface[]>> => {
+  return axios.get<SensorInterface[]>(
+    `${API_URL}/v1/sensor/obtenerPorHibernadero?idHibernadero=${idEstacion}`,
     {
       headers: {
         Authorization: `Bearer ${token}`

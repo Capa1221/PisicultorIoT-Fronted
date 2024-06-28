@@ -21,7 +21,7 @@ export const CardEstacionsUsuarios = (estacion: EstacionInterface) => {
         </CardHeader>
         <CardBody className="text-gray-600 w-full">
           <div className="flex justify-around uppercase font-bold items-center">
-            <p>Tipo: estacion//falta el campo</p>
+            <p>Tipo: {estacion.descripcionTipoCultivo}</p>
             <p className={`text-white rounded-md p-1 ${estacion.estado === "1" ? 'bg-green-900' : 'bg-red-900'}`}>
               {estacion.estado === "1" ? 'ACTIVO' : 'INACTIVO'}
             </p>
@@ -30,7 +30,7 @@ export const CardEstacionsUsuarios = (estacion: EstacionInterface) => {
             <p className="w-full text-center font-sans font-semibold uppercase text-warning">Propietario: {estacion.encargado}</p>
           </div>
           <div className="py-2 flex items-center justify-around">
-            <p className="flex items-center space-x-1"><BiUser className="text-primary text-md" /><span className="font-sans font-semibold text-primary">2//falta el campo</span></p>
+            <p className="flex items-center space-x-1"><BiUser className="text-primary text-md" /><span className="font-sans font-semibold text-primary">{estacion.numero_Asociados}</span></p>
             <p className="flex items-center space-x-1"><AiTwotoneEnvironment className="text-red-500 text-md" /><small className="font-sans">{estacion.departamento} / {estacion.ciudad}</small></p>
           </div>
           <Accordion variant="splitted">
@@ -42,7 +42,7 @@ export const CardEstacionsUsuarios = (estacion: EstacionInterface) => {
           </Accordion>
         </CardBody>
         <CardFooter className="flex place-content-center">
-          <ModalSensoresEstacion />
+          <ModalSensoresEstacion idEstacion={estacion.id!} />
         </CardFooter>
       </Card>
     </>

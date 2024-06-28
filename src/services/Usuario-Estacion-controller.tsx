@@ -27,8 +27,8 @@ export const buscarUsuariosSinEstacion = async (idEstacion: string, token: strin
   );
 };
 
-export const buscarPorUsuario = async (idUsuario: string, token: string): Promise<AxiosResponse<EstacionInterface>> => {
-  return axios.get<EstacionInterface>(
+export const buscarPorUsuario = async (idUsuario: string, token: string): Promise<AxiosResponse<EstacionInterface[]>> => {
+  return axios.get<EstacionInterface[]>(
     `${API_URL}/v1/usuarioEstacion/buscarPorUsuario?idUsuario=${idUsuario}`,
     {
       headers: {
