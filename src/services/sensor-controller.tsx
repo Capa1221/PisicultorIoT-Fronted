@@ -51,6 +51,17 @@ export const obtenerSensoresPorEstacion = async (idEstacion: string, token: stri
   );
 };
 
+export const obtenerSensoresPorUsuario = async (idUsuario: string, token: string): Promise<AxiosResponse<SensorInterface[]>> => {
+  return axios.get<SensorInterface[]>(
+    `${API_URL}/v1/sensor/buscarPorUsuario?idUsuario=${idUsuario}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+};
+
 export const borrarSensor = async (id: string, token: string): Promise<AxiosResponse<{ message: string }>> => {
   return axios.delete<{ message: string }>(
     `${API_URL}/v1/sensor/borrarSensor?id=${id}`,

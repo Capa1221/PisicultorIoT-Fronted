@@ -2,8 +2,27 @@ import { HeaderDashboard } from "../../../components/header/HeaderDashboard";
 import { CommentSection } from "../../../components/comment-dashboard/comment";
 import { ModalAgregarSensor } from "../../../components/sensores/ModalAgregarSensor";
 import { CardSensores } from "../../../components/sensores/CardSensores";
+import { useEffect, useState } from "react";
+import { SensorInterface } from "../../../services/interfaces";
 
-const Sensores = () => {
+export const Sensores = () => {
+  const token = sessionStorage.getItem("authToken");
+  const [sensores, setSensores] = useState<SensorInterface[]>([]);
+
+  useEffect(()=>{
+    const fetchSensores = async () =>{
+      try {
+        if(token){
+          const response = await 
+        }else{
+          console.error("error token");
+        }
+      } catch (error) {
+        
+      }
+
+    }
+  },[token]);
 
   return (
     <>
@@ -18,5 +37,3 @@ const Sensores = () => {
     </>
   );
 };
-
-export default Sensores;

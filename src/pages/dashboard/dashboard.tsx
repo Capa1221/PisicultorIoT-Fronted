@@ -3,12 +3,12 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { EstacionesUser } from "./pages/EstacionesUser";
 import Home from "./pages/Home";
-import Sensores from "./pages/Sensores";
 import { Usuarios } from "./pages/usuarios";
 import { Propiedades } from "./pages/Propiedades";
 import { PageGraficasSensores } from "./pages/PageSensoresUsuarioHibernadero";
 import { HibernaderosSistemaComponent } from "./pages/HibernaderosSistema";
 import { EstacionesAsociacion } from "./pages/EstacionesAsociacion";
+import { Sensores } from "./pages/Sensores";
 
 export const Dashboard = () => {
 
