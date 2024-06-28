@@ -45,7 +45,7 @@ export const ModalUsuariosAsociados = ({idEstacion,numero_Asociados}:{idEstacion
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Deasociar Usuario Estacion</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Usuarios Asociados a la Estacion</ModalHeader>
                             <ModalBody>
                                 <div className="flex flex-col gap-1 w-full">
                                     {users.map((user) => (
@@ -57,7 +57,8 @@ export const ModalUsuariosAsociados = ({idEstacion,numero_Asociados}:{idEstacion
                                                     idEstacion:idEstacion,
                                                     id: user.id!,
                                                     name: user.usuario!,
-                                                    avatar: `https://api.dicebear.com/5.x/thumbs/svg?seed=${user.usuario}`
+                                                    avatar: `https://api.dicebear.com/5.x/thumbs/svg?seed=${user.usuario}`,
+                                                    eliminar:true
                                                 }}
                                             />
                                         </ScrollShadow>
@@ -66,10 +67,7 @@ export const ModalUsuariosAsociados = ({idEstacion,numero_Asociados}:{idEstacion
                             </ModalBody>
                             <ModalFooter>
                                 <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button color="primary" onPress={onClose}>
-                                    Action
+                                    Cerrar
                                 </Button>
                             </ModalFooter>
                         </>

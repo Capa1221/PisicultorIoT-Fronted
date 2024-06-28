@@ -78,6 +78,7 @@ export interface User {
   avatar: string;
   username?: string;
   url?: string;
+  eliminar?:boolean;
 }
 
 export interface CustomCheckboxProps {

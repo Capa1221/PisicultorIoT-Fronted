@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, User, Button } from "@nextui-org/react";
 import { CustomCheckboxProps } from "../../services/interfaces";
-import { crearUsuarioEstacion } from "../../services/Usuario-Estacion-controller";
+import { borrarUsuarioEstacion, crearUsuarioEstacion } from "../../services/Usuario-Estacion-controller";
 
 export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
 
@@ -10,12 +10,22 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
   const handleAsociarUsuario = async () => {
     try {
       if (token) {
-        const response = await crearUsuarioEstacion(user.id, user.idEstacion, token);
-        if (response.status == 200) {
-          alert("Usuario Asociado");
-          window.location.reload();
+        if (user.eliminar && user.eliminar != null) {
+          const response = await borrarUsuarioEstacion(user.id,token);
+          if(response.status==200){
+            alert("Usuario Desasociado");
+            window.location.reload();
+          }else{
+            alert("error al desasociar el usuario");
+          }
         } else {
-          alert("error al asociar el usuario");
+          const response = await crearUsuarioEstacion(user.id, user.idEstacion, token);
+          if (response.status == 200) {
+            alert("Usuario Asociado");
+            window.location.reload();
+          } else {
+            alert("error al asociar el usuario");
+          }
         }
       } else {
         console.error("Error Token");
@@ -31,13 +41,13 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
         <User
           avatarProps={{ size: "md", src: user.avatar }}
           description={
-            <Link isExternal href={user.url} size="sm">
+            (user.name != null) ? <Link isExternal size="sm">
               @{user.username}
-            </Link>
+            </Link> : ''
           }
           name={user.name}
         />
-        <div className="flex flex-col items-end gap-1"> 
+        <div className="flex flex-col items-end gap-1">
         </div>
       </div>
     </Button>
