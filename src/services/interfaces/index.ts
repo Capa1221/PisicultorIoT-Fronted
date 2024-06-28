@@ -69,6 +69,8 @@ export interface ImageHandler {
 }
 
 export interface User {
+  idEstacion: string;
+  id: string;
   name: string;
   avatar: string;
   username: string;

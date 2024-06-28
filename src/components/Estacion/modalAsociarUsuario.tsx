@@ -8,6 +8,7 @@ import { buscarUsuariosSinEstacion } from "../../services/Usuario-Estacion-contr
 export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [users, setUsers] = useState<UserInterface[]>([]);
+    const onClose = sessionStorage.getItem("setOnCloseAsociarUsuario");
     const token = sessionStorage.getItem("authToken");
 
     useEffect(() => {
@@ -28,7 +29,7 @@ export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => 
             }
         };
         fetchUsers();
-    }, [token]);
+    }, [token,onClose]);
 
     return (
         <>
@@ -52,6 +53,8 @@ export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => 
                                                 value={user.id!}
                                                 key={user.id!}
                                                 user={{
+                                                    idEstacion:idEstacion,
+                                                    id: user.id!,
                                                     name: user.nombres,
                                                     avatar: `https://api.dicebear.com/5.x/thumbs/svg?seed=${user.usuario}`,
                                                     username: user.email,
