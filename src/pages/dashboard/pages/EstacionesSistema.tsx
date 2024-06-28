@@ -3,7 +3,7 @@ import { EstacionInterface } from "../../../services/interfaces";
 import { CardEstacion, CommentSection, HeaderDashboard } from "../../../components";
 import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
 
-export const HibernaderosSistemaComponent = () => {
+export const EstacionesSistemaComponent = () => {
   const token = sessionStorage.getItem("authToken")!;
   const [hibernaderos, setHibernaderos] = useState<EstacionInterface[]>();
 

@@ -27,6 +27,9 @@ export const CardEstacion = (Estacion: EstacionInterface) => {
                             {Estacion.estado === "1" ? 'ACTIVO' : 'INACTIVO'}
                         </p>
                     </div>
+                    <div>
+                        <p className="w-full text-center font-sans font-semibold uppercase text-warning">Propietario: {Estacion.encargado}</p>
+                    </div>
                     <div className="py-2 flex items-center justify-around">
                         <ModalUsuariosAsociados idEstacion={Estacion.id!} numero_Asociados={Estacion.numero_Asociados!} />
                         <p className="flex items-center space-x-1"><AiTwotoneEnvironment className="text-red-500 text-md" /><small className="font-sans">{Estacion.departamento} / {Estacion.ciudad}</small></p>
