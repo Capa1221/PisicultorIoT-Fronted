@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { BiImage, BiRename } from "react-icons/bi";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaCity, FaMapPin } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { EstacionInterface } from "../../services/interfaces";
 import { insertarEstacion } from "../../services/Estaciones";
 import { decodeToken, handleInputChange } from "../../utils/utils";
@@ -18,25 +18,22 @@ export const ModalAgregar = () => {
     ciudad: "",
     departamento: "",
     nombre: "",
-    encargado: decodetoken.sub,
+    encargado: decodetoken.idUsuario,
     detalles: "",
     estado: "",
     idTipoCultivo: ""
   });
   const { imagePreview, isImageValid, handleImageChange } = useImageHandler();
 
-  useEffect(() => {
-    sessionStorage.removeItem("imageBase64");
-    sessionStorage.removeItem("tipoId");
-  },[window.onload]);
-
   const handleAgregarEstacion = async () => {
     try {
-      const tipoCultivo = sessionStorage.getItem("tipoId");
-      const imageEstacion = sessionStorage.getItem("imageBase64");
+      const tipoCultivo = sessionStorage.getItem("tipoId")!;
+      const imageEstacion = sessionStorage.getItem("imageBase64")!;
       if (tipoCultivo != null && imageEstacion != null) {
+        alert("objetos image:::::::>"+imageEstacion+" objeto tipoCultivo::::::::::>"+imageEstacion);
         estacion.idTipoCultivo = tipoCultivo;
         estacion.imagen = imageEstacion;
+        estacion.estado = "1";
         const response = await insertarEstacion(estacion, token);
         if (response.status === 200) {
           onClose();

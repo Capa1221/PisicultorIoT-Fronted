@@ -24,7 +24,6 @@ export const useImageHandler = (): ImageHandler => {
         reader.onload = () => {
           setImagePreview(reader.result as string);
           setIsImageValid(true);
-          sessionStorage.setItem("imageBase64",imagePreview!);
         };
         reader.readAsDataURL(file);
       } else {
@@ -37,5 +36,6 @@ export const useImageHandler = (): ImageHandler => {
     }
   };
 
+  sessionStorage.setItem("imageBase64",imagePreview!);
   return { imagePreview, isImageValid, handleImageChange };
 };

@@ -12,6 +12,8 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
   const handleLogout = () => {
     sessionStorage.removeItem('userEmail');
     sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('imageBase64');
+    sessionStorage.removeItem('tipoId');
     navigate('/');
   };
 

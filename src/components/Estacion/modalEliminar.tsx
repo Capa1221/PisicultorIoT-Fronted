@@ -9,10 +9,12 @@ export const ModalEliminar = ({ id }: { id: string }) => {
   const handleDeleteHibernadero = async () => {
     try {
       if (token) {
-        console.log("Contenido de las variables a pasar ",id,token)
         const response = await eliminarEstacion(id, token);
-        console.log("Hibernadero eliminado", response.status);
-        onClose();
+        if(response.status==200){
+          onClose();
+          window.location.reload();
+        }
+        
       }
     } catch (error) {
       console.error("Error al eliminar el hibernadero", error);
