@@ -9,33 +9,30 @@ export const Applicationform = () => {
       className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 p-8 md:p-12 xl:p-20"
     >
       <div className="flex flex-col gap-4">
-        <h1 className="text-[40px] font-bold">Formulario de Acceso</h1>
+        <h1 className="text-[40px] font-bold">Acceso al Sistema</h1>
         <p className="text-[20px] text-gray-500">
-          Accede y completa el formulario de registro para que el administrador
-          pueda concederte acceso al sistema de informaci贸n.
+          Completa el formulario de registro para obtener acceso al sistema de informaci髇 de precisi髇 agr韈ola de Agricultor IOT.
         </p>
         <form className="w-full">
           <div className="relative">
-            <ModalNewFormulario/>
+            <ModalNewFormulario />
           </div>
         </form>
       </div>
       {/* Servicios */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col gap-2">
           <RiBarChart2Fill className="text-4xl p-2 bg-secondary text-primary box-content rounded-xl" />
-          <h3 className="text-[20px] font-bold">Visualizaci贸n de Datos</h3>
+          <h3 className="text-[20px] font-bold">Visualizaci髇 de Datos</h3>
           <p className="text-gray-500">
-            Convierte datos complejos en gr谩ficos claros para facilitar el
-            an谩lisis y la toma de decisiones.
+            Transforma datos complejos en gr醘icos claros y comprensibles para facilitar el an醠isis y la toma de decisiones informadas.
           </p>
         </div>
         <div className="flex flex-col gap-2">
           <RiDatabase2Fill className="text-4xl p-2 bg-secondary text-primary box-content rounded-xl" />
-          <h3 className="text-[20px] font-bold">Gesti贸n de Informaci贸n</h3>
+          <h3 className="text-[20px] font-bold">Gesti髇 de Informaci髇</h3>
           <p className="text-gray-500">
-            Administra eficientemente grandes vol煤menes de datos y optimiza los
-            procesos de almacenamiento y acceso a la informaci贸n.
+            Administra eficientemente grandes vol鷐enes de datos, optimizando los procesos de almacenamiento y acceso a la informaci髇 cr韙ica.
           </p>
         </div>
       </div>

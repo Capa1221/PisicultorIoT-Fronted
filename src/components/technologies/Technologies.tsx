@@ -39,7 +39,7 @@ export const Technologies = () => {
               <Divider />
               <CardBody>
                 <p>
-                Usamos React con Vite porque combina la eficiencia y la flexibilidad de React para crear interfaces de usuario dinamicas con la rapidez y la simplicidad de Vite para un desarrollo rapido y una excelente experiencia de usuario. Independientemente de la experiencia en desarrollo, esto permite crear aplicaciones web modernas y optimizadas sin problemas.
+                Optamos por React junto con Vite por su combinaci髇 perfecta de la adaptabilidad y la creatividad de React a la hora de crear interfaces de usuario interactivas, junto con la rapidez y sencillez de Vite para un desarrollo r醦ido y una experiencia de usuario de primer nivel. Independientemente de la experiencia de cada uno en desarrollo, este d鷒 permite la creaci髇 perfecta de aplicaciones web avanzadas y ajustadas sin ning鷑 tipo de problema.
                 </p>
               </CardBody>
               <Divider />
@@ -70,7 +70,7 @@ export const Technologies = () => {
               <Divider />
               <CardBody>
                 <p>
-                Utilizamos Spring Boot como backend porque ofrece una plataforma s贸lida y escalable que facilita el desarrollo de aplicaciones Java. Spring Boot facilita la creaci贸n de servicios backend poderosos y seguros, simplifica el desarrollo y acelera la entrega de aplicaciones empresariales modernas gracias a su configuraci贸n m铆nima y su amplia gama de herramientas integradas.
+                Spring Boot es nuestra plataforma de backend elegida debido a su naturaleza robusta y ampliable, lo que permite la construcci髇 perfecta de aplicaciones Java. A trav閟 de Spring Boot, creamos sin esfuerzo soluciones de backend s髄idas y protegidas, agilizando los procesos de desarrollo y acelerando el despliegue de aplicaciones empresariales de vanguardia con su configuraci髇 optimizada y su completo conjunto de herramientas.
                 </p>
               </CardBody>
               <Divider />
@@ -109,7 +109,7 @@ export const Technologies = () => {
               <Divider />
               <CardBody>
                 <p>
-                Independientemente de su experiencia en dise帽o, con esta libreria podemos utilizar componentes para sitios web .
+                No importa su nivel de experiencia en dise駉, esta biblioteca nos permite incorporar componentes en el dise駉 web.
                 </p>
               </CardBody>
               <Divider />
@@ -119,38 +119,7 @@ export const Technologies = () => {
                   showAnchorIcon
                   href="https://github.com/nextui-org/nextui"
                 >
-                  Visite el c贸digo fuente en GitHub.
-                </Link>
-              </CardFooter>
-            </Card>
-            <Card className="max-w-[400px] m-2">
-              <CardHeader className="flex gap-3">
-                <Image
-                  alt="nextui logo"
-                  height={40}
-                  radius="sm"
-                  src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                  width={40}
-                />
-                <div className="flex flex-col">
-                  <p className="text-md">NextUI</p>
-                  <p className="text-small text-default-500">nextui.org</p>
-                </div>
-              </CardHeader>
-              <Divider />
-              <CardBody>
-                <p>
-                  Make beautiful websites regardless of your design experience.
-                </p>
-              </CardBody>
-              <Divider />
-              <CardFooter>
-                <Link
-                  isExternal
-                  showAnchorIcon
-                  href="https://github.com/nextui-org/nextui"
-                >
-                  Visit source code on GitHub.
+                  Visite el c骴igo fuente en GitHub.
                 </Link>
               </CardFooter>
             </Card>

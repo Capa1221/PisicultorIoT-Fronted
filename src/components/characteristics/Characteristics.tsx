@@ -8,7 +8,7 @@ export const Characteristics = () => {
         Características
         </h1>
         <p className="text-xl text-gray-500">
-        Convierte datos complejos en gráficos claros para facilitar el análisis, el seguimiento del rendimiento y la presentación de los datos de una manera fácil de usar.
+        Transforma datos complejos en im�genes v�vidas para simplificar el an�lisis, supervisar el rendimiento y mostrar los datos de una manera f�cil de usar.
         </p>
       </div>
       {/* Works */}

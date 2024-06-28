@@ -3,9 +3,7 @@ import imagenPrimaria from '../../assets/1.jpeg';
 import imageSecundaria from '../../assets/2.jpeg';
 import imageTerciaria from '../../assets/index.jpeg';
 import imageCuarta from '../../assets/RegisterAgricultor.jpeg';
-import {
-  RiCheckboxBlankCircleFill,
-} from "react-icons/ri";
+import { RiCheckboxBlankCircleFill } from "react-icons/ri";
 
 export const Hero = () => {
   return (
@@ -14,9 +12,9 @@ export const Hero = () => {
       <div className="md:col-span-5 flex items-center justify-center p-8 xl:p-16">
         <div className="flex flex-col gap-8">
           <h1 className="text-3xl xl:text-5xl font-bold xl:leading-[7.5rem]">
-          Sistema de informaci贸n para agricultura de precisi贸n
+            Sistema de informaci贸n para agricultura de precisi贸n
             <span className="text-primary py-2 px-6 border-8 border-primary relative inline-block">
-            Agricultor IOT
+              Agricultor <span className='text-yellow-500'>IOT</span>
               <RiCheckboxBlankCircleFill className="text-white text-base absolute -left-5 -top-5 p-2 bg-primary rounded-full box-content" />
               <RiCheckboxBlankCircleFill className="text-white text-base absolute -right-5 -top-5 p-2 bg-primary rounded-full box-content" />
               <RiCheckboxBlankCircleFill className="text-white text-base absolute -right-5 -bottom-5 p-2 bg-primary rounded-full box-content" />
@@ -24,12 +22,12 @@ export const Hero = () => {
             </span>
           </h1>
           <p className="text-gray-500 text-2xl leading-[2.5rem]">
-          Optimiza tu producci贸n agr铆cola con soluciones intuitivas y tecnol贸gicas, alineadas con tus objetivos.
+            Optimice su producci髇 agr韈ola con la tecnolog韆 IOT adaptada a sus objetivos, lo que facilita la comprensi髇 de la agricultura.
           </p>
           <div className="flex flex-col md:flex-row items-center gap-4">
             <Button color="primary" className="w-full xl:w-auto bg-primary text-white p-6 rounded-xl text-xl">
-              驴Deseas participar?
-            </Button> 
+              縀st醩 ansioso por unirte?
+            </Button>
           </div>
         </div>
       </div>
@@ -41,7 +39,7 @@ export const Hero = () => {
             src={imagenPrimaria}
             className="w-[250px] h-[250px] md:w-[450px] md:h-[450px] object-cover xl:-mt-28 rounded-full"
           />
-          
+
         </div>
         {/* Circle */}
         <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[280px] h-[280px] md:w-[380px] md:h-[380px] bg-white border-[10px] border-primary rounded-full -z-10"></div>
