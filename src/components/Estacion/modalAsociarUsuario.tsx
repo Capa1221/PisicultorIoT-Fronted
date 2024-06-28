@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { FaUsersCog } from "react-icons/fa";
 import { CustomCheckbox } from "../users/CustomCheckbox";
 
-export const ModalAsociarUsuario = () => {
+export const ModalAsociarEstacion = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     return (

@@ -2,7 +2,7 @@ import { Accordion, AccordionItem, Card, CardBody, CardFooter, CardHeader, Image
 import { CgDetailsMore } from "react-icons/cg";
 import { AiTwotoneEnvironment } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
-import { ModalAsociarUsuario, ModalEditar, ModalEliminar } from "..";
+import { ModalAsociarEstacion, ModalEditar, ModalEliminar } from "..";
 import { EstacionInterface } from "../../services/interfaces";
 
 export const CardEstacion = (Estacion: EstacionInterface) => {
@@ -44,7 +44,7 @@ export const CardEstacion = (Estacion: EstacionInterface) => {
                         <ModalEliminar id={Estacion.id!}/>
                         <ModalEditar id={Estacion.id!} />
                     </div>
-                    <ModalAsociarUsuario />
+                    <ModalAsociarEstacion />
                 </CardFooter>
             </Card>
         </>

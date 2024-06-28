@@ -5,7 +5,7 @@ export { HeaderDashboard }            from "./header/HeaderDashboard";
 export { CommentSection }             from "./comment-dashboard/comment";
 export { ModalAgregar }               from "./Estacion/modalAgregar";
 export { CardEstacion }            from "./Estacion/CardEstacion";
-export { ModalAsociarUsuario }        from './Estacion/modalAsociarUsuario';
+export { ModalAsociarEstacion }        from './Estacion/modalAsociarUsuario';
 export { ModalEditar }                from './Estacion/modalEditar';
 export { ModalEliminar }              from './Estacion/modalEliminar';
 export { CardEstacionsUsuarios }   from "./usuarioHibernadero/CardEstacion";
