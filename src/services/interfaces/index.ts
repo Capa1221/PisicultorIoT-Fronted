@@ -40,9 +40,9 @@ export interface LoginUser {
   clave: string
 }
 
-export interface UserHibernaderoInterface {
+export interface UserEstacionInterface {
   id?: string;
-  idHibernadero: string;
+  idEstacion: string;
   idUsuario: string;
 }
 
@@ -82,4 +82,9 @@ export interface User {
 export interface CustomCheckboxProps {
   user: User;
   value: string;
+}
+
+export interface DropdownUserAsociados {
+  user?: UserEstacionInterface;
+  numeros_asociados: string;
 }
