@@ -8,8 +8,8 @@ export interface EstacionInterface {
   detalles: string;
   estado: string;
   idTipoCultivo: string;
-  descripcionTipoCultivo: string;
-  numero_Asociados: string;
+  descripcionTipoCultivo?: string;
+  numero_Asociados?: string;
 }
 
 export interface SensorInterface {

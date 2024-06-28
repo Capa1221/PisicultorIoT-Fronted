@@ -1,36 +1,49 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Textarea } from "@nextui-org/react";
-import { BiRename } from "react-icons/bi";
+import { BiImage, BiRename } from "react-icons/bi";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaCity, FaMapPin } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EstacionInterface } from "../../services/interfaces";
 import { insertarEstacion } from "../../services/Estaciones";
-import { handleInputChange } from "../../utils/utils";
+import { decodeToken, handleInputChange } from "../../utils/utils";
 import { SelectTipoEstacion } from "./SelectTipoEstacion";
+import { useImageHandler } from "../../utils/utilsHandle";
 
 export const ModalAgregar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const token = sessionStorage.getItem("authToken")!;
+  const decodetoken = decodeToken(token);
   const [estacion, setEstacion] = useState<EstacionInterface>({
     imagen: "",
     ciudad: "",
     departamento: "",
     nombre: "",
-    encargado: "",
+    encargado: decodetoken.sub,
     detalles: "",
     estado: "",
-    idTipoCultivo: "",
-    descripcionTipoCultivo: "",
-    numero_Asociados: "",
+    idTipoCultivo: ""
   });
-  //const { imagePreview, isImageValid, handleImageChange } = useImageHandler();
+  const { imagePreview, isImageValid, handleImageChange } = useImageHandler();
+
+  useEffect(() => {
+    sessionStorage.removeItem("imageBase64");
+    sessionStorage.removeItem("tipoId");
+  },[window.onload]);
 
   const handleAgregarEstacion = async () => {
     try {
-      const response = await insertarEstacion(estacion, token);
-      if (response.status === 200) {
-        onClose();
-        window.location.reload();
+      const tipoCultivo = sessionStorage.getItem("tipoId");
+      const imageEstacion = sessionStorage.getItem("imageBase64");
+      if (tipoCultivo != null && imageEstacion != null) {
+        estacion.idTipoCultivo = tipoCultivo;
+        estacion.imagen = imageEstacion;
+        const response = await insertarEstacion(estacion, token);
+        if (response.status === 200) {
+          onClose();
+          window.location.reload();
+        }
+      } else {
+        alert("Error al tratar de crear la estacion");
       }
     } catch (error) {
       console.error("Error al crear la estacion", error);
@@ -45,12 +58,34 @@ export const ModalAgregar = () => {
         <ModalContent>
           <ModalHeader className="flex flex-col text-center">Agregar Estacion</ModalHeader>
           <ModalBody>
-            <input
-              type="file"
-              name="image"
-              value={estacion.imagen}
-              onChange={(e) => handleInputChange(e, setEstacion, estacion)}
-            />
+            <div className="flex flex-col">
+              <span className="font-semibold text-gray-500">Imagen</span>
+              <div className="flex items-center space-x-1">
+                <input
+                  type="file"
+                  name="image"
+                  className={`border ${!isImageValid ? 'border-red-600' : 'border-gray-300'} px-3 py-2 rounded-lg focus:outline-none focus:border-blue-500`}
+                  onChange={handleImageChange}
+                />
+                {!isImageValid && (
+                  <div className="flex items-center">
+                    <BiImage className="text-2xl text-red-600" />
+                    <p className="text-sm text-red-600 ml-2">Por favor, seleccione un archivo de imagen válido (JPEG, PNG, GIF)</p>
+                  </div>
+                )}
+                {imagePreview && (
+                  <div className="flex place-content-end">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="rounded-lg"
+                      style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
             <Input
               label="Nombre del Cultivo"
               name="nombre"
@@ -59,7 +94,7 @@ export const ModalAgregar = () => {
               onChange={(e) => handleInputChange(e, setEstacion, estacion)}
               startContent={<BiRename className="text-2xl" />}
             />
-            <SelectTipoEstacion/>
+            <SelectTipoEstacion />
             <div className="flex space-x-2">
               <Input
                 label="Ciudad"
