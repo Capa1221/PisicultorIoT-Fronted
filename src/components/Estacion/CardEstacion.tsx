@@ -9,7 +9,6 @@ export const CardEstacion = (Estacion: EstacionInterface) => {
 
     return (
         <>
-        <span>{Estacion.id!}</span>
             <Card>
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
                     <h4 className="font-bold text-medium text-center uppercase text-green-800 py-2">{Estacion.nombre}</h4>

@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { CommentSection, HeaderDashboard, ModalAgregar } from "../../../components";
 import { EstacionInterface } from "../../../services/interfaces";
-import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
 import { CardEstacion } from "../../../components/Estacion/CardEstacion";
+import { decodeToken } from "../../../utils/utilsToken";
+import { buscarEstacionesPropietario } from "../../../services/Estaciones";
 
 export const EstacionesUser = () => {
   const [estaciones, setEstaciones] = useState<EstacionInterface[]>([]);
-  const token = sessionStorage.getItem("authToken");
+  const token = sessionStorage.getItem("authToken")!;
+  const decodetoken = decodeToken(token);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (token) {
-          const response = await buscarTodaslasEstaciones(token);
+          const response = await buscarEstacionesPropietario(token,decodetoken.idUsuario);
           if (response.status == 200) {
             setEstaciones(response.data);
           } else {
