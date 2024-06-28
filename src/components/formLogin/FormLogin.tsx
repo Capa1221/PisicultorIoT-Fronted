@@ -5,6 +5,7 @@ import heroImage from '../../assets/AgricultorIoT.jpeg';
 import { postLogin } from '../../services/auth-controller';
 import { handleInputChange } from '../../utils/utils';
 import { LoginUser } from '../../services/interfaces';
+import { Link } from '@nextui-org/react';
 
 export const FormLogin = () => {
 
@@ -65,12 +66,12 @@ export const FormLogin = () => {
                 <label htmlFor="remember">Recordarme</label>
               </div>
               <div>
-                <a
-                  href="#"
-                  className="hover:underline hover:text-gray-900 transition-all"
+                <Link
+                  href="/Olvidar-Clave"
+                  className="transition-all"
                 >
                   ¿Olvidaste tu password?
-                </a>
+                </Link>
               </div>
             </div>
             <div className="w-full max-w-md mx-auto">

@@ -1,3 +1,4 @@
+
 export interface EstacionInterface {
   id?: string;
   imagen: string;
@@ -12,6 +13,12 @@ export interface EstacionInterface {
   descripcionTipoCultivo?: string;
   numero_Asociados?: string;
 }
+
+export interface ForgotPasswordInterface{
+  message?:string;
+  user?:string;
+}
+
 
 export interface IErrorFallbackProps {
   componentError: string;
