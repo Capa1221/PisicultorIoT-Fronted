@@ -8,6 +8,7 @@ export interface EstacionInterface {
   detalles: string;
   estado: string;
   idTipoCultivo: string;
+  usuarioEncargado?:string;
   descripcionTipoCultivo?: string;
   numero_Asociados?: string;
 }
