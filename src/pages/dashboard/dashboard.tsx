@@ -6,9 +6,9 @@ import Home from "./pages/Home";
 import { Usuarios } from "./pages/usuarios";
 import { Propiedades } from "./pages/Propiedades";
 import { PageGraficasSensores } from "./pages/PageSensoresUsuarioHibernadero";
-import { HibernaderosSistemaComponent } from "./pages/EstacionesSistema";
 import { EstacionesAsociacion } from "./pages/EstacionesAsociacion";
 import { Sensores } from "./pages/Sensores";
+import { EstacionesSistemaComponent } from "./pages/EstacionesSistema";
 
 export const Dashboard = () => {
 
@@ -39,7 +39,7 @@ export const Dashboard = () => {
           <Route path="/Asociacion-Estaciones" element={<EstacionesAsociacion />} />
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/Sensores" element={<Sensores />} />
-          <Route path="/hibernaderos-sistema" element={<HibernaderosSistemaComponent />} />
+          <Route path="/hibernaderos-sistema" element={<EstacionesSistemaComponent />} />
           <Route path="/propiedades" element={<Propiedades />} />
           <Route path="/Sensor/Grafica" element={<PageGraficasSensores />} />
         </Routes>

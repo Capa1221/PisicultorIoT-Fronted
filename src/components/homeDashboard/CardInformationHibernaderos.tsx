@@ -16,7 +16,7 @@ export const CardHibernaderos: React.FC<HibernaderoTotal> = ({numero}) => {
       <h4 className="text-xl">Total Hibernaderos</h4>
       <span className="text-5xl text-white">+ {numero!=0?numero+1:0}</span>
       <Button color="secondary" variant="bordered">
-        <Link to="/dashboard/hibernaderos" className="text-white">Mis Hibernaderos</Link>
+        <Link to="/dashboard/Mis-Estaciones" className="text-white">Mis Estaciones</Link>
       </Button>
     </div>
     </>
