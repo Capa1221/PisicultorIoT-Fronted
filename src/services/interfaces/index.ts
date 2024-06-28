@@ -46,6 +46,7 @@ export interface UserEstacionInterface {
   id?: string;
   idEstacion: string;
   idUsuario: string;
+  usuario?:string;
 }
 
 export interface FormularioInterface {
@@ -75,8 +76,8 @@ export interface User {
   id: string;
   name: string;
   avatar: string;
-  username: string;
-  url: string;
+  username?: string;
+  url?: string;
 }
 
 export interface CustomCheckboxProps {

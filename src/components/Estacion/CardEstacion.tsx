@@ -3,12 +3,13 @@ import { CgDetailsMore } from "react-icons/cg";
 import { AiTwotoneEnvironment } from "react-icons/ai";
 import { ModalAsociarEstacion, ModalEditar, ModalEliminar } from "..";
 import { EstacionInterface } from "../../services/interfaces";
-import { DropdownUsuariosAsociados } from "./DropdownUsuariosAsociados";
+import { ModalUsuariosAsociados } from "./ModalUsuariosAsociados";
 
 export const CardEstacion = (Estacion: EstacionInterface) => {
 
     return (
         <>
+        <span>{Estacion.id!}</span>
             <Card>
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
                     <h4 className="font-bold text-medium text-center uppercase text-green-800 py-2">{Estacion.nombre}</h4>
@@ -28,7 +29,7 @@ export const CardEstacion = (Estacion: EstacionInterface) => {
                         </p>
                     </div>
                     <div className="py-2 flex items-center justify-around">
-                        <DropdownUsuariosAsociados numeros_asociados={Estacion.numero_Asociados!} />
+                        <ModalUsuariosAsociados idEstacion={Estacion.id!} numero_Asociados={Estacion.numero_Asociados!} />
                         <p className="flex items-center space-x-1"><AiTwotoneEnvironment className="text-red-500 text-md" /><small className="font-sans">{Estacion.departamento} / {Estacion.ciudad}</small></p>
                     </div>
                     <Accordion variant="splitted">

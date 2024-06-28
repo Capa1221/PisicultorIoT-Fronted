@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { EstacionInterface, UserInterface } from './interfaces';
+import { EstacionInterface, UserEstacionInterface, UserInterface } from './interfaces';
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const crearUsuarioEstacion = async (idUsuario: string, idEstacion: string, token: string): Promise<AxiosResponse<EstacionInterface>> => {
@@ -51,8 +51,8 @@ export const buscarPorId = async (id: string, token: string): Promise<AxiosRespo
   );
 };
 
-export const buscarPorEstacion = async (idEstacion: string, token: string): Promise<AxiosResponse<EstacionInterface>> => {
-  return axios.get<EstacionInterface>(
+export const buscarPorEstacion = async (idEstacion: string, token: string): Promise<AxiosResponse<UserEstacionInterface[]>> => {
+  return axios.get<UserEstacionInterface[]>(
     `${API_URL}/v1/usuarioEstacion/buscarPorEstacion?idEstacion=${idEstacion}`,
     {
       headers: {
