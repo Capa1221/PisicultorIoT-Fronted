@@ -8,9 +8,15 @@ export interface EstacionInterface {
   detalles: string;
   estado: string;
   idTipoCultivo: string;
-  usuarioEncargado?:string;
+  usuarioEncargado?: string;
   descripcionTipoCultivo?: string;
   numero_Asociados?: string;
+}
+
+export interface IErrorFallbackProps {
+  componentError: string;
+  error: Error;
+  resetErrorBoundary: () => void;
 }
 
 export interface SensorInterface {
@@ -19,7 +25,7 @@ export interface SensorInterface {
   nombre: string;
   descripcion: string;
   config: boolean;
-  ubicacion?:string;
+  ubicacion?: string;
 }
 
 export interface UserInterface {
@@ -46,7 +52,7 @@ export interface UserEstacionInterface {
   id?: string;
   idEstacion: string;
   idUsuario: string;
-  usuario?:string;
+  usuario?: string;
 }
 
 export interface FormularioInterface {
@@ -78,7 +84,7 @@ export interface User {
   avatar: string;
   username?: string;
   url?: string;
-  eliminar?:boolean;
+  eliminar?: boolean;
 }
 
 export interface CustomCheckboxProps {

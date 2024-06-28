@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { EstacionesUser } from "./pages/EstacionesUser";
@@ -9,24 +9,30 @@ import { PageGraficasSensores } from "./pages/PageSensoresUsuarioHibernadero";
 import { EstacionesAsociacion } from "./pages/EstacionesAsociacion";
 import { Sensores } from "./pages/Sensores";
 import { EstacionesSistemaComponent } from "./pages/EstacionesSistema";
+import { buscarTodosLosUsuarios } from "../../services";
 
 export const Dashboard = () => {
 
+  const token = sessionStorage.getItem("authToken")!;
   const navigate = useNavigate();
-  const [userEmail, setUserEmail] = useState("");
 
-  useEffect(() => {
-    const token = sessionStorage.getItem('authToken');
-    if (!token) {
-      navigate('/');
-    } else {
-      // Obtener el correo electrónico del usuario guardado en la sesión
-      const email = sessionStorage.getItem('userEmail');
-      if (email) {
-        setUserEmail(email);
+  useEffect(()=>{
+    const fetchValidarToken = async ( ) =>{
+      try {
+        const response = await buscarTodosLosUsuarios(token);
+        if(response.status!=200){
+          navigate("/");
+          sessionStorage.removeItem("authToken");
+          alert("Su Token ha expirado");
+        }
+      } catch (error) {
+        console.error("error",error);
+        navigate("/");
+        sessionStorage.removeItem("authToken");
       }
-    }
-  }, [navigate]);
+    };
+    fetchValidarToken();
+  },[token]);
 
   return (
     <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
