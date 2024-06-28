@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, User, Chip, Button } from "@nextui-org/react";
+import { Link, User, Button } from "@nextui-org/react";
 import { CustomCheckboxProps } from "../../services/interfaces";
 import { crearUsuarioEstacion } from "../../services/Usuario-Estacion-controller";
 
@@ -37,11 +37,7 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
           }
           name={user.name}
         />
-        <div className="flex flex-col items-end gap-1">
-          <span className="text-tiny text-default-500">{user.role}</span>
-          <Chip size="sm" variant="flat">
-            {user.status}
-          </Chip>
+        <div className="flex flex-col items-end gap-1"> 
         </div>
       </div>
     </Button>

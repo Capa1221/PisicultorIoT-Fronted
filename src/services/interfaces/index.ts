@@ -75,8 +75,6 @@ export interface User {
   avatar: string;
   username: string;
   url: string;
-  role: string;
-  status: string;
 }
 
 export interface CustomCheckboxProps {

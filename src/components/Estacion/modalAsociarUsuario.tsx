@@ -59,8 +59,6 @@ export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => 
                                                     avatar: `https://api.dicebear.com/5.x/thumbs/svg?seed=${user.usuario}`,
                                                     username: user.email,
                                                     url: user.email,
-                                                    role: "User",
-                                                    status: "Activo",
                                                 }}
                                             />
                                         </ScrollShadow>
