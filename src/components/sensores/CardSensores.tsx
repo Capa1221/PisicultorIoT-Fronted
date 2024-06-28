@@ -30,8 +30,8 @@ export const CardSensores = (sensor: SensorInterface) => {
         <Divider />
         <CardFooter className="justify-around">
           <div className="space-x-2">
-            <ModalEliminarSensor />
-            <ModalEditarSensor />
+            <ModalEliminarSensor id={sensor.id!}/>
+            <ModalEditarSensor id={sensor.id!} />
           </div>
           <Link to={"/dashboard/Sensor/Grafica"}><Button color="primary" startContent={<CgData className="text-xl" />}>Ver datos</Button></Link>
         </CardFooter>
