@@ -5,7 +5,7 @@ import { ModalNewFormulario } from "./ModalNewFormulario";
 export const Applicationform = () => {
   return (
     <div
-      id="services"
+      id="formulario-de-solicitud"
       className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 p-8 md:p-12 xl:p-20"
     >
       <div className="flex flex-col gap-4">

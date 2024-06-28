@@ -7,7 +7,7 @@ import {
 
 export const Developers = () => {
   return (
-    <div className="p-8 flex flex-col gap-8 bg-gray-100">
+    <div className="p-8 flex flex-col gap-8 bg-gray-100" id="desarrolladores">
       <h1 className="text-[40px] text-center font-black">Desarrolladores</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 w-full">
         <div className="bg-white hover:bg-cyan-600 group rounded-lg shadow hover:shadow-lg hover:shadow-cyan-700 transition-all hover:cursor-pointer">

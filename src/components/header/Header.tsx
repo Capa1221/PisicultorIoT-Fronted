@@ -1,25 +1,23 @@
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-} from "@nextui-org/react";
+import React from "react";
+import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem, Link, Button, } from "@nextui-org/react";
 import imagenSistema from "../../assets/54705961_transparen.png";
 
 export const Header = () => {
   const menuItems = [
-    { name: "Inicio", href: "/inicio" },
-    { name: "TecnologÃ­as", href: "/tecnologias" },
-    { name: "CaracterÃ­sticas", href: "/caracteristicas" },
-    { name: "Desarrolladores", href: "/desarrolladores" },
-    { name: "Formulario de Solicitud", href: "/formulario-de-solicitud" },
-    { name: "Iniciar SesiÃ³n", href: "/iniciar-sesion" },
+    { name: "Tecnologías", href: "#tecnologias" },
+    { name: "Características", href: "#caracteristicas" },
+    { name: "Desarrolladores", href: "#desarrolladores" },
+    { name: "Formulario de Solicitud", href: "#formulario-de-solicitud" },
+    { name: "Iniciar Sesión", href: "/iniciar-sesion" },
   ];
+
+  const handleScroll = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    event.preventDefault();
+    const targetSection = document.querySelector(href);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <Navbar disableAnimation isBordered className="bg-primary text-white p-4">
@@ -43,9 +41,14 @@ export const Header = () => {
             className="h-[10rem] w-auto"
           />
         </NavbarBrand>
-        {menuItems.slice(1, -1).map((item, index) => (
+        {menuItems.slice(0, -1).map((item, index) => (
           <NavbarItem key={index}>
-            <Link href={item.href} aria-current="page" className="text-white text-xl hover:underline hover:text-gray-300 ">
+            <Link
+              href={item.href}
+              aria-current="page"
+              className="text-white text-xl hover:underline hover:text-gray-300"
+              onClick={(event) => handleScroll(event, item.href)}
+            >
               {item.name}
             </Link>
           </NavbarItem>
@@ -67,18 +70,29 @@ export const Header = () => {
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
+        {menuItems.slice(0, -1).map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               className="w-full"
               color="foreground"
               href={item.href}
               size="lg"
+              onClick={(event) => handleScroll(event, item.href)}
             >
               {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem key={`${menuItems[menuItems.length - 1].name}`}>
+          <Link
+            className="w-full"
+            color="foreground"
+            href={menuItems[menuItems.length - 1].href}
+            size="lg"
+          >
+            {menuItems[menuItems.length - 1].name}
+          </Link>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

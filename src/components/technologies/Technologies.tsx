@@ -14,7 +14,7 @@ import imageVite from '../../assets/react.svg';
 
 export const Technologies = () => {
   return (
-    <div className="flex flex-col m-12" id="Technologies">
+    <div className="flex flex-col m-12" id="tecnologias">
       <Tabs aria-label="Options" className="place-content-center">
         <Tab
           key="frameworks"
