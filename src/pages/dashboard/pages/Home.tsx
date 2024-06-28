@@ -20,11 +20,11 @@ const Home = () => {
         if (token) {
           console.log(`Bearer ${token}`);
           const responseHibernaderos = await buscarTodaslasEstaciones(token)
-          const responseSensores = await obtenerSensoresTodos(token);
+          //const responseSensores = await obtenerSensoresTodos(token);
           const responseUsuarios = await buscarTodosLosUsuarios(token);
 
           setHibernaderos(responseHibernaderos.data);
-          setSensor(responseSensores.data);
+          //setSensor(responseSensores.data);
           setUsuarios(responseUsuarios.data);
           console.log(responseHibernaderos.data.length);
         } else {
@@ -52,7 +52,7 @@ const Home = () => {
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between">
           <h1 className="text-2xl font-bold mb-8">Últimos hibernaderos</h1>
           <div className="bg-white p-8 rounded-xl shadow-2xl">
-            {Array.isArray(hibernaderos) && hibernaderos.slice(0, 2).map((hibernadero) => (
+            {Array.isArray(hibernaderos) && hibernaderos.slice(0, 3).map((hibernadero) => (
               <div key={hibernadero.id} className="flex items-center gap-4 mb-4">
                 <img
                   src={(hibernadero.imagen === null || hibernadero.imagen === "") ? defaultImg : hibernadero.imagen}
