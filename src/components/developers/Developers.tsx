@@ -14,7 +14,6 @@ export const Developers = () => {
           <div className="flex justify-center py-8">
             <img
               src="https://img.freepik.com/foto-gratis/programador-sonriente-tiro-medio-sosteniendo-telefono_23-2149101155.jpg?w=2000&t=st=1660331259~exp=1660331859~hmac=4a6b4885e8141e344e237674190db60aa4431782337bc5df8a22e9d895ebdd6f"
-              alt="JT Devs"
               className="rounded-full w-32 h-32 object-cover ring-4 ring-gray-300"
             />
           </div>
@@ -102,7 +101,6 @@ export const Developers = () => {
           <div className="flex justify-center py-8">
             <img
               src="https://img.freepik.com/foto-gratis/retrato-hermoso-mujer-joven-posicion-pared-gris_231208-10760.jpg?w=1380&t=st=1660703188~exp=1660703788~hmac=27d047a887e146bd9657d48286e020a4a4b666a042f8e0efd55ad0c448e00106"
-              alt="JT Devs"
               className="rounded-full w-32 h-32 object-cover ring-4 ring-gray-300"
             />
           </div>

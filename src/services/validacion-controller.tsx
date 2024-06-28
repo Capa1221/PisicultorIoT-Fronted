@@ -22,6 +22,7 @@ export const crearCodigo = async (usuario: string): Promise<AxiosResponse<Forgot
     null,
     {
       headers: {
+        'authorization': `Bearer ${sessionStorage.getItem("authToken")}`,
         "Content-Type": "application/json"
       }
     }

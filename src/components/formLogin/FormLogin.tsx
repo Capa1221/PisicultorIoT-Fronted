@@ -32,7 +32,7 @@ export const FormLogin = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen ">
       <div className="flex flex-col items-center justify-center bg-gray-100 rounded-tl-lg rounded-bl-lg p-4">
         <div>
-          <img src={logoSistema} alt="JT Devs" className='lg:w-[20rem] w-[15rem]' />
+          <img src={logoSistema} className='lg:w-[20rem] w-[15rem]' />
         </div>
         <div className="flex flex-col items-center gap-8 mb-4">
           <h1 className="text-4xl font-bold text-gray-900">Bienvenido</h1>

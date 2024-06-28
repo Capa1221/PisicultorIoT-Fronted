@@ -44,7 +44,6 @@ export const Footer = () => {
           <img
             src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
             className="w-[20px] h-[20px]"
-            alt="JT Devs"
           />
           Facebook
         </a>
@@ -56,7 +55,6 @@ export const Footer = () => {
           <img
             src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
             className="w-[20px] h-[20px]"
-            alt="JT Devs"
           />
           Instagram
         </a>
@@ -68,7 +66,6 @@ export const Footer = () => {
           <img
             src="https://cdn-icons-png.flaticon.com/512/1384/1384065.png"
             className="w-[20px] h-[20px]"
-            alt="JT Devs"
           />
           Twiter
         </a>
