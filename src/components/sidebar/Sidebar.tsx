@@ -5,10 +5,13 @@ import { ScrollShadow } from "@nextui-org/react";
 import { ProfileSidebar } from "./ProfileSidebar";
 import { GrConfigure } from "react-icons/gr";
 import { AiOutlineDeploymentUnit } from "react-icons/ai";
+import { decodeToken } from "../../utils/utilsToken";
 
-const Sidebar = ({ userEmail }: { userEmail: string }) => {
+const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
+  const token = sessionStorage.getItem("authToken")!;
+  const decodetoken = decodeToken(token);
 
   const handleLogout = () => {
     sessionStorage.removeItem('userEmail');
@@ -25,13 +28,13 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
           }`}
       >
         {/* Profile */}
-        <ProfileSidebar email={userEmail}/>
+        <ProfileSidebar email={decodetoken.sub}/>
         {/* Nav */}
         <div className="bg-primary p-8 rounded-tr-[100px] h-[70vh] flex flex-col justify-between gap-8">
           <ScrollShadow hideScrollBar className="h-[500px]">
             <nav className="flex flex-col gap-8">
               <Link
-                to="/dashboard/home"
+                to="/dashboard/Home"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
@@ -45,13 +48,6 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 <RiSeedlingLine /> Mis Estaciones
               </Link>
               <Link
-                to="/dashboard/Asociacion-Estaciones"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <AiOutlineDeploymentUnit  /> Asociaciones Estacion
-              </Link>
-              <Link
                 to="/dashboard/Sensores"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
@@ -59,21 +55,28 @@ const Sidebar = ({ userEmail }: { userEmail: string }) => {
                 <RiSensorLine /> Mis Sensores
               </Link>
               <Link
-                to="/dashboard/usuarios"
+                to="/dashboard/Asociacion-Estaciones"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
-                <RiUser3Line /> Usuarios Sistema
+                <AiOutlineDeploymentUnit  /> Asociaciones Estacion
               </Link>
               <Link
-                to="/dashboard/hibernaderos-sistema"
+                to="/dashboard/Estaciones-Sistema"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >
                 <RiBarChartLine /> Estaciones Sistema
               </Link>
               <Link
-                to="/dashboard/propiedades"
+                to="/dashboard/Usuarios"
+                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
+                onClick={() => setShowMenu(false)}
+              >
+                <RiUser3Line /> Usuarios Sistema
+              </Link>
+              <Link
+                to="/dashboard/Propiedades"
                 className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
                 onClick={() => setShowMenu(false)}
               >

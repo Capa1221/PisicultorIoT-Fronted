@@ -30,16 +30,16 @@ export const Dashboard = () => {
 
   return (
     <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
-      <Sidebar userEmail={userEmail} />
+      <Sidebar />
       <main className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
           <Route path="/Mis-Estaciones" element={<EstacionesUser />} />
           <Route path="/Asociacion-Estaciones" element={<EstacionesAsociacion />} />
-          <Route path="/usuarios" element={<Usuarios />} />
+          <Route path="/Usuarios" element={<Usuarios />} />
           <Route path="/Sensores" element={<Sensores />} />
-          <Route path="/hibernaderos-sistema" element={<EstacionesSistemaComponent />} />
+          <Route path="/Estaciones-Sistema" element={<EstacionesSistemaComponent />} />
           <Route path="/propiedades" element={<Propiedades />} />
           <Route path="/Sensor/Grafica" element={<PageGraficasSensores />} />
         </Routes>
