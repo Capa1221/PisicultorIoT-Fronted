@@ -42,7 +42,7 @@ export const CardEstacion = (Estacion: EstacionInterface) => {
                 <CardFooter className="lg:space-x-2 justify-around flex">
                     <div className='flex'>
                         <ModalEliminar id={Estacion.id!}/>
-                        <ModalEditar />
+                        <ModalEditar id={Estacion.id!} />
                     </div>
                     <ModalAsociarUsuario />
                 </CardFooter>
