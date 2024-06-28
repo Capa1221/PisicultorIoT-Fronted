@@ -21,7 +21,7 @@ export const ForgotPassword = () => {
       if (response.status === 200) {
         console.log(response.data);
         confirm("Se ha enviado un código de verificación para restablecer su contraseña. Por favor, revíselo y tráigalo para seguir con el debido proceso.");
-        navigate("")
+        navigate(`/Validar-Codigo/${formForgotPassword.user}`);
       }
     } catch (err) {
       console.error('Error en la solicitud', err);
