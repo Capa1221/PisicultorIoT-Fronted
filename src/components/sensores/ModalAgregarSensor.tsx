@@ -20,6 +20,7 @@ export const ModalAgregarSensor = () => {
   const handleCrearSensor = async () => {
     try {
       if (token) {
+        sensor.idHibernadero = sessionStorage.getItem("idAso")!;
         const response = await crearSensor(sensor, token);
         if (response.status === 200) {
           onClose();
