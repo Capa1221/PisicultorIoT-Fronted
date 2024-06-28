@@ -10,6 +10,15 @@ export const handleInputChange = <T>(
   setState({ ...state, [name]: value });
 };
 
+export const handleSelectChange = <T>(
+  key: string,
+  value: string,
+  setState: Dispatch<SetStateAction<T>>,
+  state: T
+) => {
+  setState({ ...state, [key]: value });
+};
+
 export const useImageHandler = (): ImageHandler => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isImageValid, setIsImageValid] = useState<boolean>(false);

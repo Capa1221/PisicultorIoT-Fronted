@@ -19,6 +19,7 @@ export interface SensorInterface {
   nombre: string;
   descripcion: string;
   config: boolean;
+  ubicacion?:string;
 }
 
 export interface UserInterface {

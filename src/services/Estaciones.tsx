@@ -47,6 +47,18 @@ export const buscarEstacionPorId = async (
   });
 };
 
+export const buscarEstacionesPropietario = async (
+  token: string,
+  id:string
+): Promise<AxiosResponse<EstacionInterface[]>> => {
+  return axios.get<EstacionInterface[]>(`${API_URL}/v1/estacion/buscarEstacionesPropietario?idUsuario=${id}`, {
+    headers: {
+      'authorization': `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  })
+};
+
 export const buscarTodaslasEstaciones = async (
   token: string
 ): Promise<AxiosResponse<EstacionInterface[]>> => {
