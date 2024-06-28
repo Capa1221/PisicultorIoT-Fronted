@@ -44,7 +44,7 @@ export const CardEstacion = (Estacion: EstacionInterface) => {
                         <ModalEliminar id={Estacion.id!}/>
                         <ModalEditar id={Estacion.id!} />
                     </div>
-                    <ModalAsociarEstacion />
+                    <ModalAsociarEstacion idEstacion={Estacion.id!} />
                 </CardFooter>
             </Card>
         </>

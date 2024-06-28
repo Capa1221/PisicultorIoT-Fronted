@@ -1,9 +1,34 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, ScrollShadow } from "@nextui-org/react";
 import { FaUsersCog } from "react-icons/fa";
 import { CustomCheckbox } from "../users/CustomCheckbox";
+import { useEffect, useState } from "react";
+import { UserInterface } from "../../services/interfaces";
+import { buscarTodosLosUsuarios } from "../../services";
 
-export const ModalAsociarEstacion = () => {
+export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const [users, setUsers] = useState<UserInterface[]>([]);
+    const token = sessionStorage.getItem("authToken");
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                if (token) {
+                    const response = await buscarTodosLosUsuarios(token);
+                    if (response.status == 200) {
+                        setUsers(response.data);
+                    } else {
+                        console.error("error fetchUsers")
+                    }
+                } else {
+                    console.error("error token");
+                }
+            } catch (error) {
+                console.error("error", error);
+            }
+        };
+        fetchUsers();
+    }, [token]);
 
     return (
         <>
@@ -18,7 +43,7 @@ export const ModalAsociarEstacion = () => {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Asociar Usuario al Invernadero</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Asociar Usuario Estacion</ModalHeader>
                             <ModalBody>
                                 <div className="flex flex-col gap-1 w-full">
                                     <ScrollShadow className="h-[350px]">
