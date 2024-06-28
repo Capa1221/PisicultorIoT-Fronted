@@ -23,7 +23,7 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
         <User
           avatarProps={{ size: "md", src: user.avatar }}
           description={
-            <Link isExternal href={user.url} size="sm">
+            <Link isExternal size="sm">
               @{user.username}
             </Link>
           }

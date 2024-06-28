@@ -3,7 +3,7 @@ import { FaUsersCog } from "react-icons/fa";
 import { CustomCheckbox } from "../users/CustomCheckbox";
 import { useEffect, useState } from "react";
 import { UserInterface } from "../../services/interfaces";
-import { buscarTodosLosUsuarios } from "../../services";
+import { buscarUsuariosSinEstacion } from "../../services/Usuario-Estacion-controller";
 
 export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -14,7 +14,7 @@ export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => 
         const fetchUsers = async () => {
             try {
                 if (token) {
-                    const response = await buscarTodosLosUsuarios(token);
+                    const response = await buscarUsuariosSinEstacion(idEstacion, token);
                     if (response.status == 200) {
                         setUsers(response.data);
                     } else {
@@ -46,96 +46,22 @@ export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => 
                             <ModalHeader className="flex flex-col gap-1">Asociar Usuario Estacion</ModalHeader>
                             <ModalBody>
                                 <div className="flex flex-col gap-1 w-full">
-                                    <ScrollShadow className="h-[350px]">
-                                        <CustomCheckbox
-                                            value="junior"
-                                            user={{
-                                                name: "Junior Garcia",
-                                                avatar: "https://avatars.githubusercontent.com/u/30373425?v=4",
-                                                username: "jrgarciadev",
-                                                url: "https://twitter.com/jrgarciadev",
-                                                role: "Software Developer",
-                                                status: "Active",
-                                            }}
-                                        />
-                                        <CustomCheckbox
-                                            value="johndoe"
-                                            user={{
-                                                name: "John Doe",
-                                                avatar: "https://i.pravatar.cc/300?u=a042581f4e29026707d",
-                                                username: "johndoe",
-                                                url: "#",
-                                                role: "Product Designer",
-                                                status: "Vacation",
-                                            }}
-                                        />
-                                        <CustomCheckbox
-                                            value="zoeylang"
-                                            user={{
-                                                name: "Zoey Lang",
-                                                avatar: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                                                username: "zoeylang",
-                                                url: "#",
-                                                role: "Technical Writer",
-                                                status: "Out of office",
-                                            }}
-                                        />
-                                        <CustomCheckbox
-                                            value="william"
-                                            user={{
-                                                name: "William Howard",
-                                                avatar: "https://i.pravatar.cc/300?u=a048581f4e29026701d",
-                                                username: "william",
-                                                url: "#",
-                                                role: "Sales Manager",
-                                                status: "Active",
-                                            }}
-                                        />
-                                        <CustomCheckbox
-                                            value="junior"
-                                            user={{
-                                                name: "Junior Garcia",
-                                                avatar: "https://avatars.githubusercontent.com/u/30373425?v=4",
-                                                username: "jrgarciadev",
-                                                url: "https://twitter.com/jrgarciadev",
-                                                role: "Software Developer",
-                                                status: "Active",
-                                            }}
-                                        />
-                                        <CustomCheckbox
-                                            value="johndoe"
-                                            user={{
-                                                name: "John Doe",
-                                                avatar: "https://i.pravatar.cc/300?u=a042581f4e29026707d",
-                                                username: "johndoe",
-                                                url: "#",
-                                                role: "Product Designer",
-                                                status: "Vacation",
-                                            }}
-                                        />
-                                        <CustomCheckbox
-                                            value="zoeylang"
-                                            user={{
-                                                name: "Zoey Lang",
-                                                avatar: "https://i.pravatar.cc/300?u=a042581f4e29026704d",
-                                                username: "zoeylang",
-                                                url: "#",
-                                                role: "Technical Writer",
-                                                status: "Out of office",
-                                            }}
-                                        />
-                                        <CustomCheckbox
-                                            value="william"
-                                            user={{
-                                                name: "William Howard",
-                                                avatar: "https://i.pravatar.cc/300?u=a048581f4e29026701d",
-                                                username: "william",
-                                                url: "#",
-                                                role: "Sales Manager",
-                                                status: "Active",
-                                            }}
-                                        />
-                                    </ScrollShadow>
+                                    {users.map((user) => (
+                                        <ScrollShadow className="h-auto">
+                                            <CustomCheckbox
+                                                value={user.id!}
+                                                key={user.id!}
+                                                user={{
+                                                    name: user.nombres,
+                                                    avatar: "https://avatars.githubusercontent.com/u/30373425?v=4",
+                                                    username: user.email,
+                                                    url: user.email,
+                                                    role: "User",
+                                                    status: "Activo",
+                                                }}
+                                            />
+                                        </ScrollShadow>
+                                    ))}
                                 </div>
                             </ModalBody>
                             <ModalFooter>
