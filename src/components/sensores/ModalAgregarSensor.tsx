@@ -25,6 +25,7 @@ export const ModalAgregarSensor = () => {
         if (response.status === 200) {
           onClose();
           window.location.reload();
+          sessionStorage.removeItem("idAso");
         }
       } else {
         console.error("Token inválido");
