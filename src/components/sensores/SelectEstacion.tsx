@@ -34,8 +34,10 @@ export const SelectEstacion = () => {
     <>
       <Select
         items={estacionesUser}
-        label="Asigne la estacion"
+        label="Asigne una estacion a asociar"
+        isLoading={(estacionesUser.length==0)}
         variant="bordered"
+        onChange={(e)=>{sessionStorage.setItem("idAso",e.target.value)}}
         classNames={{
           label: "group-data-[filled=true]:-translate-y-5",
           trigger: "min-h-16",
@@ -72,8 +74,8 @@ export const SelectEstacion = () => {
                 src={e.data!.imagen}
               />
               <div className="flex flex-col">
-                <span>{e.data?.nombre}</span>
-                <span className="text-default-500 text-tiny">({e.data?.descripcionTipoCultivo})</span>
+                <span>{e.data?.descripcionTipoCultivo}</span>
+                <span className="text-default-500 text-tiny">({e.data?.encargado})</span>
               </div>
             </div>
           ));
