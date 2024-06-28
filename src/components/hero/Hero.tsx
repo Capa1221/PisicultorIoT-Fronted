@@ -1,5 +1,8 @@
 import { Button } from '@nextui-org/react';
-import heroImage from '../../assets/AgricultorIoT.jpeg';
+import imagenPrimaria from '../../assets/1.jpeg';
+import imageSecundaria from '../../assets/2.jpeg';
+import imageTerciaria from '../../assets/index.jpeg';
+import imageCuarta from '../../assets/RegisterAgricultor.jpeg';
 import {
   RiCheckboxBlankCircleFill,
 } from "react-icons/ri";
@@ -35,7 +38,7 @@ export const Hero = () => {
         {/* Content image */}
         <div>
           <img
-            src={heroImage}
+            src={imagenPrimaria}
             className="w-[250px] h-[250px] md:w-[450px] md:h-[450px] object-cover xl:-mt-28 rounded-full"
           />
           
@@ -45,15 +48,15 @@ export const Hero = () => {
 
         {/* Logos */}
         <img
-          src={heroImage}
+          src={imageSecundaria}
           className="w-10 h-10 md:w-20 md:h-20 object-cover rounded-full border-l-8 border-gray-600 absolute top-[12%] right-[20%] xl:right-[10%]"
         />
         <img
-          src={heroImage}
+          src={imageTerciaria}
           className="w-10 h-10 md:w-20 md:h-20 object-cover rounded-full border-l-8 border-gray-600 absolute top-[10%] xl:top-[2%] left-[20%] xl:left-[10%]"
         />
         <img
-          src={heroImage}
+          src={imageCuarta}
           className="w-10 h-10 md:w-20 md:h-20 object-cover rounded-full absolute bottom-[5%] left-[15%] xl:left-[3%] -rotate-12"
         />
       </div>
