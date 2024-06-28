@@ -1,21 +1,7 @@
 import React from "react";
 import { Link, User, Chip, Button } from "@nextui-org/react";
+import { CustomCheckboxProps } from "../../services/interfaces";
 
-interface User {
-  name: string;
-  avatar: string;
-  username: string;
-  url: string;
-  role: string;
-  status: string;
-}
-
-interface CustomCheckboxProps {
-  user: User;
-  value: string;
-}
-
-// Definir el componente con tipos
 export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
   return (
     <Button variant="light" className="my-4 w-full" onClick={()=>alert("si funciono bebe"+user.name)}>
@@ -23,7 +9,7 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ user }) => {
         <User
           avatarProps={{ size: "md", src: user.avatar }}
           description={
-            <Link isExternal size="sm">
+            <Link isExternal href={user.url} size="sm">
               @{user.username}
             </Link>
           }

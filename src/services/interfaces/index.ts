@@ -67,3 +67,17 @@ export interface ImageHandler {
   isImageValid: boolean;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface User {
+  name: string;
+  avatar: string;
+  username: string;
+  url: string;
+  role: string;
+  status: string;
+}
+
+export interface CustomCheckboxProps {
+  user: User;
+  value: string;
+}

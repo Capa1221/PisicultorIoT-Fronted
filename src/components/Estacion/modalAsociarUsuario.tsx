@@ -53,7 +53,7 @@ export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => 
                                                 key={user.id!}
                                                 user={{
                                                     name: user.nombres,
-                                                    avatar: "https://avatars.githubusercontent.com/u/30373425?v=4",
+                                                    avatar: `https://api.dicebear.com/5.x/thumbs/svg?seed=${user.usuario}`,
                                                     username: user.email,
                                                     url: user.email,
                                                     role: "User",
