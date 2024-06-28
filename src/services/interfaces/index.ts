@@ -10,7 +10,6 @@ export interface EstacionInterface {
   idTipoCultivo: string;
   descripcionTipoCultivo: string;
   numero_Asociados: string;
-    
 }
 
 export interface SensorInterface {

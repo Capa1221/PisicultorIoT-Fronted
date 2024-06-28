@@ -1,77 +1,80 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select, SelectItem, Image, Textarea } from "@nextui-org/react";
-import { BiImage, BiRename } from "react-icons/bi";
-import { HiSelector } from "react-icons/hi";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Textarea } from "@nextui-org/react";
+import { BiRename } from "react-icons/bi";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaCity, FaMapPin } from "react-icons/fa";
-import { useImageHandler } from "../../utils/utilsHandle";
+import { useState } from "react";
+import { EstacionInterface } from "../../services/interfaces";
+import { insertarEstacion } from "../../services/Estaciones";
+import { handleInputChange } from "../../utils/utils";
+import { SelectTipoEstacion } from "./SelectTipoEstacion";
 
 export const ModalAgregar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { imagePreview, isImageValid, handleImageChange } = useImageHandler();
+  const token = sessionStorage.getItem("authToken")!;
+  const [estacion, setEstacion] = useState<EstacionInterface>({
+    imagen: "",
+    ciudad: "",
+    departamento: "",
+    nombre: "",
+    encargado: "",
+    detalles: "",
+    estado: "",
+    idTipoCultivo: "",
+    descripcionTipoCultivo: "",
+    numero_Asociados: "",
+  });
+  //const { imagePreview, isImageValid, handleImageChange } = useImageHandler();
+
+  const handleAgregarEstacion = async () => {
+    try {
+      const response = await insertarEstacion(estacion, token);
+      if (response.status === 200) {
+        onClose();
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error al crear la estacion", error);
+    }
+  };
+
 
   return (
     <>
-      <Button onPress={onOpen} color="primary" startContent={<IoIosAddCircleOutline className="text-xl" />}>Agregar Cultivo</Button>
+      <Button onPress={onOpen} color="primary" startContent={<IoIosAddCircleOutline className="text-xl" />}>Agregar</Button>
       <Modal isOpen={isOpen} onClose={onClose} placement="center">
         <ModalContent>
           <ModalHeader className="flex flex-col text-center">Agregar Estacion</ModalHeader>
           <ModalBody>
-            <div className="flex flex-col">
-              <span className="font-semibold text-gray-500">Imagen</span>
-              <div className="flex items-center space-x-1">
-              <input
-                type="file"
-                name="image"
-                className={`border ${!isImageValid ? 'border-red-600' : 'border-gray-300'} px-3 py-2 rounded-lg focus:outline-none focus:border-blue-500`}
-                onChange={handleImageChange}
-              />
-              {!isImageValid && (
-                <div className="flex items-center">
-                  <BiImage className="text-2xl text-red-600" />
-                  <p className="text-sm text-red-600 ml-2">Por favor, seleccione un archivo de imagen válido (JPEG, PNG, GIF)</p>
-                </div>
-              )}
-              {imagePreview && (
-                <div className="flex place-content-end">
-                  <Image
-                    isZoomed
-                    width={100}
-                    alt="Imagen del Cultivo"
-                    src={imagePreview}
-                    className="rounded-lg"
-                  />
-                </div>
-              )}
-              </div>
-            </div>
+            <input
+              type="file"
+              name="image"
+              value={estacion.imagen}
+              onChange={(e) => handleInputChange(e, setEstacion, estacion)}
+            />
             <Input
               label="Nombre del Cultivo"
               name="nombre"
               isRequired
+              value={estacion.nombre}
+              onChange={(e) => handleInputChange(e, setEstacion, estacion)}
               startContent={<BiRename className="text-2xl" />}
             />
-            <Select
-              label="Tipo de Cultivo"
-              isRequired
-              placeholder="Seleccione el tipo de cultivo"
-              startContent={<HiSelector className="text-2xl" />}
-            >
-              <SelectItem key="Helllouuda">Helllouuda</SelectItem>
-              <SelectItem key="Helllouudad">Helllouudad</SelectItem>
-              <SelectItem key="Helllouudas">Helllouudas</SelectItem>
-              <SelectItem key="Helllouudaa">Helllouudaa</SelectItem>
-            </Select>
+            <SelectTipoEstacion/>
             <div className="flex space-x-2">
               <Input
                 label="Ciudad"
                 name="ciudad"
                 isRequired
+                value={estacion.ciudad}
+                onChange={(e) => handleInputChange(e, setEstacion, estacion)}
                 width="100%"
                 startContent={<FaCity className="text-2xl" />}
               />
               <Input
                 label="Departamento"
                 name="departamento"
+                value={estacion.departamento}
+                onChange={(e) => handleInputChange(e, setEstacion, estacion)}
                 isRequired
                 width="100%"
                 startContent={<FaMapPin className="text-2xl" />}
@@ -80,16 +83,17 @@ export const ModalAgregar = () => {
             <Textarea
               label="Detalles"
               name="detalles"
+              value={estacion.detalles}
+              onChange={(e) => handleInputChange(e, setEstacion, estacion)}
               width="100%"
               startContent={<FaCity className="text-2xl" />}
             />
           </ModalBody>
-
           <ModalFooter>
             <Button color="danger" variant="light" onPress={onClose}>
               Cerrar
             </Button>
-            <Button color="primary" onPress={onClose}>
+            <Button color="primary" onPress={handleAgregarEstacion}>
               Guardar
             </Button>
           </ModalFooter>
