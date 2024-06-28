@@ -11,22 +11,26 @@ export const ModalAgregar = () => {
 
   return (
     <>
-      <Button onPress={onOpen} color="primary" startContent={<IoIosAddCircleOutline className="text-xl"/>}>Agregar Cultivo</Button>
+      <Button onPress={onOpen} color="primary" startContent={<IoIosAddCircleOutline className="text-xl" />}>Agregar Cultivo</Button>
       <Modal isOpen={isOpen} onClose={onClose} placement="center">
         <ModalContent>
-          <ModalHeader className="flex flex-col gap-1">Agregar Cultivo</ModalHeader>
+          <ModalHeader className="flex flex-col text-center">Agregar Estacion</ModalHeader>
           <ModalBody>
-            <div className="flex">
-              <Input
+            <div className="flex flex-col">
+              <span className="font-semibold text-gray-500">Imagen</span>
+              <div className="flex items-center space-x-1">
+              <input
                 type="file"
                 name="image"
-                label="Imagen del Cultivo"
-                isRequired
-                isInvalid={!isImageValid}
-                errorMessage="Por favor, seleccione un archivo de imagen válido (JPEG, PNG, GIF)."
-                startContent={<BiImage className="text-2xl" />}
+                className={`border ${!isImageValid ? 'border-red-600' : 'border-gray-300'} px-3 py-2 rounded-lg focus:outline-none focus:border-blue-500`}
                 onChange={handleImageChange}
               />
+              {!isImageValid && (
+                <div className="flex items-center">
+                  <BiImage className="text-2xl text-red-600" />
+                  <p className="text-sm text-red-600 ml-2">Por favor, seleccione un archivo de imagen válido (JPEG, PNG, GIF)</p>
+                </div>
+              )}
               {imagePreview && (
                 <div className="flex place-content-end">
                   <Image
@@ -34,9 +38,11 @@ export const ModalAgregar = () => {
                     width={100}
                     alt="Imagen del Cultivo"
                     src={imagePreview}
+                    className="rounded-lg"
                   />
                 </div>
               )}
+              </div>
             </div>
             <Input
               label="Nombre del Cultivo"
@@ -78,6 +84,7 @@ export const ModalAgregar = () => {
               startContent={<FaCity className="text-2xl" />}
             />
           </ModalBody>
+
           <ModalFooter>
             <Button color="danger" variant="light" onPress={onClose}>
               Cerrar

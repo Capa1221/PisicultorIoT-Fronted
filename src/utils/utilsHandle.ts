@@ -12,7 +12,7 @@ export const handleInputChange = <T>(
 
 export const useImageHandler = (): ImageHandler => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [isImageValid, setIsImageValid] = useState<boolean>(true);
+  const [isImageValid, setIsImageValid] = useState<boolean>(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
