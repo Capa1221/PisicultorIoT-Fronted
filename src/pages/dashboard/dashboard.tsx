@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
-import Home from "./pages/Home";
 import { buscarTodosLosUsuarios } from "../../services";
+import { Home,PageGraficasSensores,Sensores,Propiedades,Usuarios,EstacionesUser,EstacionesSistemaComponent,EstacionesAsociacion,ForgotPassword,} from '../index'
 import adminRoutes from "../../routes/AdminRoutes.json";
 import userRoutes from "../../routes/UserRoutes.json";
 import { decodeToken } from "../../utils/utilsToken";
