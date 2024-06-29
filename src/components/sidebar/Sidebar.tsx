@@ -1,11 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {  RiHome3Line, RiSeedlingLine, RiUser3Line, RiBarChartLine, RiSensorLine, RiMore2Fill, RiCloseFill} from "react-icons/ri";
+import { RiHome3Line, RiSeedlingLine, RiUser3Line, RiBarChartLine, RiSensorLine, RiMore2Fill, RiCloseFill } from "react-icons/ri";
 import { ScrollShadow } from "@nextui-org/react";
-import { ProfileSidebar } from "./ProfileSidebar";
-import { GrConfigure } from "react-icons/gr";
-import { AiOutlineDeploymentUnit } from "react-icons/ai";
 import { decodeToken } from "../../utils/utilsToken";
+import adminRoutes from "../../routes/AdminRoutes.json";
+import userRoutes from "../../routes/UserRoutes.json";
+import { ProfileSidebar } from "./ProfileSidebar";
 
 const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -21,67 +21,33 @@ const Sidebar = () => {
     navigate('/');
   };
 
+  const isAdmin = decodetoken && decodetoken.sub === 'root';
+  const routes = isAdmin ? adminRoutes : userRoutes;
+
   return (
     <>
       <div
-        className={`bg-white h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${showMenu ? "left-0" : "-left-full"
-          }`}
+        className={`bg-white h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${showMenu ? "left-0" : "-left-full"}`}
       >
         {/* Profile */}
         <ProfileSidebar email={decodetoken.sub}/>
+
         {/* Nav */}
         <div className="bg-primary p-8 rounded-tr-[100px] h-[70vh] flex flex-col justify-between gap-8">
           <ScrollShadow hideScrollBar className="h-[500px]">
             <nav className="flex flex-col gap-8">
-              <Link
-                to="/dashboard/Home"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <RiHome3Line /> Inicio
-              </Link>
-              <Link
-                to="/dashboard/Mis-Estaciones"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <RiSeedlingLine /> Mis Estaciones
-              </Link>
-              <Link
-                to="/dashboard/Sensores"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <RiSensorLine /> Mis Sensores
-              </Link>
-              <Link
-                to="/dashboard/Asociacion-Estaciones"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <AiOutlineDeploymentUnit  /> Asociaciones Estacion
-              </Link>
-              <Link
-                to="/dashboard/Estaciones-Sistema"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <RiBarChartLine /> Estaciones Sistema
-              </Link>
-              <Link
-                to="/dashboard/Usuarios"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <RiUser3Line /> Usuarios Sistema
-              </Link>
-              <Link
-                to="/dashboard/Propiedades"
-                className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
-                onClick={() => setShowMenu(false)}
-              >
-                <GrConfigure /> Propiedades del Sistema
-              </Link>
+              {routes.map((route, index) => (
+                <Link
+                  key={index}
+                  to={`/dashboard${route.path}`}
+                  className="flex items-center gap-4 text-white p-2 rounded-xl hover:bg-primary-900/50 transition-colors"
+                  onClick={() => setShowMenu(false)}
+                >
+                  {/* Renderizamos el icono y la descripción desde el JSON */}
+                  {renderIcon(route.icon)}
+                  {route.description}
+                </Link>
+              ))}
             </nav>
           </ScrollShadow>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl hover:bg-white hover:text-green-900 text-center" onClick={handleLogout}>
@@ -100,6 +66,24 @@ const Sidebar = () => {
       </button>
     </>
   );
+};
+
+// Función para renderizar iconos basados en nombres de iconos de React Icons
+const renderIcon = (iconName: string) => {
+  switch (iconName) {
+    case "RiHome3Line":
+      return <RiHome3Line />;
+    case "RiSeedlingLine":
+      return <RiSeedlingLine />;
+    case "RiUser3Line":
+      return <RiUser3Line />;
+    case "RiBarChartLine":
+      return <RiBarChartLine />;
+    case "RiSensorLine":
+      return <RiSensorLine />;
+    default:
+      return null;
+  }
 };
 
 export default Sidebar;
