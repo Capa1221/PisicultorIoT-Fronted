@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RiHome3Line, RiSeedlingLine, RiUser3Line, RiBarChartLine, RiSensorLine, RiMore2Fill, RiCloseFill } from "react-icons/ri";
 import { ScrollShadow } from "@nextui-org/react";

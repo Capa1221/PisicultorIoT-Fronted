@@ -6,6 +6,7 @@ import { postLogin } from '../../services/auth-controller';
 import { handleInputChange } from '../../utils/utils';
 import { LoginUser } from '../../services/interfaces';
 import { Link } from '@nextui-org/react';
+import { decodeToken } from '../../utils/utilsToken';
 
 export const FormLogin = () => {
   const navigate = useNavigate();
@@ -37,7 +38,12 @@ export const FormLogin = () => {
           localStorage.removeItem('rememberedUser');
         }
 
-        navigate('/dashboard');
+        // Decodificar el token para verificar si es admin
+        const decodedToken = decodeToken(token);
+        const isAdmin = decodedToken && decodedToken.sub === 'root';
+
+        // Redireccionar según el rol
+        navigate(isAdmin ? '/dashboard/Home' : '/dashboard/Mis-Estaciones');
       }
     } catch (err) {
       console.error('Error en la solicitud', err);
