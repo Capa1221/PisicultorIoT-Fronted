@@ -1,97 +1,73 @@
-import { useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Home from './pages/Home';
-import { EstacionesUser } from './pages/EstacionesUser';
-import { EstacionesAsociacion } from './pages/EstacionesAsociacion';
-import { Usuarios } from './pages/usuarios';
-import { Sensores } from './pages/Sensores';
-import { EstacionesSistemaComponent } from './pages/EstacionesSistema';
-import { Propiedades } from './pages/Propiedades';
-import { PageGraficasSensores } from './pages/PageSensoresUsuarioHibernadero';
-import { decodeToken } from '../../utils/utilsToken';
-import { buscarTodosLosUsuarios } from '../../services';
-import adminRoutes from '../../routes/AdminRoutes.json';
-import userRoutes from '../../routes/UserRoutes.json';
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Home from "./pages/Home";
+import { buscarTodosLosUsuarios } from "../../services";
+import adminRoutes from "../../routes/AdminRoutes.json";
+import userRoutes from "../../routes/UserRoutes.json";
+import { decodeToken } from "../../utils/utilsToken";
+import React from "react";
 
-interface RouteDefinition {
+// Definir tipos para las rutas
+type RouteItem = {
   path: string;
   component: string;
-}
-
-interface SidebarRoute extends RouteDefinition {
   icon: string;
   description: string;
-}
+};
 
 export const Dashboard = () => {
-  const token = sessionStorage.getItem('authToken')!;
+  const token = sessionStorage.getItem("authToken") || "";
   const navigate = useNavigate();
-  const decodedToken = decodeToken(token);
+  const [userRoutesList, setUserRoutesList] = useState<RouteItem[]>([]); // Especificar el tipo de datos aquí
 
   useEffect(() => {
     const fetchValidarToken = async () => {
       try {
         const response = await buscarTodosLosUsuarios(token);
         if (response.status !== 200) {
-          navigate('/');
-          sessionStorage.removeItem('authToken');
-          alert('Su Token ha expirado');
+          navigate("/");
+          sessionStorage.removeItem("authToken");
+          alert("Su Token ha expirado");
+        } else {
+          // Determinar qué rutas cargar según el rol del usuario
+          const decodificarToken = decodeToken(token);
+          const isAdmin = decodificarToken.sub=="ROOT";
+
+          if (isAdmin) {
+            setUserRoutesList(adminRoutes as RouteItem[]); // Castear a RouteItem[]
+          } else {
+            setUserRoutesList(userRoutes as RouteItem[]); // Castear a RouteItem[]
+          }
         }
       } catch (error) {
-        console.error('error', error);
-        navigate('/');
-        sessionStorage.removeItem('authToken');
+        console.error("Error al validar token:", error);
+        navigate("/");
+        sessionStorage.removeItem("authToken");
       }
     };
     fetchValidarToken();
   }, [token, navigate]);
 
-  const isAdmin = decodedToken.sub == 'ROOT';
-  const routes = isAdmin ? adminRoutes : userRoutes;
-
   return (
     <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
-      <Sidebar routes={routes} />
+      <Sidebar routes={userRoutesList} /> {/* Pasar las rutas al componente Sidebar */}
       <main className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll">
         <Routes>
-          {/* Rutas definidas según el rol */}
-          <Route path="/" element={<Home />} />
-          {routes.map((route: SidebarRoute, index: number) => (
+          {/* Iterar sobre las rutas dinámicamente */}
+          {userRoutesList.map((route) => (
             <Route
-              key={index}
-              path={`/dashboard${route.path}`}
-              element={<ComponentByName name={route.component} />}
+              key={route.path}
+              path={route.path}
+              element={React.createElement(eval(route.component))}
             />
           ))}
-          {/* Ruta de gráfica de sensores */}
-          <Route path="/dashboard/Sensor/Grafica" element={<PageGraficasSensores />} />
+          {/* Ruta para el Home */}
+          <Route path="/" element={<Home />} />
         </Routes>
       </main>
     </div>
   );
-};
-
-// Componente que carga dinámicamente los componentes según el nombre
-const ComponentByName = ({ name }: { name: string }) => {
-  switch (name) {
-    case 'EstacionesUser':
-      return <EstacionesUser />;
-    case 'EstacionesAsociacion':
-      return <EstacionesAsociacion />;
-    case 'Usuarios':
-      return <Usuarios />;
-    case 'Sensores':
-      return <Sensores />;
-    case 'EstacionesSistemaComponent':
-      return <EstacionesSistemaComponent />;
-    case 'Propiedades':
-      return <Propiedades />;
-    case 'PageGraficasSensores':
-      return <PageGraficasSensores />;
-    default:
-      return null;
-  }
 };
 
 export default Dashboard;

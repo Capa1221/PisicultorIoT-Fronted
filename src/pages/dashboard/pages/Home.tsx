@@ -7,7 +7,7 @@ import { CardHibernaderos, CardInformationAplicattion, HeaderDashboard } from ".
 import defaultImg from '../../../assets/default_img_inv.jpg';
 import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
 
-const Home = () => {
+export const Home = () => {
 
   const [hibernaderos, setHibernaderos] = useState<EstacionInterface[]>([]);
   const [sensor, setSensor] = useState<SensorInterface[]>([]);
