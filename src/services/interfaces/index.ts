@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 
 export interface EstacionInterface {
   id?: string;
@@ -19,6 +20,10 @@ export interface ForgotPasswordInterface{
   user?:string;
 }
 
+export interface PrivateRouteProps {
+  children: ReactNode;
+  allowedRoles?: string[];
+}
 
 export interface IErrorFallbackProps {
   componentError: string;

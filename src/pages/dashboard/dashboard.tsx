@@ -12,27 +12,28 @@ import { EstacionesSistemaComponent } from "./pages/EstacionesSistema";
 import { buscarTodosLosUsuarios } from "../../services";
 
 export const Dashboard = () => {
-
   const token = sessionStorage.getItem("authToken")!;
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    const fetchValidarToken = async ( ) =>{
+  useEffect(() => {
+    const fetchValidarToken = async () => {
       try {
         const response = await buscarTodosLosUsuarios(token);
-        if(response.status!=200){
+        if (response.status !== 200) {
           navigate("/");
           sessionStorage.removeItem("authToken");
           alert("Su Token ha expirado");
         }
       } catch (error) {
-        console.error("error",error);
+        console.error("error", error);
         navigate("/");
         sessionStorage.removeItem("authToken");
       }
     };
     fetchValidarToken();
-  },[token]);
+  }, [token, navigate]);
+
+  const isAdmin = sessionStorage.getItem("isAdmin") === "true";
 
   return (
     <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
@@ -41,12 +42,12 @@ export const Dashboard = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Home" element={<Home />} />
-          <Route path="/Mis-Estaciones" element={<EstacionesUser />} />
-          <Route path="/Asociacion-Estaciones" element={<EstacionesAsociacion />} />
-          <Route path="/Usuarios" element={<Usuarios />} />
-          <Route path="/Sensores" element={<Sensores />} />
-          <Route path="/Estaciones-Sistema" element={<EstacionesSistemaComponent />} />
-          <Route path="/propiedades" element={<Propiedades />} />
+          <Route path="/Mis-Estaciones" element={isAdmin ? <EstacionesUser /> : <Navigate to="/" replace />} />
+          <Route path="/Asociacion-Estaciones" element={isAdmin ? <EstacionesAsociacion /> : <Navigate to="/" replace />} />
+          <Route path="/Usuarios" element={isAdmin ? <Usuarios /> : <Navigate to="/" replace />} />
+          <Route path="/Sensores" element={isAdmin ? <Sensores /> : <Navigate to="/" replace />} />
+          <Route path="/Estaciones-Sistema" element={isAdmin ? <EstacionesSistemaComponent /> : <Navigate to="/" replace />} />
+          <Route path="/propiedades" element={isAdmin ? <Propiedades /> : <Navigate to="/" replace />} />
           <Route path="/Sensor/Grafica" element={<PageGraficasSensores />} />
         </Routes>
       </main>
