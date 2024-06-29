@@ -14,6 +14,16 @@ import { buscarTodosLosUsuarios } from '../../services';
 import adminRoutes from '../../routes/AdminRoutes.json';
 import userRoutes from '../../routes/UserRoutes.json';
 
+interface RouteDefinition {
+  path: string;
+  component: string;
+}
+
+interface SidebarRoute extends RouteDefinition {
+  icon: string;
+  description: string;
+}
+
 export const Dashboard = () => {
   const token = sessionStorage.getItem('authToken')!;
   const navigate = useNavigate();
@@ -37,30 +47,23 @@ export const Dashboard = () => {
     fetchValidarToken();
   }, [token, navigate]);
 
-  const isAdmin = decodedToken && decodedToken.sub === 'root';
-  const defaultPath = isAdmin ? '/dashboard/Home' : '/dashboard/Mis-Estaciones';
+  const isAdmin = decodedToken.sub == 'ROOT';
+  const routes = isAdmin ? adminRoutes : userRoutes;
 
   return (
     <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
-      <Sidebar />
+      <Sidebar routes={routes} />
       <main className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll">
         <Routes>
-          {/* Cambiamos la ruta "/" dependiendo de isAdmin */}
+          {/* Rutas definidas según el rol */}
           <Route path="/" element={<Home />} />
-          {/* Ruta por defecto según el rol */}
-          <Route path={defaultPath} element={isAdmin ? <Home /> : <EstacionesUser />} />
-
-          {/* Resto de las rutas */}
-          {isAdmin ? (
-            adminRoutes.map((route, index) => (
-              <Route key={index} path={`/dashboard${route.path}`} element={<ComponentByName name={route.component} />} />
-            ))
-          ) : (
-            userRoutes.map((route, index) => (
-              <Route key={index} path={`/dashboard${route.path}`} element={<ComponentByName name={route.component} />} />
-            ))
-          )}
-
+          {routes.map((route: SidebarRoute, index: number) => (
+            <Route
+              key={index}
+              path={`/dashboard${route.path}`}
+              element={<ComponentByName name={route.component} />}
+            />
+          ))}
           {/* Ruta de gráfica de sensores */}
           <Route path="/dashboard/Sensor/Grafica" element={<PageGraficasSensores />} />
         </Routes>
