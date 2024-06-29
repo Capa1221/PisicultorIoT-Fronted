@@ -40,15 +40,15 @@ export const Dashboard = () => {
       <Sidebar />
       <main className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/Mis-Estaciones" element={isAdmin ? <EstacionesUser /> : <Navigate to="/" replace />} />
-          <Route path="/Asociacion-Estaciones" element={isAdmin ? <EstacionesAsociacion /> : <Navigate to="/" replace />} />
-          <Route path="/Usuarios" element={isAdmin ? <Usuarios /> : <Navigate to="/" replace />} />
-          <Route path="/Sensores" element={isAdmin ? <Sensores /> : <Navigate to="/" replace />} />
-          <Route path="/Estaciones-Sistema" element={isAdmin ? <EstacionesSistemaComponent /> : <Navigate to="/" replace />} />
-          <Route path="/propiedades" element={isAdmin ? <Propiedades /> : <Navigate to="/" replace />} />
-          <Route path="/Sensor/Grafica" element={<PageGraficasSensores />} />
+          <Route path="/" element={<Home />}/>
+          <Route path="/Home" element={<Home />}/>
+          <Route path="/Mis-Estaciones" element={<EstacionesUser />}/>
+          <Route path="/Asociacion-Estaciones" element={<EstacionesAsociacion />}/>
+          <Route path="/Usuarios" element={<Usuarios />}/>
+          <Route path="/Sensores" element={<Sensores />}/>
+          <Route path="/Estaciones-Sistema" element={<EstacionesSistemaComponent />}/>
+          <Route path="/propiedades" element={<Propiedades />}/>
+          <Route path="/Sensor/Grafica" element={<PageGraficasSensores />}/>
         </Routes>
       </main>
     </div>
