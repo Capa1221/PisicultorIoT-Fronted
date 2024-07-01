@@ -1,7 +1,7 @@
 [
   { "path": "/Home", "component": "Home", "icon": "RiHome3Line", "description": "Inicio" },
   { "path": "/Mis-Estaciones", "component": "EstacionesUser", "icon": "RiSeedlingLine", "description": "Mis Estaciones" },
-  { "path": "/Asociacion-Estaciones", "component": "EstacionesAsociacion", "icon": "AiOutlineDeploymentUnit", "description": "Asociaciones Estación" },
+  { "path": "/Asociacion-Estaciones", "component": "EstacionesAsociacion", "icon": "AiOutlineDeploymentUnit", "description": "Asociaciones EstaciÃ³n" },
   { "path": "/Usuarios", "component": "Usuarios", "icon": "RiUser3Line", "description": "Usuarios Sistema" },
   { "path": "/Sensores", "component": "Sensores", "icon": "RiSensorLine", "description": "Mis Sensores" },
   { "path": "/Estaciones-Sistema", "component": "EstacionesSistemaComponent", "icon": "RiBarChartLine", "description": "Estaciones Sistema" },
