@@ -1,35 +1,33 @@
-import axios, { AxiosResponse } from "axios";
-import { TuyaSensorData, TrendsAnalysis, LatestResponse } from "./interfaces/index";
+import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://179.1.133.13/apiOrion";
-
-// Función para evitar duplicación de slashes
-const getApiUrl = (path: string) => {
-  const base = API_URL.replace(/\/+$/, ""); // Elimina slashes finales
-  const cleanPath = path.replace(/^\/+/, ""); // Elimina slashes iniciales
-  return `${base}/${cleanPath}`;
-};
+const API_URL = "http://179.1.133.13/apiOrion/api/v1";
 
 export const tuyaService = {
-  fetchLatestData: async (token?: string): Promise<LatestResponse> => {
+  fetchLatestData: async (token: string) => {
     try {
-      const headers: Record<string, string> = {
-        "Content-Type": "application/json",
-      };
-      if (token) {
-        headers.Authorization = `Bearer ${token}`;
+      const res = await axios.get(`${API_URL}/tuya/latest`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return res.data;
+    } catch (error: any) {
+      // 👇 Agregamos este bloque para imprimir detalles del error
+      if (error.response) {
+        console.error("🛑 Error de respuesta del servidor:");
+        console.error("Código de estado:", error.response.status);
+        console.error("Datos:", error.response.data);
+        console.error("Headers:", error.response.headers);
+      } else if (error.request) {
+        console.error("📡 La solicitud fue hecha pero no hubo respuesta:");
+        console.error(error.request);
+      } else {
+        console.error("❌ Error al configurar la solicitud:");
+        console.error(error.message);
       }
 
-      const response = await axios.get<LatestResponse>(getApiUrl("api/v1/tuya/latest"), {
-        headers,
-      });
-      return response.data;
-    } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Error desconocido";
-      const responseError = (error as any)?.response?.statusText || (error as any)?.response?.data?.message || errorMessage;
-      throw new Error(`Error fetching latest data: ${responseError}`);
+      // Lanzamos un mensaje de error genérico
+      throw new Error("Error al obtener datos: " + error.message);
     }
   },
 };
-
-export type { LatestResponse };
