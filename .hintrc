@@ -3,11 +3,15 @@
     "development"
   ],
   "hints": {
+<<<<<<< Updated upstream
     "axe/forms": [
       "default",
       {
         "label": "off"
       }
     ]
+=======
+    "typescript-config/consistent-casing": "off"
+>>>>>>> Stashed changes
   }
 }

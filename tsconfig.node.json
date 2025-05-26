@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "strict": true
+    "jsx": "react-jsx",
+    "target": "ES2020",                // Define la versión de ECMAScript
+    "module": "CommonJS",              // Establece el sistema de módulos
+    "composite": true,                 // Habilita el modo de proyecto compuesto
+    "strict": true,                    // Habilita el modo estricto
+    "esModuleInterop": true,          // Habilita interoperabilidad entre módulos ES
+    "skipLibCheck": true,              // Omite la verificación de archivos de definición de tipo
+    "forceConsistentCasingInFileNames": true // Fuerza la consistencia en la capitalización de nombres
   },
-  "include": ["vite.config.ts"]
+  "include": ["src/**/*"],             // Incluye todos los archivos dentro de la carpeta 'src'
+  "references": [
+    // Agrega aquí referencias a otros tsconfig si es necesario
+  ]
 }
