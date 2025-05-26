@@ -14,7 +14,7 @@ export const Applicationform = () => {
           Acceso al Sistema
         </h1>
         <p className="text-[18px] text-gray-600 leading-relaxed">
-          Completa el formulario de registro para obtener acceso al sistema de información de precisión agrícola de 
+          Completa el formulario de registro para obtener acceso al sistema de información de precisión pisicola de 
           <span className="text-primary font-semibold"> Pscicultura IOT</span>.
         </p>
         <form className="w-full flex flex-col items-center">

@@ -9,123 +9,171 @@ import {
   Tabs,
   Image,
 } from "@nextui-org/react";
-import imageVite from '../../assets/react.svg';
-
+import imageVite from "../../assets/react.svg";
 
 export const Technologies = () => {
   return (
-    <div className="flex flex-col m-12" id="tecnologias">
-      <Tabs aria-label="Options" className="place-content-center">
+    <section
+      id="tecnologias"
+      className="flex flex-col m-12 max-w-7xl mx-auto"
+      aria-label="Tecnologías usadas en el proyecto"
+    >
+      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-14">
+        Tecnologías Utilizadas
+      </h2>
+
+      <Tabs
+        aria-label="Selección de tecnologías"
+        className="place-content-center"
+        variant="pills"
+      >
         <Tab
           key="frameworks"
           title="Frameworks"
           className="place-content-center flex"
+          aria-controls="frameworks-panel"
+          id="frameworks-tab"
         >
-          <div className="flex flex-col md:flex-row">
-            <Card className="max-w-[400px] m-2">
-              <CardHeader className="flex gap-3">
+          <div
+            id="frameworks-panel"
+            aria-labelledby="frameworks-tab"
+            className="flex flex-col md:flex-row gap-6 overflow-x-auto px-2"
+          >
+            <Card className="max-w-md flex-shrink-0 shadow-lg rounded-xl">
+              <CardHeader className="flex gap-4 items-center p-4">
                 <Image
-                  alt="nextui logo"
-                  height={40}
-                  radius="sm"
+                  alt="React + Vite Logo"
+                  height={48}
+                  width={48}
+                  radius="md"
                   src={imageVite}
-                  width={40}
+                  className="object-contain"
                 />
-                <div className="flex flex-col">
-                  <p className="text-md">React + Vite</p>
-                  <p className="text-small text-default-500">Front-end</p>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    React + Vite
+                  </h3>
+                  <p className="text-sm text-gray-500">Front-end</p>
                 </div>
               </CardHeader>
               <Divider />
-              <CardBody>
+              <CardBody className="p-4 text-gray-700 leading-relaxed text-justify">
                 <p>
-                Optamos por React junto con Vite por su combinación perfecta de la adaptabilidad y la creatividad de React a la hora de crear interfaces de usuario interactivas, junto con la rapidez y sencillez de Vite para un desarrollo rápido y una experiencia de usuario de primer nivel. Independientemente de la experiencia de cada uno en desarrollo, este dúo permite la creación perfecta de aplicaciones web avanzadas y ajustadas sin ningún tipo de problema.
+                  React combinado con Vite nos ofrece una experiencia de
+                  desarrollo ágil y moderna. React aporta flexibilidad para
+                  crear interfaces interactivas, mientras que Vite asegura un
+                  entorno rápido y optimizado para construir aplicaciones web
+                  escalables y de alto rendimiento.
                 </p>
               </CardBody>
               <Divider />
-              <CardFooter>
+              <CardFooter className="p-4">
                 <Link
                   isExternal
                   showAnchorIcon
                   href="https://vitejs.dev"
+                  aria-label="Visitar página oficial de Vite"
+                  className="text-cyan-600 hover:text-cyan-800 font-semibold transition-colors"
                 >
-                  Visita su pagina Principal.
+                  Visita su página oficial
                 </Link>
               </CardFooter>
             </Card>
-            <Card className="max-w-[400px] m-2">
-              <CardHeader className="flex gap-3">
+
+            <Card className="max-w-md flex-shrink-0 shadow-lg rounded-xl">
+              <CardHeader className="flex gap-4 items-center p-4">
                 <Image
-                  alt="nextui logo"
-                  height={40}
-                  radius="sm"
+                  alt="Spring Boot Logo"
+                  height={48}
+                  width={48}
+                  radius="md"
                   src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                  width={40}
+                  className="object-contain"
                 />
-                <div className="flex flex-col">
-                  <p className="text-md">Spring Boot</p>
-                  <p className="text-small text-default-500">Back-end</p>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Spring Boot
+                  </h3>
+                  <p className="text-sm text-gray-500">Back-end</p>
                 </div>
               </CardHeader>
               <Divider />
-              <CardBody>
+              <CardBody className="p-4 text-gray-700 leading-relaxed text-justify">
                 <p>
-                Spring Boot es nuestra plataforma de backend elegida debido a su naturaleza robusta y ampliable, lo que permite la construcción perfecta de aplicaciones Java. A través de Spring Boot, creamos sin esfuerzo soluciones de backend sólidas y protegidas, agilizando los procesos de desarrollo y acelerando el despliegue de aplicaciones empresariales de vanguardia con su configuración optimizada y su completo conjunto de herramientas.
+                  Spring Boot es un framework robusto y escalable que facilita
+                  la creación de aplicaciones backend seguras y mantenibles en
+                  Java. Su configuración simplificada y ecosistema completo
+                  aceleran el desarrollo de soluciones empresariales modernas.
                 </p>
               </CardBody>
               <Divider />
-              <CardFooter>
+              <CardFooter className="p-4">
                 <Link
                   isExternal
                   showAnchorIcon
                   href="https://spring.io"
+                  aria-label="Visitar página oficial de Spring Boot"
+                  className="text-cyan-600 hover:text-cyan-800 font-semibold transition-colors"
                 >
-                  Visita su pagina Principal.
+                  Visita su página oficial
                 </Link>
               </CardFooter>
             </Card>
           </div>
         </Tab>
+
         <Tab
           key="libraries"
           title="Librerías"
           className="place-content-center flex"
+          aria-controls="libraries-panel"
+          id="libraries-tab"
         >
-          <div className="flex flex-col md:flex-row">
-            <Card className="max-w-[400px] m-2">
-              <CardHeader className="flex gap-3">
+          <div
+            id="libraries-panel"
+            aria-labelledby="libraries-tab"
+            className="flex flex-col md:flex-row gap-6 overflow-x-auto px-2"
+          >
+            <Card className="max-w-md flex-shrink-0 shadow-lg rounded-xl">
+              <CardHeader className="flex gap-4 items-center p-4">
                 <Image
-                  alt="nextui logo"
-                  height={40}
-                  radius="sm"
+                  alt="NextUI Logo"
+                  height={48}
+                  width={48}
+                  radius="md"
                   src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                  width={40}
+                  className="object-contain"
                 />
-                <div className="flex flex-col">
-                  <p className="text-md">NextUI</p>
-                  <p className="text-small text-default-500">nextui.org</p>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">NextUI</h3>
+                  <p className="text-sm text-gray-500">nextui.org</p>
                 </div>
               </CardHeader>
               <Divider />
-              <CardBody>
+              <CardBody className="p-4 text-gray-700 leading-relaxed text-justify">
                 <p>
-                No importa su nivel de experiencia en diseño, esta biblioteca nos permite incorporar componentes en el diseño web.
+                  NextUI nos provee componentes UI accesibles y elegantes que
+                  facilitan el diseño de interfaces modernas, asegurando una
+                  experiencia consistente sin importar el nivel de experiencia
+                  en diseño.
                 </p>
               </CardBody>
               <Divider />
-              <CardFooter>
+              <CardFooter className="p-4">
                 <Link
                   isExternal
                   showAnchorIcon
                   href="https://github.com/nextui-org/nextui"
+                  aria-label="Visitar repositorio de NextUI en GitHub"
+                  className="text-cyan-600 hover:text-cyan-800 font-semibold transition-colors"
                 >
-                  Visite el código fuente en GitHub.
+                  Ver código fuente en GitHub
                 </Link>
               </CardFooter>
             </Card>
           </div>
         </Tab>
       </Tabs>
-    </div>
+    </section>
   );
 };

@@ -3,8 +3,8 @@ import Grafica2 from '../../assets/CARACTERISTICAS/1.png';
 import Grafica3 from '../../assets/CARACTERISTICAS/3.png';
 import Grafica4 from '../../assets/CARACTERISTICAS/4.png';
 import Grafica5 from '../../assets/CARACTERISTICAS/5.png';
+import { CharacteristicCard } from './CharacteristicCard';
 
-// Data for each characteristic card
 const characteristicsData = [
   {
     image: Grafica1,
@@ -48,21 +48,6 @@ const characteristicsData = [
   },
 ];
 
-// Reusable Characteristic Card Component
-const CharacteristicCard = ({ image, alt, date, title, description }) => (
-  <div className="flex flex-col gap-4 transition-transform transform hover:scale-105">
-    <img
-      src={image}
-      className="w-full h-48 object-cover rounded-lg shadow-md"
-      alt={alt}
-      loading="lazy"
-    />
-    <p className="text-sm text-gray-500">{date}</p>
-    <h3 className="text-lg font-bold text-gray-800">{title}</h3>
-    <p className="text-gray-600 text-sm">{description}</p>
-  </div>
-);
-
 export const Characteristics = () => {
   return (
     <section
@@ -81,10 +66,9 @@ export const Characteristics = () => {
           Visualizamos y simplificamos datos complejos para análisis eficaz y fácil comprensión.
         </p>
       </div>
-      <br />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {characteristicsData.map((item, index) => (
-          <CharacteristicCard key={index} {...item} />
+          <CharacteristicCard key={index} index={index} {...item} />
         ))}
       </div>
     </section>

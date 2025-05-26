@@ -1,82 +1,89 @@
-// Icons
 import { RiLinkedinFill, RiGithubFill } from "react-icons/ri";
+import Tilt from "react-parallax-tilt";
 
-// Array de desarrolladores con información, incluyendo la imagen opcional
 const developersData = [
   {
     name: "Carlos Jaimes",
     role: "Desarrollador Front-end",
     linkedin: "https://www.linkedin.com/in/carlos-jaimes-062a71277/",
     github: "https://github.com/Capa1221",
-    image: null, // Cambia a la URL de la imagen, ej: "/images/carlos.jpg"
+    image: null,
   },
   {
     name: "Yolima Rozo",
     role: "Desarrollador Back-end",
+    linkedin: null,
     github: "https://github.com/pandita64",
-    image: null, // Cambia a la URL de la imagen, ej: "/images/yolima.jpg"
-  },
-  {
-    name: "Andersson Julian Muños Bustos",
-    role: "Desarrollador Front-end",
-    linkedin: "https://www.linkedin.com/in/",
-    github: "https://github.com/Mankatico",
     image: null,
-  },
-  {
-    name: "Eivar Javier Mora Bastos",
-    role: "Desarrollador Back-end",
-    linkedin: "https://www.linkedin.com/in/",
-    github: "https://github.com/EivarMora",
-    image: null, 
   },
 ];
 
 export const Developers = () => {
   return (
-    <div className="p-8 flex flex-col gap-8 bg-gray-100" id="desarrolladores">
-      <h1 className="text-4xl text-center font-black">Desarrolladores</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-        {developersData.map((developer, index) => (
-          <div
+    <section
+      id="desarrolladores"
+      className="py-16 px-6 md:px-12 lg:px-24 bg-gray-100"
+    >
+      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-12">
+        Nuestro Equipo de Desarrollo
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {developersData.map((dev, index) => (
+          <Tilt
             key={index}
-            className="bg-white group rounded-lg shadow hover:shadow-lg transition-all cursor-pointer"
+            tiltEnable={true}
+            tiltMaxAngleX={20}
+            tiltMaxAngleY={20}
+            glareEnable={true}
+            glareMaxOpacity={0.25}
+            glareColor="#ffffff"
+            glarePosition="all"
+            scale={1.05}
+            transitionSpeed={1000}
+            className="rounded-xl"
           >
-            <div className="flex justify-center py-4">
+            <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 flex flex-col items-center text-center">
               <img
                 src={
-                  developer.image ||
+                  dev.image ||
                   `https://api.dicebear.com/5.x/thumbs/svg?seed=Developer${index + 1}`
                 }
-                className="rounded-full w-32 h-32 object-cover ring-4 ring-gray-300"
-                alt={developer.name}
+                alt={dev.name}
+                className="w-32 h-32 rounded-full object-cover ring-4 ring-gray-200 mb-4"
               />
-            </div>
-            <div className="flex flex-col items-center gap-2 p-4">
-              <h3 className="font-semibold text-xl">{developer.name}</h3>
-              <p className="text-gray-600">{developer.role}</p>
-              <div className="flex items-center">
-                <a
-                  href={developer.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 hover:text-cyan-600 hover:border-cyan-600 hover:border-2 rounded-full transition-all"
-                >
-                  <RiLinkedinFill size={24} />
-                </a>
-                <a
-                  href={developer.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 hover:text-cyan-600 hover:border-cyan-600 hover:border-2 rounded-full transition-all"
-                >
-                  <RiGithubFill size={24} />
-                </a>
+              <h3 className="text-xl font-semibold text-gray-800">
+                {dev.name}
+              </h3>
+              <p className="text-sm text-gray-500">{dev.role}</p>
+              <div className="flex gap-4 mt-4">
+                {dev.linkedin && (
+                  <a
+                    href={dev.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`LinkedIn de ${dev.name}`}
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    <RiLinkedinFill size={28} />
+                  </a>
+                )}
+                {dev.github && (
+                  <a
+                    href={dev.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`GitHub de ${dev.name}`}
+                    className="text-gray-600 hover:text-black transition-colors"
+                  >
+                    <RiGithubFill size={28} />
+                  </a>
+                )}
               </div>
             </div>
-          </div>
+          </Tilt>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
