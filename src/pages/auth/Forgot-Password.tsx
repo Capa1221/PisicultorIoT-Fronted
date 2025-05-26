@@ -6,9 +6,11 @@ import { ForgotPasswordInterface } from '../../services/interfaces';
 import { BiUser } from 'react-icons/bi';
 import { crearCodigo } from '../../services/validacion-controller';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@nextui-org/react';
 
 export const ForgotPassword = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
   const [formForgotPassword, setFormForgotPassword] = useState<ForgotPasswordInterface>({
     user: "",
     message: ""
@@ -17,11 +19,13 @@ export const ForgotPassword = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const response = await crearCodigo(formForgotPassword.user!);
       if (response.status === 200) {
-        console.log(response.data);
-        confirm("Se ha enviado un código de verificación para restablecer su contraseña. Por favor, revíselo y tráigalo para seguir con el debido proceso.");
+        confirm("Se ha enviado un cÃ³digo de verificaciÃ³n para restablecer su contraseÃ±a. Por favor, revÃ­selo y trÃ¡igalo para seguir con el debido proceso.");
         navigate(`/Validar-Codigo/${formForgotPassword.user}`);
+      }else{
+        setLoading(false);
       }
     } catch (err) {
       console.error('Error en la solicitud', err);
@@ -35,7 +39,7 @@ export const ForgotPassword = () => {
           <img src={logoSistema} className="lg:w-[20rem] w-[15rem]" />
         </div>
         <div className="flex flex-col items-center gap-6 mt-8 mb-6">
-          <h1 className="text-4xl font-bold text-gray-900">Recuperar Contraseña</h1>
+          <h1 className="text-4xl font-bold text-gray-900">Recuperar ContraseÃ±a</h1>
         </div>
 
         <div className="w-full">
@@ -54,18 +58,21 @@ export const ForgotPassword = () => {
               />
             </div>
             <div className="w-full max-w-md mx-auto">
-              <button
+              <Button
                 type="submit"
-                className="w-full bg-blue-500 py-2 px-4 rounded-lg text-white hover:bg-blue-600 transition-colors"
+                color='primary'
+                className="w-full py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors"
+                isLoading={loading}
+                isDisabled={formForgotPassword.user?.length==0}
               >
-                Enviar Código de Validación
-              </button>
+                Enviar CÃ³digo de ValidaciÃ³n
+              </Button>
             </div>
           </form>
         </div>
         <div className="mt-6">
           <span className="text-gray-500">
-            ¿No tienes una cuenta?{" "}
+            Â¿No tienes una cuenta?{" "}
             <a href="/" className="text-blue-500 hover:underline transition-all">
               Regresar
             </a>

@@ -31,7 +31,7 @@ export const ModalEliminar = ({ id }: { id: string }) => {
               <ModalHeader className="flex flex-col gap-1">Eliminar Invernadero</ModalHeader>
               <ModalBody>
                 <p>
-                  ¿Confirma su intención de borrar el hibernadero?
+                  Â¿Confirma su intenciÃ³n de borrar el hibernadero?
                 </p>
               </ModalBody>
               <ModalFooter>

@@ -67,7 +67,7 @@ export const ModalAgregar = () => {
                 {!isImageValid && (
                   <div className="flex items-center">
                     <BiImage className="text-2xl text-red-600" />
-                    <p className="text-sm text-red-600 ml-2">Por favor, seleccione un archivo de imagen v·lido (JPEG, PNG, GIF)</p>
+                    <p className="text-sm text-red-600 ml-2">Por favor, seleccione un archivo de imagen v√°lido (JPEG, PNG, GIF)</p>
                   </div>
                 )}
                 {imagePreview && (

@@ -5,7 +5,7 @@ import { UserEstacionInterface } from "../../services/interfaces";
 import { buscarPorEstacion } from "../../services/Usuario-Estacion-controller";
 import { BiUser } from "react-icons/bi";
 
-export const ModalUsuariosAsociados = ({idEstacion,numero_Asociados}:{idEstacion:string;numero_Asociados:string}) => {
+export const ModalUsuariosAsociados = ({ idEstacion, numero_Asociados }: { idEstacion: string; numero_Asociados: string }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [users, setUsers] = useState<UserEstacionInterface[]>([]);
     const onClose = sessionStorage.getItem("setOnCloseAsociarUsuario");
@@ -17,6 +17,7 @@ export const ModalUsuariosAsociados = ({idEstacion,numero_Asociados}:{idEstacion
                 if (token) {
                     const response = await buscarPorEstacion(idEstacion, token);
                     if (response.status == 200) {
+                        console.log("data", response.data);
                         setUsers(response.data);
                     } else {
                         console.error("error fetchUsers")
@@ -29,17 +30,17 @@ export const ModalUsuariosAsociados = ({idEstacion,numero_Asociados}:{idEstacion
             }
         };
         fetchUsers();
-    }, [token,onClose]);
+    }, [token, onClose]);
 
     return (
         <>
             <Button
                 color="primary"
-                startContent ={<BiUser className="text-xl"/>}
+                startContent={<BiUser className="text-xl" />}
                 onPress={onOpen}
                 variant="light"
             >
-              {numero_Asociados}
+                {numero_Asociados}
             </Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
                 <ModalContent>
@@ -47,22 +48,21 @@ export const ModalUsuariosAsociados = ({idEstacion,numero_Asociados}:{idEstacion
                         <>
                             <ModalHeader className="flex flex-col gap-1">Usuarios Asociados a la Estacion</ModalHeader>
                             <ModalBody>
-                                <div className="flex flex-col gap-1 w-full">
-                                    {users.map((user) => (
-                                        <ScrollShadow className="h-auto">
+                                <div className="flex flex-col gap-1 w-full" key={users.length}>
+                                    <ScrollShadow className="h-auto">
+                                        {users.map((user) => (
                                             <CustomCheckbox
                                                 value={user.id!}
                                                 key={user.id!}
                                                 user={{
-                                                    idEstacion:idEstacion,
+                                                    idEstacion: idEstacion,
                                                     id: user.id!,
                                                     name: user.usuario!,
                                                     avatar: `https://api.dicebear.com/5.x/thumbs/svg?seed=${user.usuario}`,
-                                                    eliminar:true
-                                                }}
-                                            />
-                                        </ScrollShadow>
-                                    ))}
+                                                    eliminar: true
+                                                }} asociar={true}                                            />
+                                        ))}
+                                    </ScrollShadow>
                                 </div>
                             </ModalBody>
                             <ModalFooter>

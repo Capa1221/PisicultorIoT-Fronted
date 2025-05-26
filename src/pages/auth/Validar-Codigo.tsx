@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import logoSistema from '../../assets/54705961_transparente.png';
 import heroImage from '../../assets/AgricultorIoT.jpeg';
 import { handleInputChange } from '../../utils/utils';
@@ -8,6 +8,7 @@ import { validarCodigo } from '../../services/validacion-controller';
 
 export const ValidarCodigo = () => {
   const { usuario } = useParams<{ usuario: string }>();
+  const navigate = useNavigate();
   const [formValidarCodigo, setFormValidarCodigo] = useState<{ user: string; codigo: string }>({
     user: usuario || "",
     codigo: ""
@@ -25,13 +26,15 @@ export const ValidarCodigo = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await validarCodigo(formValidarCodigo.user, formValidarCodigo.codigo, sessionStorage.getItem("authToken")!);
+      const response = await validarCodigo(formValidarCodigo.user, formValidarCodigo.codigo);
       if (response.status === 200) {
-        alert("Código de verificación validado correctamente. Proceda a restablecer su contraseña.");
-        // Aquí puedes redirigir al usuario a la página de restablecimiento de contraseña
+        alert("CÃ³digo de verificaciÃ³n validado correctamente. Proceda a restablecer su contraseÃ±a.");
+        sessionStorage.setItem("authToken",response.headers.authorization);
+        sessionStorage.setItem("userAjustes",response.data.id!);
+        navigate("/Dashboard/Ajustes-Perfil")
       }
     } catch (err) {
-      console.error('Error en la validación del código', err);
+      console.error('Error en la validaciÃ³n del cÃ³digo', err);
     }
   };
 
@@ -42,7 +45,7 @@ export const ValidarCodigo = () => {
           <img src={logoSistema} alt="JT Devs" className="lg:w-[20rem] w-[15rem]" />
         </div>
         <div className="flex flex-col items-center gap-6 mt-8 mb-6">
-          <h1 className="text-4xl font-bold text-gray-900">Validar Código de Verificación</h1>
+          <h1 className="text-4xl font-bold text-gray-900">Validar CÃ³digo de VerificaciÃ³n</h1>
         </div>
 
         <div className="w-full">
@@ -68,7 +71,7 @@ export const ValidarCodigo = () => {
                 type="text"
                 name="codigo"
                 className="w-full py-2 pl-10 pr-4 rounded-lg outline-none border border-gray-300 focus:border-blue-500"
-                placeholder="Código de Verificación"
+                placeholder="CÃ³digo de VerificaciÃ³n"
                 value={formValidarCodigo.codigo}
                 onChange={(e) => handleInputChange(e, setFormValidarCodigo, formValidarCodigo)}
               />
@@ -78,14 +81,14 @@ export const ValidarCodigo = () => {
                 type="submit"
                 className="w-full bg-blue-500 py-2 px-4 rounded-lg text-white hover:bg-blue-600 transition-colors"
               >
-                Validar Código
+                Validar CÃ³digo
               </button>
             </div>
           </form>
         </div>
         <div className="mt-6">
           <span className="text-gray-500">
-            ¿No tienes un Codigo?{" "}
+            Â¿No tienes un Codigo?{" "}
             <a href="/" className="text-blue-500 hover:underline transition-all">
               Regresar
             </a>

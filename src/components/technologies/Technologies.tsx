@@ -39,7 +39,7 @@ export const Technologies = () => {
               <Divider />
               <CardBody>
                 <p>
-                Optamos por React junto con Vite por su combinaci髇 perfecta de la adaptabilidad y la creatividad de React a la hora de crear interfaces de usuario interactivas, junto con la rapidez y sencillez de Vite para un desarrollo r醦ido y una experiencia de usuario de primer nivel. Independientemente de la experiencia de cada uno en desarrollo, este d鷒 permite la creaci髇 perfecta de aplicaciones web avanzadas y ajustadas sin ning鷑 tipo de problema.
+                Optamos por React junto con Vite por su combinaci贸n perfecta de la adaptabilidad y la creatividad de React a la hora de crear interfaces de usuario interactivas, junto con la rapidez y sencillez de Vite para un desarrollo r谩pido y una experiencia de usuario de primer nivel. Independientemente de la experiencia de cada uno en desarrollo, este d煤o permite la creaci贸n perfecta de aplicaciones web avanzadas y ajustadas sin ning煤n tipo de problema.
                 </p>
               </CardBody>
               <Divider />
@@ -70,7 +70,7 @@ export const Technologies = () => {
               <Divider />
               <CardBody>
                 <p>
-                Spring Boot es nuestra plataforma de backend elegida debido a su naturaleza robusta y ampliable, lo que permite la construcci髇 perfecta de aplicaciones Java. A trav閟 de Spring Boot, creamos sin esfuerzo soluciones de backend s髄idas y protegidas, agilizando los procesos de desarrollo y acelerando el despliegue de aplicaciones empresariales de vanguardia con su configuraci髇 optimizada y su completo conjunto de herramientas.
+                Spring Boot es nuestra plataforma de backend elegida debido a su naturaleza robusta y ampliable, lo que permite la construcci贸n perfecta de aplicaciones Java. A trav茅s de Spring Boot, creamos sin esfuerzo soluciones de backend s贸lidas y protegidas, agilizando los procesos de desarrollo y acelerando el despliegue de aplicaciones empresariales de vanguardia con su configuraci贸n optimizada y su completo conjunto de herramientas.
                 </p>
               </CardBody>
               <Divider />
@@ -109,7 +109,7 @@ export const Technologies = () => {
               <Divider />
               <CardBody>
                 <p>
-                No importa su nivel de experiencia en dise駉, esta biblioteca nos permite incorporar componentes en el dise駉 web.
+                No importa su nivel de experiencia en dise帽o, esta biblioteca nos permite incorporar componentes en el dise帽o web.
                 </p>
               </CardBody>
               <Divider />
@@ -119,7 +119,7 @@ export const Technologies = () => {
                   showAnchorIcon
                   href="https://github.com/nextui-org/nextui"
                 >
-                  Visite el c骴igo fuente en GitHub.
+                  Visite el c贸digo fuente en GitHub.
                 </Link>
               </CardFooter>
             </Card>

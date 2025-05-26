@@ -5,12 +5,12 @@ import { ErrorBoundary } from "./components/errorBoundary/ErrorBoundary.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
-    // <NextUIProvider >
-      <Interceptor>
-        <ErrorBoundary>
+  // <NextUIProvider >
+  <Interceptor>
+    <ErrorBoundary>
       <App />
-      </ErrorBoundary>
-      </Interceptor>
-    // </NextUIProvider>
+    </ErrorBoundary>
+  </Interceptor>
+  // </NextUIProvider>
   // </React.StrictMode>
 );

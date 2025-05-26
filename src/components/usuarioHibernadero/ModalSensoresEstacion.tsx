@@ -46,7 +46,7 @@ export const ModalSensoresEstacion = ({ idEstacion }: { idEstacion: string }) =>
                   variant="light"
                   className="w-full"
                   startContent={<RiSensorLine className="text-xl" />}
-                  onClick={() => { navigate("/dashboard/Sensor/Grafica") }}
+                  onClick={() => { navigate(`/dashboard/Sensor/Grafica/${sensor.id}`) }}
                 >
                   {sensor.nombre}
                 </Button>

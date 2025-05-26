@@ -4,15 +4,16 @@ import { EstacionInterface } from "./interfaces";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const actualizarEstacion = async (
-  Estacion: EstacionInterface,
+  estacion: EstacionInterface,
   token: string
 ): Promise<AxiosResponse<EstacionInterface>> => {
+  if (!token) throw new Error("Token no proporcionado");
   return axios.put<EstacionInterface>(
     `${API_URL}/v1/estacion/actualizar`,
-    Estacion,
+    estacion,
     {
       headers: {
-        'authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
         "Content-Type": "application/json"
       }
     }
@@ -20,15 +21,16 @@ export const actualizarEstacion = async (
 };
 
 export const insertarEstacion = async (
-  Estacion: EstacionInterface,
+  estacion: EstacionInterface,
   token: string
 ): Promise<AxiosResponse<EstacionInterface>> => {
+  if (!token) throw new Error("Token no proporcionado");
   return axios.post<EstacionInterface>(
     `${API_URL}/v1/estacion/insertar`,
-    Estacion,
+    estacion,
     {
       headers: {
-        'authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
         "Content-Type": "application/json"
       }
     }
@@ -39,9 +41,10 @@ export const buscarEstacionPorId = async (
   id: string,
   token: string
 ): Promise<AxiosResponse<EstacionInterface>> => {
+  if (!token) throw new Error("Token no proporcionado");
   return axios.get<EstacionInterface>(`${API_URL}/v1/estacion/buscar?id=${id}`, {
     headers: {
-      'authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
       "Content-Type": "application/json"
     }
   });
@@ -49,36 +52,45 @@ export const buscarEstacionPorId = async (
 
 export const buscarEstacionesPropietario = async (
   token: string,
-  id:string
+  id: string
 ): Promise<AxiosResponse<EstacionInterface[]>> => {
+  if (!token) throw new Error("Token no proporcionado");
   return axios.get<EstacionInterface[]>(`${API_URL}/v1/estacion/buscarEstacionesPropietario?idUsuario=${id}`, {
     headers: {
-      'authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
       "Content-Type": "application/json"
     }
-  })
+  });
 };
 
 export const buscarTodaslasEstaciones = async (
-  token: string
+  token: string,
+  idUsuario?: string
 ): Promise<AxiosResponse<EstacionInterface[]>> => {
-  return axios.get<EstacionInterface[]>(`${API_URL}/v1/estacion/buscarTodos`, {
+  if (!token) throw new Error("Token no proporcionado");
+  const url = idUsuario
+    ? `${API_URL}/v1/estacion/buscarTodos?idUsuario=${idUsuario}`
+    : `${API_URL}/v1/estacion/buscarTodos`;
+
+  return axios.get<EstacionInterface[]>(url, {
     headers: {
-      'authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
       "Content-Type": "application/json"
     }
-  })
+  });
 };
+
 
 export const eliminarEstacion = async (
   id: string,
   token: string
 ): Promise<AxiosResponse<{ message: string }>> => {
+  if (!token) throw new Error("Token no proporcionado");
   return axios.delete<{ message: string }>(
     `${API_URL}/v1/estacion/eliminar?id=${id}`,
     {
       headers: {
-        'authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
         "Content-Type": "application/json"
       }
     }

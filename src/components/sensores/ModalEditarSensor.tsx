@@ -1,17 +1,17 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select, SelectItem } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { GrAddCircle } from "react-icons/gr";
 import { SensorInterface } from "../../services/interfaces";
-import { handleInputChange } from "../../utils/utilsHandle";
-import { BiNote, BiUser } from "react-icons/bi";
+import { handleInputChange, handleSelectChange } from "../../utils/utilsHandle";
+import { BiNote, BiPencil, BiUser } from "react-icons/bi";
 import { crearSensor, obtenerSensorPorId } from "../../services/sensor-controller";
 import { SelectEstacion } from "./SelectEstacion";
+import { GrConfigure } from "react-icons/gr";
 
-export const ModalEditarSensor = ({id}:{id:string}) => {
+export const ModalEditarSensor = ({ id }: { id: string }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const token = sessionStorage.getItem("authToken")!;
   const [sensor, setSensor] = useState<SensorInterface>({
-    idHibernadero: "",
+    idEstacion: "",
     nombre: "",
     descripcion: "",
     config: false,
@@ -40,7 +40,10 @@ export const ModalEditarSensor = ({id}:{id:string}) => {
   const handleEditarSensor = async () => {
     try {
       if (token) {
-        sensor.idHibernadero = sessionStorage.getItem("idAso")!;
+        const idAsociacion = sessionStorage.getItem("idAso");
+        if(idAsociacion! != null){
+          sensor.idEstacion = sessionStorage.getItem("idAso")!;
+        }
         const response = await crearSensor(sensor, token);
         if (response.status === 200) {
           onClose();
@@ -48,7 +51,7 @@ export const ModalEditarSensor = ({id}:{id:string}) => {
           sessionStorage.removeItem("idAso");
         }
       } else {
-        console.error("Token inv�lido");
+        console.error("Token inválido");
       }
     } catch (error) {
       console.error("Error al crear el sensor", error);
@@ -57,11 +60,11 @@ export const ModalEditarSensor = ({id}:{id:string}) => {
 
   return (
     <>
-      <Button onClick={onOpen} color="primary" startContent={<GrAddCircle className="text-xl" />}>Agregar Sensor</Button>
+      <Button className="text-warning" onPress={onOpen} variant="light" startContent={<BiPencil className="text-2xl" />}></Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalContent>
           <>
-            <ModalHeader className="flex flex-col gap-1">Agregar Sensor</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1 text-center">Agregar Sensor</ModalHeader>
             <ModalBody>
               <Input
                 type="text"
@@ -75,7 +78,7 @@ export const ModalEditarSensor = ({id}:{id:string}) => {
               <Input
                 type="text"
                 name="descripcion"
-                label="Descripci�n"
+                label="Descripción"
                 isRequired
                 value={sensor.descripcion}
                 onChange={(e) => handleInputChange(e, setSensor, sensor)}
@@ -84,6 +87,25 @@ export const ModalEditarSensor = ({id}:{id:string}) => {
               <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                 <SelectEstacion />
               </div>
+              <Select
+                isRequired
+                label="config"
+                placeholder="Seleccione el estado de la estación."
+                defaultSelectedKeys={sensor.config.toString()} // Convertir booleano a cadena
+                startContent={<GrConfigure />}
+                onChange={(e) => {
+                  // Convertir la cadena de texto a booleano
+                  const selectedValue = e.target.value === 'true';
+                  handleSelectChange('config', selectedValue.toString(), setSensor, sensor); // Asegúrate de usar 'config' como clave
+                }}
+              >
+                <SelectItem key="true">
+                  Configurado
+                </SelectItem>
+                <SelectItem key="false">
+                  No configurado
+                </SelectItem>
+              </Select>
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onClick={onClose}>

@@ -30,11 +30,11 @@ export const ModalFormAdd = ({ id }: { id: string }) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-center">Añadir Usuario</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center">AÃ±adir Usuario</ModalHeader>
               <ModalBody className="space-y-1">
                 <div className="flex space-x-1">
                   <p>
-                    ¿Estas seguro que deseas añadir al usuario?
+                    Â¿Estas seguro que deseas aÃ±adir al usuario?
                   </p>
                 </div>
               </ModalBody>

@@ -71,7 +71,7 @@ export const aceptarUsuario = async (
   idFormulario: string,
   token: string
 ): Promise<AxiosResponse<{ message: string }>> => {
-  return axios.post<{ message: string }>(`${API_URL}/v1/formulario/aceptarUsuario?idFormulario=${idFormulario}`,null, {
+  return axios.post<{ message: string }>(`${API_URL}/v1/formulario/aceptarUsuario`,{idFormulario:idFormulario}, {
     headers: {
       'authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',

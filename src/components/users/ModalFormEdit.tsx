@@ -62,10 +62,9 @@ export const ModalFormEdit = ({ id }: { id: string }) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalBody>
-                <ModalHeader className="flex flex-col text-center">Editar formularioUser</ModalHeader>
-                <ModalBody className="">
-                <div className='flex space-x-2'>
+              <ModalHeader className="flex flex-col text-center">Editar Formulario User</ModalHeader>
+              <ModalBody className="">
+                <div className="flex space-x-1">
                   <Input
                     type="text"
                     name="usuario"
@@ -88,7 +87,7 @@ export const ModalFormEdit = ({ id }: { id: string }) => {
                 <Input
                   type="email"
                   name="email"
-                  label="Correo Electrónico"
+                  label="Correo ElectrÃ³nico"
                   isRequired
                   value={formularioUser.email}
                   onChange={(e) => handleInputChange(e, setformularioUser, formularioUser)}
@@ -97,7 +96,7 @@ export const ModalFormEdit = ({ id }: { id: string }) => {
                 <Input
                   type="text"
                   name="telefono"
-                  label="Número de Teléfono"
+                  label="NÃºmero de TelÃ©fono"
                   isRequired
                   value={formularioUser.telefono}
                   onChange={(e) => handleInputChange(e, setformularioUser, formularioUser)}
@@ -122,15 +121,14 @@ export const ModalFormEdit = ({ id }: { id: string }) => {
                   startContent={<BiLock className="text-2xl" />}
                 />
               </ModalBody>
-                <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
-                    Cerrar
-                  </Button>
-                  <Button color="primary" onPress={handleEditarUser}>
-                    Guardar
-                  </Button>
-                </ModalFooter>
-              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Cerrar
+                </Button>
+                <Button color="primary" onPress={handleEditarUser}>
+                  Actualizar
+                </Button>
+              </ModalFooter>
             </>
           )}
         </ModalContent>

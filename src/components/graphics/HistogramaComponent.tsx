@@ -1,18 +1,6 @@
-import { createChart, ColorType, IChartApi, ISeriesApi, HistogramData } from 'lightweight-charts';
+import { createChart, ColorType, IChartApi, ISeriesApi, Time, HistogramData } from 'lightweight-charts';
 import React, { useEffect, useRef } from 'react';
-
-interface HistogramChartComponentProps {
-    data: HistogramData[];
-    chartOptions?: {
-        layout?: {
-            textColor?: string;
-            background?: { type: ColorType; color: string };
-        };
-    };
-    seriesOptions?: {
-        color?: string;
-    };
-}
+import { HistogramChartComponentProps } from '../../services/interfaces';
 
 export const HistogramChartComponent: React.FC<HistogramChartComponentProps> = ({
     data,
@@ -39,8 +27,13 @@ export const HistogramChartComponent: React.FC<HistogramChartComponentProps> = (
                 height: 300,
             });
 
+            const formattedData: HistogramData<Time>[] = data.map(item => ({
+                time: item.time as Time,
+                value: typeof item.value === 'string' ? parseFloat(item.value) : item.value, // Convertir a número si es necesario
+            }));
+
             histogramSeriesRef.current = chartRef.current.addHistogramSeries(seriesOptions);
-            histogramSeriesRef.current.setData(data);
+            histogramSeriesRef.current.setData(formattedData);
 
             chartRef.current.timeScale().fitContent();
 

@@ -1,4 +1,0 @@
-[
-  { "path": "/Mis-Estaciones", "component": "EstacionesUser", "icon": "RiSeedlingLine", "description": "Mis Estaciones" },
-  { "path": "/Sensor/Grafica", "component": "PageGraficasSensores", "icon": "RiSensorLine", "description": "Gráfica de Sensores" }
-]

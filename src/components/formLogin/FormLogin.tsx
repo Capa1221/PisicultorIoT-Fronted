@@ -1,26 +1,22 @@
-import { useState, FormEvent, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import logoSistema from '../../assets/54705961_transparente.png';
-import heroImage from '../../assets/AgricultorIoT.jpeg';
-import { postLogin } from '../../services/auth-controller';
-import { handleInputChange } from '../../utils/utils';
-import { LoginUser } from '../../services/interfaces';
-import { Link } from '@nextui-org/react';
-import { decodeToken } from '../../utils/utilsToken';
+import { useState, FormEvent, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import logoSistema from "../../assets/PISCICULTOR IOT-02.png"
+import heroImage from "../../assets/Piscicultura IoT con.png";
+import { postLogin } from "../../services/auth-controller";
+import { decodeToken, handleInputChange } from "../../utils/utils";
+import { LoginUser } from "../../services/interfaces";
+import { Button, Link } from "@nextui-org/react";
+import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 
 export const FormLogin = () => {
   const navigate = useNavigate();
-
-  // Estado para los datos de inicio de sesión
-  const [authUser, setAuthUser] = useState<LoginUser>({
-    usuario: '',
-    clave: '',
-  });
-
-  // Estado para recordar sesión
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [authUser, setAuthUser] = useState<LoginUser>({
+    usuario: "",
+    clave: "",
+  });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  // Función para manejar el envío del formulario
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -29,119 +25,123 @@ export const FormLogin = () => {
 
       if (response.status === 200) {
         const token = response.headers.authorization;
-        sessionStorage.setItem('authToken', token);
+        sessionStorage.setItem("authToken", token);
 
-        // Guardar en localStorage si el usuario ha seleccionado Recordarme
         if (rememberMe) {
-          localStorage.setItem('rememberedUser', JSON.stringify(authUser));
+          localStorage.setItem("rememberedUser", JSON.stringify(authUser));
         } else {
-          localStorage.removeItem('rememberedUser');
+          localStorage.removeItem("rememberedUser");
         }
 
-        // Decodificar el token para verificar si es admin
-        const decodedToken = decodeToken(token);
-        const isAdmin = decodedToken && decodedToken.sub === 'root';
+        if (decodeToken(sessionStorage.getItem("authToken")!).sub === "ROOT") {
+          console.log("Si eestoy en el ROOT");
 
-        // Redireccionar según el rol
-        navigate(isAdmin ? '/dashboard/Home' : '/dashboard/Mis-Estaciones');
+          navigate("/Dashboard/Home");
+        } else {
+          console.log("Si esta ingresando");
+          navigate("/Dashboard/Mis-Estaciones");
+        }
       }
     } catch (err) {
-      console.error('Error en la solicitud', err);
+      console.error("Error en la solicitud", err);
     }
   };
 
-  // Cargar los datos de inicio de sesión recordados al iniciar el componente
   useEffect(() => {
-    const rememberedUser = localStorage.getItem('rememberedUser');
+    const rememberedUser = localStorage.getItem("rememberedUser");
     if (rememberedUser) {
       setAuthUser(JSON.parse(rememberedUser));
       setRememberMe(true);
     }
   }, []);
 
-  // Función para cambiar el estado de Recordarme
   const toggleRememberMe = () => {
     setRememberMe(!rememberMe);
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen ">
-      <div className="flex flex-col items-center justify-center bg-gray-100 rounded-tl-lg rounded-bl-lg p-4">
-        <div>
-          <img src={logoSistema} className='lg:w-[20rem] w-[15rem]' alt="Logo Sistema" />
-        </div>
-        <div className="flex flex-col items-center gap-8 mb-4">
-          <h1 className="text-4xl font-bold text-gray-900">Bienvenido</h1>
-        </div>
-        
-        <div className="w-full mb-8">
-          <form onSubmit={handleSubmit}>
-            <div className="flex justify-center mb-4">
-              <input
-                type="text"
-                name="usuario"
-                className="w-full max-w-md py-2 px-4 rounded-lg outline-none"
-                placeholder="Usuario"
-                value={authUser.usuario}
-                onChange={(e)=>handleInputChange(e, setAuthUser, authUser)}
-              />
-            </div>
-            <div className="flex justify-center mb-6">
-              <input
-                type="password"
-                name="clave"
-                className="w-full max-w-md py-2 px-4 rounded-lg outline-none"
-                placeholder="Password"
-                value={authUser.clave}
-                onChange={(e)=>handleInputChange(e, setAuthUser, authUser)}
-              />
-            </div>
-            <div className="w-full max-w-md mx-auto flex items-center justify-between text-gray-500 mb-8">
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="remember"
-                  checked={rememberMe}
-                  onChange={toggleRememberMe}
-                />
-                <label htmlFor="remember">Recordarme</label>
-              </div>
-              <div>
-                <Link
-                  href="/Olvidar-Clave"
-                  className="transition-all"
-                >
-                  ¿Olvidaste tu password?
-                </Link>
-              </div>
-            </div>
-            <div className="w-full max-w-md mx-auto">
-              <button
-                type="submit"
-                className="w-full bg-gray-200 py-2 px-4 rounded-lg text-gray-900 hover:bg-gray-300 transition-colors"
-              >
-                Iniciar sesión
-              </button>
-            </div>
-          </form>
-        </div>
-        <div>
-          <span className="text-gray-500">
-            ¿No tienes cuenta?{" "}
-            <a
-              href="/"
-              className="text-gray-900 hover:underline transition-all"
+    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-gray-50">
+      {/* Left Side */}
+      <div className="flex flex-col items-center justify-center bg-gray-100 p-8 lg:rounded-tl-lg lg:rounded-bl-lg">
+        <img
+          src={logoSistema}
+          className="lg:w-[20rem] w-[15rem] mb-6"
+          alt="Logo del Sistema"
+        />
+        <h1 className="text-4xl font-bold text-gray-900 mb-6">
+          Bienvenido
+        </h1>
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-md bg-white p-6 rounded-lg shadow-md"
+        >
+          {/* Username Input */}
+          <div className="mb-4">
+            <input
+              type="text"
+              name="usuario"
+              className="w-full py-2 px-4 rounded-lg outline-none border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary"
+              placeholder="Usuario"
+              value={authUser.usuario}
+              onChange={(e) => handleInputChange(e, setAuthUser, authUser)}
+            />
+          </div>
+          {/* Password Input */}
+          <div className="mb-6 relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="clave"
+              className="w-full py-2 px-4 rounded-lg outline-none border border-gray-300 pr-12 focus:ring-2 focus:ring-primary focus:border-primary"
+              placeholder="ContraseÃ±a"
+              value={authUser.clave}
+              onChange={(e) => handleInputChange(e, setAuthUser, authUser)}
+            />
+            <button
+              type="button"
+              className="absolute right-2 top-2/4 transform -translate-y-2/4 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowPassword(!showPassword)}
             >
-              Regresar
-            </a>
-          </span>
-        </div>
+              {showPassword ? <RiEyeOffFill size={20} /> : <RiEyeFill size={20} />}
+            </button>
+          </div>
+          {/* Remember Me and Forgot Password */}
+          <div className="flex items-center justify-between mb-6">
+            <label className="flex items-center gap-2 text-gray-500">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={toggleRememberMe}
+              />
+              Recordarme
+            </label>
+            <Link
+              href="/Olvidar-Clave"
+              className="text-blue-500 hover:underline"
+            >
+              Â¿Olvidaste tu contraseÃ±a?
+            </Link>
+          </div>
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            className="w-full py-2 px-4 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition"
+          >
+            Iniciar sesiÃ³n
+          </Button>
+        </form>
+        <p className="mt-6 text-gray-500">
+          Â¿No tienes cuenta?{" "}
+          <a href="/" className="text-blue-500 hover:underline">
+            Regresar
+          </a>
+        </p>
       </div>
-      <div className="hidden lg:flex justify-center ">
+      {/* Right Side */}
+      <div className="hidden lg:flex items-center justify-center ">
         <img
           src={heroImage}
           className="object-cover rounded-lg h-screen"
-          alt="Hero"
+          alt="Imagen hero"
         />
       </div>
     </div>

@@ -19,7 +19,7 @@ export const ModalUserAdd = () => {
 
   const handleCrearUsuario = async () => {
     try {
-      const response = await postRegister(userAdd,token);
+      const response = await postRegister(userAdd, token);
       console.log(response);
       if (response.status === 200) {
         onClose();
@@ -32,12 +32,12 @@ export const ModalUserAdd = () => {
 
   return (
     <>
-      <Button onPress={onOpen} color="primary" className="mb-2" startContent={<GrFormAdd />}>Añadir Usuario</Button>
+      <Button onPress={onOpen} color="primary" className="mb-2" startContent={<GrFormAdd />}>AÃ±adir Usuario</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-center">Añadir Usuario</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center">AÃ±adir Usuario al Sistema</ModalHeader>
               <ModalBody className="space-y-1">
                 <div className="flex space-x-1">
                   <Input
@@ -45,7 +45,7 @@ export const ModalUserAdd = () => {
                     type="text"
                     name="usuario"
                     value={userAdd.usuario}
-                    onChange={(e)=>handleInputChange(e,setUserAdd,userAdd)}
+                    onChange={(e) => handleInputChange(e, setUserAdd, userAdd)}
                     label="Usuario"
                     startContent={<BiUser className="text-2xl" />}
                   />
@@ -54,7 +54,7 @@ export const ModalUserAdd = () => {
                     type="text"
                     name="nombres"
                     value={userAdd.nombres}
-                    onChange={(e)=>handleInputChange(e,setUserAdd,userAdd)}
+                    onChange={(e) => handleInputChange(e, setUserAdd, userAdd)}
                     label="Nombre"
                     startContent={<BiUser className="text-2xl" />}
                   />
@@ -64,7 +64,7 @@ export const ModalUserAdd = () => {
                   type="email"
                   name="email"
                   value={userAdd.email}
-                    onChange={(e)=>handleInputChange(e,setUserAdd,userAdd)}
+                  onChange={(e) => handleInputChange(e, setUserAdd, userAdd)}
                   label="Email"
                   startContent={<BiEnvelope className="text-2xl" />}
                 />
@@ -73,7 +73,7 @@ export const ModalUserAdd = () => {
                   type="password"
                   name="clave"
                   value={userAdd.clave}
-                  onChange={(e)=>handleInputChange(e,setUserAdd,userAdd)}
+                  onChange={(e) => handleInputChange(e, setUserAdd, userAdd)}
                   label="Clave"
                   startContent={<BiLock className="text-2xl" />}
                 />

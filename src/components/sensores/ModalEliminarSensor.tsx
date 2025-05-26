@@ -12,7 +12,7 @@ export const ModalEliminarSensor = ({ id }: { id: string }) => {
         const response = await borrarSensor(id, token);
         if (response.status == 200) {
           onClose();
-          window.location.reload;
+          window.location.reload();
         } else {
           console.error("error handleEliminarSensor");
         }
@@ -26,14 +26,14 @@ export const ModalEliminarSensor = ({ id }: { id: string }) => {
 
   return (
     <>
-      <Button color="danger" variant="bordered" startContent={<BsTrash className="text-2xl" />} onPress={onOpen}></Button>
+      <Button color="danger" variant="light" startContent={<BsTrash className="text-2xl" />} onPress={onOpen}></Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Eliminar Sensor</ModalHeader>
               <ModalBody>
-                <p className="text-center">¿Estas seguro de eliminar el sensor?</p>
+                <p className="text-center">Â¿Estas seguro de eliminar el sensor?</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

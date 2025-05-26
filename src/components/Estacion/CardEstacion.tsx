@@ -28,7 +28,7 @@ export const CardEstacion = (Estacion: EstacionInterface) => {
                         </p>
                     </div>
                     <div>
-                        <p className="w-full text-center font-sans font-semibold uppercase text-warning">Propietario: {Estacion.usuarioEncargado==null?'Tú':Estacion.usuarioEncargado}</p>
+                        <p className="w-full text-center font-sans font-semibold uppercase text-warning">Propietario: {Estacion.usuarioEncargado==null?'TÃº':Estacion.usuarioEncargado}</p>
                     </div>
                     <div className="py-2 flex items-center justify-around">
                         <ModalUsuariosAsociados idEstacion={Estacion.id!} numero_Asociados={Estacion.numero_Asociados!} />

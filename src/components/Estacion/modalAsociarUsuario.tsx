@@ -53,24 +53,20 @@ export const ModalAsociarEstacion = ({ idEstacion }: { idEstacion: string }) => 
                                                 value={user.id!}
                                                 key={user.id!}
                                                 user={{
-                                                    idEstacion:idEstacion,
+                                                    idEstacion: idEstacion,
                                                     id: user.id!,
                                                     name: user.nombres,
                                                     avatar: `https://api.dicebear.com/5.x/thumbs/svg?seed=${user.usuario}`,
                                                     username: user.email,
                                                     url: user.email,
-                                                }}
-                                            />
+                                                }} asociar={false}                                                />
                                         </ScrollShadow>
                                     ))}
                                 </div>
                             </ModalBody>
                             <ModalFooter>
                                 <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button color="primary" onPress={onClose}>
-                                    Action
+                                    Cerrar
                                 </Button>
                             </ModalFooter>
                         </>

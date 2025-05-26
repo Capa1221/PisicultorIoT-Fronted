@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
+import { ChangeEvent, useState } from 'react';
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from '@nextui-org/react';
 import { BiUser, BiEnvelope, BiPhone, BiNote, BiLock } from 'react-icons/bi';
 import { FormularioInterface } from '../../services/interfaces';
-import { handleInputChange } from '../../utils/utilsHandle';
+import { handleInputChange, handleTextareaChange } from '../../utils/utilsHandle';
 import { crearFormulario } from '../../services/Formulario-Sesion';
 import { GrFormEdit } from 'react-icons/gr';
 
 export const ModalNewFormulario = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const [loading,setLoading] = useState<boolean>(false);
   const [formulario, setFormulario] = useState<FormularioInterface>({
     usuario: "",
     nombres: "",
@@ -19,9 +20,12 @@ export const ModalNewFormulario = () => {
 
   const handleGuardarFormulario = async () => {
     try {
+      setLoading(true);
       const response = await crearFormulario(formulario);
       console.log(response);
       if (response.status === 200) {
+        setLoading(false);
+        confirm("Su solicitud ha sido registrada.")
         onClose();
         window.location.reload();
       }
@@ -59,7 +63,7 @@ export const ModalNewFormulario = () => {
                   <Input
                     type="text"
                     name="nombres"
-                    label="Nombres Completos"
+                    label="Nombre"
                     isRequired
                     value={formulario.nombres}
                     onChange={(e) => handleInputChange(e, setFormulario, formulario)}
@@ -69,7 +73,7 @@ export const ModalNewFormulario = () => {
                 <Input
                   type="email"
                   name="email"
-                  label="Correo Electrónico"
+                  label="Correo ElectrÃ³nico"
                   isRequired
                   value={formulario.email}
                   onChange={(e) => handleInputChange(e, setFormulario, formulario)}
@@ -78,19 +82,18 @@ export const ModalNewFormulario = () => {
                 <Input
                   type="text"
                   name="telefono"
-                  label="Número de Teléfono"
+                  label="NÃºmero de TelÃ©fono"
                   isRequired
                   value={formulario.telefono}
                   onChange={(e) => handleInputChange(e, setFormulario, formulario)}
                   startContent={<BiPhone className="text-2xl" />}
                 />
-                <Input
-                  type="text"
+                <Textarea
                   name="observacion"
-                  label="Observaciones"
+                  label="Â¿Por quÃ© deseas participar?"
                   isRequired
                   value={formulario.observacion}
-                  onChange={(e) => handleInputChange(e, setFormulario, formulario)}
+                  onValueChange={(value: string) => handleTextareaChange(value, setFormulario)}
                   startContent={<BiNote className="text-2xl" />}
                 />
                 <Input
@@ -107,7 +110,7 @@ export const ModalNewFormulario = () => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Cerrar
                 </Button>
-                <Button color="primary" onPress={handleGuardarFormulario}>
+                <Button color="primary" onPress={handleGuardarFormulario} isLoading={loading}>
                   Guardar
                 </Button>
               </ModalFooter>

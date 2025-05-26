@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TipoCultivoInterface } from "../../services/interfaces";
 import { guardarTipoCultivo } from "../../services/Tipo-Cultivo";
 import { handleInputChange } from "../../utils/utils";
-import { BiNote, BiUser } from "react-icons/bi";
+import { BiNote, BiRename } from "react-icons/bi";
 
 export const PropsModalAgregar = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -37,7 +37,7 @@ export const PropsModalAgregar = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Agregar Propiedad</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center">Agregar Propiedad</ModalHeader>
               <ModalBody>
               <Input
                   type="text"
@@ -46,7 +46,7 @@ export const PropsModalAgregar = () => {
                   isRequired
                   value={tipoCultivo.nombre}
                   onChange={(e) => handleInputChange(e, setTipoCultivo, tipoCultivo)}
-                  startContent={<BiUser className="text-2xl" />}
+                  startContent={<BiRename className="text-2xl" />}
                 />
                 <Input
                   type="text"

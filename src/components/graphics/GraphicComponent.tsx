@@ -1,15 +1,10 @@
 import { createChart, ColorType, ISeriesApi, IChartApi, MouseEventParams, Time, AreaData, WhitespaceData } from 'lightweight-charts';
 import React, { useEffect, useRef } from 'react';
+import { ChartComponentProps } from '../../services/interfaces';
 
-interface ChartComponentProps {
-    data: { time: string; value: number }[];
-    colors?: {
-        backgroundColor?: string;
-        lineColor?: string;
-        textColor?: string;
-        areaTopColor?: string;
-        areaBottomColor?: string;
-    };
+interface ChartDataItem {
+    time: string | Date | number; // Ajusta según el tipo de dato que necesites manejar para el tiempo
+    value: number | string | boolean | Date; // Ajusta según los tipos de datos que necesites manejar para el valor
 }
 
 export const GraphicComponent: React.FC<ChartComponentProps> = (props) => {
@@ -31,49 +26,73 @@ export const GraphicComponent: React.FC<ChartComponentProps> = (props) => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (chartContainerRef.current) {
-                chartRef.current?.applyOptions({ width: chartContainerRef.current.clientWidth });
+            if (chartContainerRef.current && chartRef.current) {
+                chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth });
             }
         };
 
-        if (chartContainerRef.current) {
-            chartRef.current = createChart(chartContainerRef.current, {
-                layout: {
-                    background: { type: ColorType.Solid, color: backgroundColor },
-                    textColor,
-                },
-                rightPriceScale: {
-                    scaleMargins: {
-                        top: 0.4,
-                        bottom: 0.15,
+        const initializeChart = () => {
+            if (chartContainerRef.current) {
+                const chart = createChart(chartContainerRef.current, {
+                    layout: {
+                        background: { type: ColorType.Solid, color: backgroundColor },
+                        textColor,
                     },
-                },
-                crosshair: {
-                    horzLine: {
-                        visible: false,
-                        labelVisible: false,
+                    rightPriceScale: {
+                        scaleMargins: {
+                            top: 0.4,
+                            bottom: 0.15,
+                        },
                     },
-                },
-                grid: {
-                    vertLines: {
-                        visible: false,
+                    crosshair: {
+                        horzLine: {
+                            visible: false,
+                            labelVisible: false,
+                        },
                     },
-                    horzLines: {
-                        visible: false,
+                    grid: {
+                        vertLines: {
+                            visible: false,
+                        },
+                        horzLines: {
+                            visible: false,
+                        },
                     },
-                },
-                width: chartContainerRef.current.clientWidth,
-                height: 300,
-            });
+                    width: chartContainerRef.current.clientWidth,
+                    height: 300,
+                });
 
-            areaSeriesRef.current = chartRef.current.addAreaSeries({
-                lineColor,
-                topColor: areaTopColor,
-                bottomColor: areaBottomColor,
-                lineWidth: 2,
-                crosshairMarkerVisible: false,
-            });
-            areaSeriesRef.current.setData(data);
+                chart.timeScale().fitContent();
+
+                areaSeriesRef.current = chart.addAreaSeries({
+                    lineColor,
+                    topColor: areaTopColor,
+                    bottomColor: areaBottomColor,
+                    lineWidth: 2,
+                    crosshairMarkerVisible: false,
+                });
+                return chart;
+            }
+            return null;
+        };
+
+        const updateChartData = (chart: IChartApi, newData: ChartDataItem[]) => {
+            const formattedData: (AreaData<Time> | WhitespaceData<Time>)[] = newData.map(item => ({
+                time: item.time as Time, // Asegura que 'time' sea del tipo 'Time'
+                value: typeof item.value === 'string' ? parseFloat(item.value) : item.value as number | boolean | Date, // Convierte a número si es necesario
+            }));
+        
+            if (areaSeriesRef.current) {
+                areaSeriesRef.current.setData(formattedData);
+            }
+        };
+        
+
+        const chart = initializeChart();
+
+        if (chart) {
+            updateChartData(chart, data);
+            chartRef.current = chart;
 
             const legend = document.createElement('div');
             legend.style.position = 'absolute';
@@ -85,7 +104,7 @@ export const GraphicComponent: React.FC<ChartComponentProps> = (props) => {
             legend.style.lineHeight = '18px';
             legend.style.fontWeight = '300';
             legend.style.color = textColor;
-            chartContainerRef.current.appendChild(legend);
+            chartContainerRef.current!.appendChild(legend);
             legendRef.current = legend;
 
             const getLastBar = (series: ISeriesApi<'Area'>) => {
@@ -117,18 +136,18 @@ export const GraphicComponent: React.FC<ChartComponentProps> = (props) => {
                 }
             };
 
-            chartRef.current.subscribeCrosshairMove(updateLegend);
-
-            chartRef.current.timeScale().fitContent();
+            chart.subscribeCrosshairMove(updateLegend);
 
             window.addEventListener('resize', handleResize);
-
-            return () => {
-                window.removeEventListener('resize', handleResize);
-                chartRef.current?.remove();
-                chartRef.current = null;
-            };
         }
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            if (chartRef.current) {
+                chartRef.current.remove();
+                chartRef.current = null;
+            }
+        };
     }, [data, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor]);
 
     return <div ref={chartContainerRef} style={{ position: 'relative', width: '100%', height: 'auto' }} />;

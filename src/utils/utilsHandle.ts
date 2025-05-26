@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import { ImageHandler } from '../services/interfaces';
+import { FormularioInterface, ImageHandler } from '../services/interfaces';
 
 export const handleInputChange = <T>(
   e: ChangeEvent<HTMLInputElement>,
@@ -18,6 +18,17 @@ export const handleSelectChange = <T>(
 ) => {
   setState({ ...state, [key]: value });
 };
+
+export const handleTextareaChange = (
+  value: string,
+  setState: Dispatch<SetStateAction<FormularioInterface>>
+) => {
+  setState((prevState) => ({
+    ...prevState,
+    observacion: value,
+  }));
+};
+
 
 export const useImageHandler = (): ImageHandler => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);

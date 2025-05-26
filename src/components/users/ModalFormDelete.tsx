@@ -34,7 +34,7 @@ export const ModalFormDelete =({id}:{id:string})=> {
                   <ModalHeader className="flex flex-col text-center">Eliminar Formulario</ModalHeader>
                   <ModalBody>
                   <p className='text-medium '>
-                    ¿Seguro que deseas eliminar el Formulario?
+                    Â¿Seguro que deseas eliminar el Formulario?
                   </p>
                   </ModalBody>
                   <ModalFooter>
@@ -42,7 +42,7 @@ export const ModalFormDelete =({id}:{id:string})=> {
                       Cerrar
                     </Button>
                     <Button color="primary" onPress={handleDeleteUser}>
-                      Guardar
+                      Eliminar
                     </Button>
                   </ModalFooter>
               </ModalBody>

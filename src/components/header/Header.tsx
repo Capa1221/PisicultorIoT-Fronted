@@ -1,53 +1,75 @@
 import React from "react";
-import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem, Link, Button, } from "@nextui-org/react";
-import imagenSistema from "../../assets/54705961_transparen.png";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
+import imagenSistema from "../../assets/PISCICULTOR IOT_Mesa de trabajo 1.png";
+import imagenFondo from "../../assets/PISCICULTOR IOT-03.png";
 
 export const Header = () => {
   const menuItems = [
-    { name: "Tecnolog韆s", href: "#tecnologias" },
-    { name: "Caracter韘ticas", href: "#caracteristicas" },
+    { name: "Tecnolog铆as", href: "#tecnologias" },
+    { name: "Caracter铆sticas", href: "#caracteristicas" },
     { name: "Desarrolladores", href: "#desarrolladores" },
     { name: "Formulario de Solicitud", href: "#formulario-de-solicitud" },
-    { name: "Iniciar Sesi髇", href: "/iniciar-sesion" },
+    { name: "Iniciar Sesi贸n", href: "/iniciar-sesion" },
   ];
 
-  const handleScroll = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
-    event.preventDefault();
-    const targetSection = document.querySelector(href);
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth" });
+  const handleScroll = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    href: string
+  ) => {
+    if (href.startsWith("#")) {
+      event.preventDefault();
+      const targetSection = document.querySelector(href);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
   return (
-    <Navbar disableAnimation isBordered className="bg-primary text-white p-4">
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle />
+    <Navbar
+      isBordered
+      disableAnimation
+      className="custom-navbar text-white px-6 py-4 shadow-md relative"
+      style={{
+        backgroundImage: `url(${imagenFondo})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Mobile toggle */}
+      <NavbarContent className="sm:hidden z-10" justify="start">
+        <NavbarMenuToggle aria-label="Abrir men煤" />
       </NavbarContent>
-      <NavbarContent className="sm:hidden pr-3" justify="center">
+
+      {/* Logo para mobile */}
+      <NavbarContent className="sm:hidden pr-3 z-10" justify="center">
         <NavbarBrand>
-          <img
-            src={imagenSistema}
-            alt="Logo del sistema"
-            className="h-[10rem] w-auto"
-          />
+          <img src={imagenSistema} alt="Logo" className="h-16 w-auto" />
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+
+      {/* Logo y enlaces para pantallas grandes */}
+      <NavbarContent className="hidden sm:flex gap-6 z-10" justify="center">
         <NavbarBrand>
-          <img
-            src={imagenSistema}
-            alt="Logo del sistema"
-            className="h-[10rem] w-auto"
-          />
+          <img src={imagenSistema} alt="Logo" className="h-20 w-auto" />
         </NavbarBrand>
         {menuItems.slice(0, -1).map((item, index) => (
           <NavbarItem key={index}>
             <Link
               href={item.href}
-              aria-current="page"
-              className="text-white text-xl hover:underline hover:text-gray-300"
-              onClick={(event) => handleScroll(event, item.href)}
+              onClick={(e) => handleScroll(e, item.href)}
+              className="text-white text-base font-medium hover:text-gray-200 transition-colors"
             >
               {item.name}
             </Link>
@@ -55,44 +77,33 @@ export const Header = () => {
         ))}
       </NavbarContent>
 
-      <NavbarContent justify="end" className="hidden lg:flex sm:flex">
+      {/* Bot贸n para iniciar sesi贸n */}
+      <NavbarContent justify="end" className="hidden sm:flex z-10">
         <NavbarItem>
           <Button
             as={Link}
-            color="success"
-            href={menuItems[menuItems.length - 1].href}
+            href={menuItems.at(-1)?.href}
             variant="bordered"
-            className="bg-primary text-white border-opacity-hover"
+            className="text-white border-white hover:bg-white hover:text-primary transition-colors"
           >
-            {menuItems[menuItems.length - 1].name}
+            {menuItems.at(-1)?.name}
           </Button>
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu>
-        {menuItems.slice(0, -1).map((item, index) => (
-          <NavbarMenuItem key={`${item.name}-${index}`}>
+      {/* Men煤 para m贸viles */}
+      <NavbarMenu className="z-10">
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={index}>
             <Link
-              className="w-full"
-              color="foreground"
               href={item.href}
-              size="lg"
-              onClick={(event) => handleScroll(event, item.href)}
+              onClick={(e) => handleScroll(e, item.href)}
+              className="w-full text-lg font-medium text-primary hover:text-primary/70 transition-colors"
             >
               {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem key={`${menuItems[menuItems.length - 1].name}`}>
-          <Link
-            className="w-full"
-            color="foreground"
-            href={menuItems[menuItems.length - 1].href}
-            size="lg"
-          >
-            {menuItems[menuItems.length - 1].name}
-          </Link>
-        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

@@ -1,6 +1,6 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { BiEdit, BiNote, BiUser } from "react-icons/bi";
+import { BiEdit, BiNote, BiRename } from "react-icons/bi";
 import { actualizarTipoCultivo, obtenerTipoCultivoPorId } from "../../services/Tipo-Cultivo";
 import { TipoCultivoInterface } from "../../services/interfaces";
 import { handleInputChange } from "../../utils/utils";
@@ -57,7 +57,7 @@ export const PropsModalEditar = ({ id }: { id: string }) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Editar Propiedad</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center">Editar Propiedad</ModalHeader>
               <ModalBody className="space-y-4">
                 <Input
                   type="text"
@@ -66,7 +66,7 @@ export const PropsModalEditar = ({ id }: { id: string }) => {
                   isRequired
                   value={tipoCultivo.nombre}
                   onChange={(e) => handleInputChange(e, setTipoCultivo, tipoCultivo)}
-                  startContent={<BiUser className="text-2xl" />}
+                  startContent={<BiRename className="text-2xl" />}
                 />
                 <Input
                   type="text"

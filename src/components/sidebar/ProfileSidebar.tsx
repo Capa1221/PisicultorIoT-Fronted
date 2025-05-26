@@ -1,5 +1,5 @@
 import React from 'react'; // Assuming you're using React
-import imageUser from '../../assets/RegisterAgricultor.jpeg';
+import imageUser from '../../assets/ProfileSidebar.jpeg';
 
 interface ProfileSidebarProps {
   email: string;
@@ -16,7 +16,7 @@ export const ProfileSidebar: React.FC<ProfileSidebarProps> = ({ email }) => {
           alt="Profile"
         />
         <h1 className="text-xl text-black font-bold">{email}</h1>
-        <p className="bg-primary-100 py-2 px-4 rounded-full text-black">
+        <p className="bg-primary-100 py-2 px-4 rounded-full text-black font-semibold">
           {email === 'ROOT' ? 'Administrador' : 'Usuario'}
         </p>
       </div>

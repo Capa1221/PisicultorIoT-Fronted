@@ -1,11 +1,12 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Textarea, Input } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Textarea, Input, Select, SelectItem } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { BiImage, BiPencil, BiRename } from "react-icons/bi";
 import { EstacionInterface } from "../../services/interfaces";
 import { actualizarEstacion, buscarEstacionPorId } from "../../services/Estaciones";
-import { handleInputChange, useImageHandler } from "../../utils/utilsHandle";
+import { handleInputChange, handleSelectChange, useImageHandler } from "../../utils/utilsHandle";
 import { SelectTipoEstacion } from "./SelectTipoEstacion";
 import { FaCity, FaMapPin } from "react-icons/fa";
+import { GrConfigure } from "react-icons/gr";
 
 export const ModalEditar = ({ id }: { id: string }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -17,6 +18,7 @@ export const ModalEditar = ({ id }: { id: string }) => {
     const fetchEstacion = async () => {
       try {
         if (token) {
+          sessionStorage.removeItem("imageBase64");
           const response = await buscarEstacionPorId(id, token);
           if (response.status == 200) {
             setEstacion(response.data);
@@ -35,26 +37,30 @@ export const ModalEditar = ({ id }: { id: string }) => {
 
   const handleEditarEstacion = async () => {
     if (!estacion) {
-      console.error("Estación no definida");
+      console.error("EstaciÃ³n no definida");
       return;
     }
     try {
       const tipoCultivo = sessionStorage.getItem("tipoId");
-      const imageEstacion = sessionStorage.getItem("imageBase64")!;
-      if (tipoCultivo != null && imageEstacion != null) {
-        estacion.idTipoCultivo = tipoCultivo;
-        estacion.imagen = imageEstacion;
-        estacion.estado = "1";
-        const response = await actualizarEstacion(estacion, token);
-        if (response.status === 200) {
-          onClose();
-          window.location.reload();
-        }
-      } else {
-        alert("Error al tratar de crear la estación");
+      const imageEstacion = sessionStorage.getItem("imageBase64");
+
+      if (tipoCultivo!.length != 4) {
+        estacion.idTipoCultivo = tipoCultivo!;
       }
+
+      if (imageEstacion!.length != 4) {
+        alert("Entra");
+        estacion.imagen = imageEstacion!;
+      }
+
+      const response = await actualizarEstacion(estacion, token);
+      if (response.status === 200) {
+        onClose();
+        window.location.reload();
+      } else { alert("Error al tratar de crear la estaciÃ³n"); }
+
     } catch (error) {
-      console.error("Error al crear la estación", error);
+      console.error("Error al crear la estaciÃ³n", error);
     }
   };
 
@@ -71,13 +77,14 @@ export const ModalEditar = ({ id }: { id: string }) => {
                 <input
                   type="file"
                   name="image"
+                  src={estacion?.imagen}
                   className={`border ${!isImageValid ? 'border-red-600' : 'border-gray-300'} px-3 py-2 rounded-lg focus:outline-none focus:border-blue-500`}
                   onChange={handleImageChange}
                 />
                 {!isImageValid && (
                   <div className="flex items-center">
                     <BiImage className="text-2xl text-red-600" />
-                    <p className="text-sm text-red-600 ml-2">Por favor, seleccione un archivo de imagen válido (JPEG, PNG, GIF)</p>
+                    <p className="text-sm text-red-600 ml-2">Por favor, seleccione un archivo de imagen vÃ¡lido (JPEG, PNG, GIF)</p>
                   </div>
                 )}
                 {imagePreview && (
@@ -93,7 +100,7 @@ export const ModalEditar = ({ id }: { id: string }) => {
               </div>
             </div>
             <Input
-              label="Nombre del Cultivo"
+              label="Nombre de la Estacion"
               name="nombre"
               isRequired
               value={estacion?.nombre}
@@ -121,6 +128,24 @@ export const ModalEditar = ({ id }: { id: string }) => {
                 startContent={<FaMapPin className="text-2xl" />}
               />
             </div>
+            <Select
+              isRequired
+              label="Estado"
+              placeholder="Seleccione el estao de la estacion."
+              defaultSelectedKeys={estacion?.estado}
+              startContent={<GrConfigure />}
+              onChange={(e) => {
+                const selectedValue = e.target.value;
+                handleSelectChange('estado', selectedValue, setEstacion, estacion);
+              }}
+            >
+              <SelectItem key={"1"}>
+                Activo
+              </SelectItem>
+              <SelectItem key={"0"}>
+                Inactivo
+              </SelectItem>
+            </Select>
             <Textarea
               label="Detalles"
               name="detalles"
@@ -135,7 +160,7 @@ export const ModalEditar = ({ id }: { id: string }) => {
               Cerrar
             </Button>
             <Button color="primary" onPress={handleEditarEstacion}>
-              Guardar
+              Actualizar
             </Button>
           </ModalFooter>
         </ModalContent>

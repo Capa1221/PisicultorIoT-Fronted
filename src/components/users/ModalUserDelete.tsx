@@ -31,10 +31,10 @@ export const ModalUserDelete =({id}:{id:string})=> {
           {(onClose) => (
             <>
               <ModalBody>
-                  <ModalHeader className="flex flex-col text-center">Editar Usuario</ModalHeader>
+                  <ModalHeader className="flex flex-col text-center">Eliminar Usuario</ModalHeader>
                   <ModalBody>
                   <p className='text-medium '>
-                    ¿Seguro que deseas el eliminar Usuario?
+                    Â¿Seguro que deseas el eliminar Usuario?
                   </p>
                   </ModalBody>
                   <ModalFooter>
@@ -42,7 +42,7 @@ export const ModalUserDelete =({id}:{id:string})=> {
                       Cerrar
                     </Button>
                     <Button color="primary" onPress={handleDeleteUser}>
-                      Guardar
+                      Eliminar
                     </Button>
                   </ModalFooter>
               </ModalBody>

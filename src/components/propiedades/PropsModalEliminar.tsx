@@ -29,10 +29,10 @@ export const PropsModalEliminar = ({ id }: { id: string }) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Eliminar Tipo de Cultivo</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center">Eliminar Tipo de Estacion</ModalHeader>
               <ModalBody>
                 <p>
-                  ¿Estás seguro de eliminar el Tipo de Cultivo?
+                  Â¿EstÃ¡s seguro de eliminar el Tipo de Estacion?
                 </p>
               </ModalBody>
               <ModalFooter>

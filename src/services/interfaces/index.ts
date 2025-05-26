@@ -1,4 +1,10 @@
+import { ColorType, HistogramData } from "lightweight-charts";
 import { ReactNode } from "react";
+
+export interface ProtectedRoutesProps {
+  children?: ReactNode;
+  redirectTo?: string;
+}
 
 export interface EstacionInterface {
   id?: string;
@@ -13,16 +19,12 @@ export interface EstacionInterface {
   usuarioEncargado?: string;
   descripcionTipoCultivo?: string;
   numero_Asociados?: string;
+  sensorTuyaId?: string;
 }
 
-export interface ForgotPasswordInterface{
-  message?:string;
-  user?:string;
-}
-
-export interface PrivateRouteProps {
-  children: ReactNode;
-  allowedRoles?: string[];
+export interface ForgotPasswordInterface {
+  message?: string;
+  user?: string;
 }
 
 export interface IErrorFallbackProps {
@@ -33,11 +35,12 @@ export interface IErrorFallbackProps {
 
 export interface SensorInterface {
   id?: string;
-  idHibernadero: string;
+  idEstacion: string;
   nombre: string;
   descripcion: string;
   config: boolean;
   ubicacion?: string;
+  idTuya?: string;
 }
 
 export interface UserInterface {
@@ -49,15 +52,15 @@ export interface UserInterface {
 }
 
 export interface RegisterUser {
-  usuario: string,
-  nombres: string,
-  email: string,
-  clave: string
+  usuario: string;
+  nombres: string;
+  email: string;
+  clave: string;
 }
 
 export interface LoginUser {
-  usuario: string,
-  clave: string
+  usuario: string;
+  clave: string;
 }
 
 export interface UserEstacionInterface {
@@ -75,7 +78,7 @@ export interface FormularioInterface {
   telefono: string;
   observacion: string;
   clave: string;
-};
+}
 
 export interface TipoCultivoInterface {
   id?: string;
@@ -102,9 +105,58 @@ export interface User {
 export interface CustomCheckboxProps {
   user: User;
   value: string;
+  asociar: boolean;
 }
 
 export interface DropdownUserAsociados {
   user?: UserEstacionInterface;
   numeros_asociados: string;
+}
+
+export interface DatosSensor {
+  idSensor: string;
+  valor: string;
+  fecha: string;
+}
+
+export interface SensorData {
+  time: string;
+  value: number; // Asegúrate de que value sea de tipo number
+}
+
+export interface ChartComponentProps {
+  data: SensorData[];
+  colors?: {
+    backgroundColor?: string;
+    lineColor?: string;
+    textColor?: string;
+    areaTopColor?: string;
+    areaBottomColor?: string;
+  };
+}
+
+export interface HistogramChartComponentProps {
+  data: HistogramData[];
+  chartOptions?: {
+    layout?: {
+      textColor?: string;
+      background?: { type: ColorType; color: string };
+    };
+  };
+  seriesOptions?: {
+    color?: string;
+  };
+}
+export interface TuyaSensorData {
+  fecha(fecha: any): string;
+  deviceName: string;
+  id: string;
+  nombre: string;
+  ph: number | null;
+  orp: number | null;
+  ec: number | null;
+  tds: number | null;
+  salinidad: number | null;
+  temperatura: number | null;
+  timestamp: string;
 }

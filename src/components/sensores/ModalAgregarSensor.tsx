@@ -11,16 +11,17 @@ export const ModalAgregarSensor = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const token = sessionStorage.getItem("authToken")!;
   const [sensor, setSensor] = useState<SensorInterface>({
-    idHibernadero: "",
+    idEstacion: "",
     nombre: "",
     descripcion: "",
-    config: false,
+    config: true,
   });
 
   const handleCrearSensor = async () => {
     try {
+
       if (token) {
-        sensor.idHibernadero = sessionStorage.getItem("idAso")!;
+        sensor.idEstacion = sessionStorage.getItem("idAso")!;
         const response = await crearSensor(sensor, token);
         if (response.status === 200) {
           onClose();
@@ -28,8 +29,9 @@ export const ModalAgregarSensor = () => {
           sessionStorage.removeItem("idAso");
         }
       } else {
-        console.error("Token inválido");
+        console.error("Token invÃ¡lido");
       }
+
     } catch (error) {
       console.error("Error al crear el sensor", error);
     }
@@ -41,7 +43,7 @@ export const ModalAgregarSensor = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalContent>
           <>
-            <ModalHeader className="flex flex-col gap-1">Agregar Sensor</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1 text-center">Agregar Sensor</ModalHeader>
             <ModalBody>
               <Input
                 type="text"
@@ -55,14 +57,14 @@ export const ModalAgregarSensor = () => {
               <Input
                 type="text"
                 name="descripcion"
-                label="Descripción"
+                label="DescripciÃ³n"
                 isRequired
                 value={sensor.descripcion}
                 onChange={(e) => handleInputChange(e, setSensor, sensor)}
                 startContent={<BiNote className="text-2xl" />}
               />
               <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                <SelectEstacion/>
+                <SelectEstacion />
               </div>
             </ModalBody>
             <ModalFooter>
@@ -70,7 +72,7 @@ export const ModalAgregarSensor = () => {
                 Cancelar
               </Button>
               <Button color="primary" onClick={handleCrearSensor}>
-                Guardar
+                Agregar
               </Button>
             </ModalFooter>
           </>
