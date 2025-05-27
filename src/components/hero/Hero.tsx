@@ -52,20 +52,14 @@ export const Hero = () => {
               <RiCheckboxBlankCircleFill className="text-white text-sm absolute -left-4 -bottom-4 p-2 bg-primary rounded-full shadow" />
             </span>
           </h1>
-<<<<<<< Updated upstream
 
           <p className="text-gray-600 text-xl xl:text-2xl leading-relaxed">
             Optimice su producción piscícola con tecnología IoT adaptada a sus
             necesidades. Facilitamos el monitoreo de sus estanques con soluciones
             inteligentes y precisas para una acuicultura más eficiente.
-=======
-          <p className="text-gray-500 text-2xl leading-[2.5rem]">
-            Optimice su produccion agrícola con la tecnología IOT adaptada a sus objetivos, lo que facilita la comprensión de la agricultura.
->>>>>>> Stashed changes
           </p>
 
           <div className="flex flex-col md:flex-row items-center gap-4">
-<<<<<<< Updated upstream
             <Button
               color="primary"
               className="w-full md:w-auto px-8 py-6 text-lg font-semibold bg-primary text-white rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
@@ -73,10 +67,6 @@ export const Hero = () => {
               aria-label="Desplazar al formulario de solicitud"
             >
               ¿Estás ansioso por unirte?
-=======
-            <Button color="primary" className="w-full xl:w-auto bg-primary text-white p-6 rounded-xl text-xl">
-              ¿Estas ansioso por unirte?
->>>>>>> Stashed changes
             </Button>
           </div>
         </div>
@@ -95,22 +85,24 @@ export const Hero = () => {
         </div>
 
         {/* Imágenes decorativas secundarias */}
-        <SecondaryImage
-          src={imageSecundaria}
-          alt="Sensores instalados en estanques y terrenos recolectando información para piscicultura y agricultura"
-          positionClasses="absolute top-6 right-6"
-        />
-        <SecondaryImage
-          src={imageTerciaria}
-          alt="Mapas de cultivo mostrando el crecimiento de plantas o peces con datos en tiempo real"
-          positionClasses="absolute top-6 left-6"
-        />
-        <SecondaryImage
-          src={imageCuarta}
-          alt="Vista aérea de cultivo"
-          positionClasses="absolute bottom-6 left-1/4"
-          rotate
-        />
+        <>
+          <SecondaryImage
+            src={imageSecundaria}
+            alt="Sensores instalados en estanques y terrenos recolectando información para piscicultura y agricultura"
+            positionClasses="absolute top-6 right-6"
+          />
+          <SecondaryImage
+            src={imageTerciaria}
+            alt="Mapas de cultivo mostrando el crecimiento de plantas o peces con datos en tiempo real"
+            positionClasses="absolute top-6 left-6"
+          />
+          <SecondaryImage
+            src={imageCuarta}
+            alt="Vista aérea de cultivo"
+            positionClasses="absolute bottom-6 left-1/4"
+            rotate
+          />
+        </>
       </div>
     </section>
   );

@@ -16,13 +16,8 @@ import { motion } from "framer-motion";
 
 export const Header = () => {
   const menuItems = [
-<<<<<<< Updated upstream
     { name: "Tecnologías", href: "#tecnologias" },
     { name: "Características", href: "#caracteristicas" },
-=======
-    { name: "Tecnologias", href: "#tecnologias" },
-    { name: "Caracteristicas", href: "#caracteristicas" },
->>>>>>> Stashed changes
     { name: "Desarrolladores", href: "#desarrolladores" },
     { name: "Formulario de Solicitud", href: "#formulario-de-solicitud" },
     { name: "Iniciar Sesión", href: "/iniciar-sesion" },
