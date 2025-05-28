@@ -1,6 +1,5 @@
-// src/components/TemperatureChart.tsx
 import React, { useEffect, useRef } from "react";
-import { createChart, ISeriesApi, Time } from "lightweight-charts";
+import { createChart, ISeriesApi, Time, LineStyle } from "lightweight-charts";
 import type { TuyaSensorData } from "../../services/interfaces";
 
 interface Props {
@@ -11,39 +10,78 @@ const TemperatureChart: React.FC<Props> = ({ data }) => {
   const container = useRef<HTMLDivElement>(null);
   const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
   const seriesRef = useRef<ISeriesApi<"Line"> | null>(null);
+  const resizeObserver = useRef<ResizeObserver | null>(null);
 
   useEffect(() => {
     if (!container.current) return;
-    chartRef.current = createChart(container.current, {
-      width: container.current.clientWidth,
-      height: 300,
-      layout: { background: { color: "#fff" }, textColor: "#000" },
-      grid: { vertLines: { visible: false }, horzLines: { color: "#eee" } },
-      timeScale: { timeVisible: true },
-    });
-    seriesRef.current = chartRef.current.addLineSeries();
 
-    return () => chartRef.current?.remove();
+    const chart = createChart(container.current, {
+      width: container.current.clientWidth,
+      height: 320,
+      layout: {
+        background: { color: "#ffffff" },
+        textColor: "#333",
+      },
+      grid: {
+        vertLines: { color: "#eee" },
+        horzLines: { color: "#eee" },
+      },
+      crosshair: {
+        mode: 1,
+      },
+      timeScale: {
+        timeVisible: true,
+        secondsVisible: true,
+      },
+    });
+
+    chartRef.current = chart;
+
+    const lineSeries = chart.addLineSeries({
+      color: "#007bff",
+      lineWidth: 2,
+      lineStyle: LineStyle.Solid,
+      crosshairMarkerVisible: true,
+      priceLineVisible: false,
+      pointMarkersVisible: false,
+    });
+
+    seriesRef.current = lineSeries;
+
+    resizeObserver.current = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        const { width } = entry.contentRect;
+        chart.resize(width, 320);
+      }
+    });
+
+    resizeObserver.current.observe(container.current);
+
+    return () => {
+      chart.remove();
+      resizeObserver.current?.disconnect();
+    };
   }, []);
 
   useEffect(() => {
     if (!seriesRef.current || !data.length) return;
 
-    // ✅ Ordenar por fecha ascendente
-    const sortedData = [...data].sort(
+    const sorted = [...data].sort(
       (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
     );
 
-    const chartData = sortedData.map(record => ({
-      time: Math.floor(new Date(record.timestamp).getTime() / 1000) as Time,
-      value: record.temperatura ?? 0,
-    }));
+    const chartData = sorted
+      .filter(r => r.temperatura !== null) // omitir nulos (mejor que usarlos como 0)
+      .map(r => ({
+        time: Math.floor(new Date(r.timestamp).getTime() / 1000) as Time,
+        value: r.temperatura as number,
+      }));
 
     seriesRef.current.setData(chartData);
     chartRef.current?.timeScale().fitContent();
   }, [data]);
 
-  return <div ref={container} style={{ width: "100%" }} />;
+  return <div ref={container} className="w-full h-[320px]" />;
 };
 
 export default TemperatureChart;
