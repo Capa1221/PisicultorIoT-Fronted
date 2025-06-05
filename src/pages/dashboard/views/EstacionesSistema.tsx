@@ -4,36 +4,47 @@ import { CardEstacion, CommentSection, HeaderDashboard } from "../../../componen
 import { buscarTodaslasEstaciones } from "../../../services/Estaciones";
 
 const EstacionesSistemaComponent = () => {
-  const token = sessionStorage.getItem("authToken")!;
-  const [estaciones, setEstaciones] = useState<EstacionInterface[]>();
+  const token = sessionStorage.getItem("authToken");
+  const [estaciones, setEstaciones] = useState<EstacionInterface[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchEstaciones = async () => {
+      if (!token) {
+        console.error("Token no disponible");
+        return;
+      }
+
       try {
-        if (token) {
-          const responseEstaciones = await buscarTodaslasEstaciones(token);
-          setEstaciones(responseEstaciones.data);
+        const response = await buscarTodaslasEstaciones(token);
+        if (response.status === 200) {
+          setEstaciones(response.data);
         } else {
-          console.error("Token is null");
+          console.error("Error al obtener estaciones:", response);
         }
       } catch (error) {
-        console.error("Failed to fetch Estaciones:", error);
+        console.error("Error al obtener estaciones:", error);
       }
     };
-    fetchData();
-  }, [token]);
+
+    fetchEstaciones();
+  }, []);
 
   return (
     <>
-      <HeaderDashboard mensaje="Estaciones Sistema" />
-      <CommentSection mensaje="Esta sección es responsable de supervisar las relaciones entre los usuarios y los invernaderos. Permite a los usuarios observar los sensores vinculados a cada invernadero y los datos en tiempo real que recopilan." />
-      <div className="mt-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {estaciones ? estaciones.map((estacion) => (
-          <CardEstacion key={estacion.id} {...estacion} />
-        )) : <p></p>}
+      <HeaderDashboard mensaje="Estaciones del Sistema" />
+      <CommentSection mensaje="Esta sección supervisa las relaciones entre usuarios e invernaderos. Permite observar sensores vinculados y los datos en tiempo real que estos recopilan." />
+
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {estaciones.length > 0 ? (
+          estaciones.map((estacion) => (
+            <CardEstacion key={estacion.id} {...estacion} />
+          ))
+        ) : (
+          <p className="text-center col-span-full text-gray-500">No hay estaciones registradas.</p>
+        )}
       </div>
     </>
   );
 };
 
-export default EstacionesSistemaComponent
+export default EstacionesSistemaComponent;

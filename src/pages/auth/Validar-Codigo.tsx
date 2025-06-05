@@ -1,7 +1,7 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import logoSistema from '../../assets/54705961_transparente.png';
-import heroImage from '../../assets/AgricultorIoT.jpeg';
+import logoSistema from '../../assets/PISCICULTOR IOT-02.png';
+import heroImage from '../../assets/PISCICULTOR IOT-02.png';
 import { handleInputChange } from '../../utils/utils';
 import { BiUser, BiLockAlt } from 'react-icons/bi';
 import { validarCodigo } from '../../services/validacion-controller';
