@@ -1,23 +1,32 @@
-import React, { useEffect, useRef } from "react";
-import { createChart, ISeriesApi, Time, LineStyle } from "lightweight-charts";
-import type { TuyaSensorData } from "../../services/interfaces";
+import React, { useLayoutEffect, useEffect, useRef } from "react";
+import {
+  createChart,
+  ISeriesApi,
+  LineStyle,
+  Time,
+} from "lightweight-charts";
+import type { TuyaSensorData } from "@/services/interfaces";
 
 interface Props {
   data: TuyaSensorData[];
+  /** Altura fija del canvas (px) */
+  height?: number;
 }
 
-const TemperatureChart: React.FC<Props> = ({ data }) => {
-  const container = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<ReturnType<typeof createChart> | null>(null);
-  const seriesRef = useRef<ISeriesApi<"Line"> | null>(null);
-  const resizeObserver = useRef<ResizeObserver | null>(null);
+const TemperatureChart: React.FC<Props> = ({ data, height = 320 }) => {
+  /* ───────────────────────── Refs ───────────────────────── */
+  const containerRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<ReturnType<typeof createChart>>();
+  const seriesRef = useRef<ISeriesApi<"Line">>();
+  const seenEpochs = useRef<Set<number>>(new Set());
 
-  useEffect(() => {
-    if (!container.current) return;
+  /* ────────────────── Crear gráfico una sola vez ────────── */
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
 
-    const chart = createChart(container.current, {
-      width: container.current.clientWidth,
-      height: 320,
+    chartRef.current = createChart(containerRef.current, {
+      width: containerRef.current.clientWidth || 400,
+      height,
       layout: {
         background: { color: "#ffffff" },
         textColor: "#333",
@@ -26,62 +35,68 @@ const TemperatureChart: React.FC<Props> = ({ data }) => {
         vertLines: { color: "#eee" },
         horzLines: { color: "#eee" },
       },
-      crosshair: {
-        mode: 1,
-      },
-      timeScale: {
-        timeVisible: true,
-        secondsVisible: true,
-      },
+      crosshair: { mode: 1 },
+      timeScale: { timeVisible: true, secondsVisible: true },
     });
 
-    chartRef.current = chart;
-
-    const lineSeries = chart.addLineSeries({
+    seriesRef.current = chartRef.current.addLineSeries({
       color: "#007bff",
       lineWidth: 2,
       lineStyle: LineStyle.Solid,
       crosshairMarkerVisible: true,
       priceLineVisible: false,
-      pointMarkersVisible: false,
     });
 
-    seriesRef.current = lineSeries;
-
-    resizeObserver.current = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        const { width } = entry.contentRect;
-        chart.resize(width, 320);
-      }
+    /* Responsivo */
+    const ro = new ResizeObserver(([entry]) => {
+      chartRef.current?.resize(entry.contentRect.width, height);
     });
-
-    resizeObserver.current.observe(container.current);
+    ro.observe(containerRef.current);
 
     return () => {
-      chart.remove();
-      resizeObserver.current?.disconnect();
+      ro.disconnect();
+      chartRef.current?.remove();
     };
-  }, []);
+  }, [height]);
 
+  /* ──────────────────── Alimentar los datos ─────────────── */
   useEffect(() => {
-    if (!seriesRef.current || !data.length) return;
+    if (!seriesRef.current || data.length === 0) return;
 
-    const sorted = [...data].sort(
-      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    );
+    /* Convertir, deduplicar e ignorar nulos */
+    const newPoints = data
+      .filter(r => r.temperatura !== null)
+      .map(r => {
+        const epoch = Math.floor(new Date(r.timestamp).getTime() / 1000);
+        return { epoch, value: r.temperatura as number };
+      })
+      .filter(p => !seenEpochs.current.has(p.epoch)) // sólo los nuevos
+      .sort((a, b) => a.epoch - b.epoch);
 
-    const chartData = sorted
-      .filter(r => r.temperatura !== null) // omitir nulos (mejor que usarlos como 0)
-      .map(r => ({
-        time: Math.floor(new Date(r.timestamp).getTime() / 1000) as Time,
-        value: r.temperatura as number,
-      }));
+    if (!newPoints.length) return;
 
-    seriesRef.current.setData(chartData);
-    chartRef.current?.timeScale().fitContent();
+    /* Marcar como vistos */
+    newPoints.forEach(p => seenEpochs.current.add(p.epoch));
+
+    /* Primera carga → setData | subsecuentes → update() */
+    if (seenEpochs.current.size === newPoints.length) {
+      // primer lote
+      seriesRef.current.setData(
+        newPoints.map(p => ({ time: p.epoch as Time, value: p.value }))
+      );
+    } else {
+      newPoints.forEach(p =>
+        seriesRef.current!.update({ time: p.epoch as Time, value: p.value })
+      );
+    }
+
+    /* Mantener la vista pegada al tiempo real */
+    chartRef.current?.timeScale().scrollToRealTime();
   }, [data]);
 
-  return <div ref={container} className="w-full h-[320px]" />;
+  return (
+    <div ref={containerRef} className="w-full" style={{ height }} />
+  );
 };
 
 export default TemperatureChart;

@@ -1,11 +1,13 @@
-import { createChart, ColorType, ISeriesApi, IChartApi } from 'lightweight-charts';
+import {
+    createChart,
+    ColorType,
+    ISeriesApi,
+    IChartApi,
+    Time,
+    AreaData,
+} from 'lightweight-charts';
 import React, { useEffect, useRef } from 'react';
 import { ChartComponentProps } from '../../services/interfaces';
-
-interface ChartDataItem {
-    time: string;
-    value: number | string;
-}
 
 export const ChartComponent: React.FC<ChartComponentProps> = ({
     data,
@@ -18,14 +20,14 @@ export const ChartComponent: React.FC<ChartComponentProps> = ({
     } = {},
 }) => {
     const chartContainerRef = useRef<HTMLDivElement>(null);
-    const chartRef = useRef<IChartApi>();
-    const seriesRef = useRef<ISeriesApi<'Area'>>();
+    const chartRef = useRef<IChartApi | null>(null);
+    const seriesRef = useRef<ISeriesApi<'Area'> | null>(null);
 
     useEffect(() => {
         const chartContainer = chartContainerRef.current;
         if (!chartContainer) return;
 
-        const chart = createChart(chartContainer, {
+        chartRef.current = createChart(chartContainer, {
             layout: {
                 background: { type: ColorType.Solid, color: backgroundColor },
                 textColor,
@@ -34,26 +36,23 @@ export const ChartComponent: React.FC<ChartComponentProps> = ({
             height: 300,
         });
 
-        const areaSeries = chart.addAreaSeries({
+        seriesRef.current = chartRef.current.addAreaSeries({
             lineColor,
             topColor: areaTopColor,
             bottomColor: areaBottomColor,
         });
 
-        seriesRef.current = areaSeries;
-        chartRef.current = chart;
-
-        chart.timeScale().fitContent();
-
-        const formattedData = data.map(item => ({
-            time: item.time,
+        // Convertimos los datos al formato correcto
+        const formattedData: AreaData<Time>[] = data.map((item) => ({
+            time: item.time as Time,
             value: typeof item.value === 'string' ? parseFloat(item.value) : item.value,
         }));
 
-        areaSeries.setData(formattedData);
+        seriesRef.current.setData(formattedData);
+        chartRef.current.timeScale().fitContent();
 
         const handleResize = () => {
-            if (chartRef.current && chartContainer) {
+            if (chartContainer && chartRef.current) {
                 chartRef.current.resize(chartContainer.clientWidth, 300);
             }
         };
@@ -62,7 +61,8 @@ export const ChartComponent: React.FC<ChartComponentProps> = ({
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            chart.remove();
+            chartRef.current?.remove();
+            chartRef.current = null;
         };
     }, [data, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor]);
 
@@ -70,6 +70,7 @@ export const ChartComponent: React.FC<ChartComponentProps> = ({
         <div
             ref={chartContainerRef}
             style={{
+                position: 'relative',
                 width: '100%',
                 height: '300px',
             }}

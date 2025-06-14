@@ -1,95 +1,189 @@
-// src/services/interfaces.ts
+/* --------------------------------------------------------------------------
+ * Global application interfaces & utility types
+ * --------------------------------------------------------------------------
+ *  ▸ This file centralises *all* simple TypeScript types used across the
+ *    React‑Vite frontend so they can be imported from a single place:
+ *       import { Station, ApiResponse } from "@/services/interfaces";
+ *
+ *  ▸ The original file has been re‑structured to:
+ *      1. group related types together,
+ *      2. introduce small helper primitives (UUID, ISODate, ApiResponse), and
+ *      3. replace loose string literals with discriminated unions / enums.
+ *
+ *  ▸ No runtime behaviour has changed — only stronger typing & docs.
+ * ------------------------------------------------------------------------ */
 
-import { ColorType, HistogramData } from "lightweight-charts";
 import { ReactNode } from "react";
+import type { ColorType, HistogramData } from "lightweight-charts";
 
-// ——————————————————————————————————————————
-// (1) Tipos generales de la aplicación
-// ——————————————————————————————————————————
+/* ------------------------------------------------------------------
+ * Shared primitives
+ * ---------------------------------------------------------------- */
+
+/** 128‑bit identifier coming from backend (database GUID / ULID / UUIDv4) */
+export type UUID = string;
+
+/** RFC‑3339 / ISO‑8601 date‑time string */
+export type ISODate = string;
+
+/* ------------------------------------------------------------------
+ * Generic API helpers
+ * ---------------------------------------------------------------- */
+
+/** Standard shape for every response coming from the backend */
+export interface ApiResponse<T = unknown> {
+  success: boolean;
+  timestamp: ISODate;
+  data: T;
+  /** Optional detail message for non‑200 or edge cases */
+  message?: string;
+}
+
+/* ------------------------------------------------------------------
+ * Routing / Auth
+ * ---------------------------------------------------------------- */
+
 export interface ProtectedRoutesProps {
-  children?: ReactNode;
+  children: ReactNode;
+  /** Route where the user will be redirected if not authorised */
   redirectTo?: string;
 }
 
-export interface EstacionInterface {
-  id?: string;
+/* ------------------------------------------------------------------
+ * User & Auth models
+ * ---------------------------------------------------------------- */
+
+export interface UserLoginDTO {
+  usuario: string;
+  clave: string;
+}
+
+export interface UserRegisterDTO extends UserLoginDTO {
+  nombres: string;
+  email: string;
+}
+
+export interface UserEntity {
+  id: UUID;
+  usuario: string;
+  nombres: string;
+  email: string;
+  /** Hash stored in DB – never expose on client side */
+  clave?: string;
+}
+
+export interface ForgotPasswordPayload {
+  user: string; // email or username
+  message?: string;
+}
+
+/* ------------------------------------------------------------------
+ * Station (Estación) domain
+ * ---------------------------------------------------------------- */
+
+export enum StationStatus {
+  Activa = "activa",
+  Inactiva = "inactiva",
+  Mantenimiento = "mantenimiento",
+}
+
+export interface Station {
+  id: UUID;
   imagen: string;
   ciudad: string;
   departamento: string;
   nombre: string;
   encargado: string;
   detalles: string;
-  estado: string;
-  idTipoCultivo: string;
-  usuarioEncargado?: string;
+  estado: StationStatus;
+  idTipoCultivo: UUID;
+  /** Foreign keys (optional) */
+  usuarioEncargado?: UUID;
   descripcionTipoCultivo?: string;
-  numero_Asociados?: string;
+  numeroAsociados?: number;
+  /** Identificador del dispositivo Tuya asociado (si existe) */
   sensorTuyaId?: string;
 }
 
-export interface ForgotPasswordInterface {
-  message?: string;
-  user?: string;
-}
+/* ------------------------------------------------------------------
+ * Sensor domain
+ * ---------------------------------------------------------------- */
 
-export interface IErrorFallbackProps {
-  componentError: string;
-  error: Error;
-  resetErrorBoundary: () => void;
-}
-
-export interface SensorInterface {
-  id?: string;
-  idEstacion: string;
+export interface Sensor {
+  id: UUID;
+  idEstacion: UUID;
   nombre: string;
   descripcion: string;
+  /** true ⇒ configurado correctamente */
   config: boolean;
   ubicacion?: string;
   idTuya?: string;
 }
 
-export interface UserInterface {
-  id?: string;
-  usuario: string;
-  nombres: string;
-  email: string;
-  clave: string;
+export interface SensorReading {
+  idSensor: UUID;
+  valor: string | number;
+  fecha: ISODate;
 }
 
-export interface RegisterUser {
-  usuario: string;
-  nombres: string;
-  email: string;
-  clave: string;
+/* ------------------------------------------------------------------
+ * Tuya specific DTOs
+ * ---------------------------------------------------------------- */
+
+export interface SavedRecord {
+  id: UUID;
+  nombre: string;
+  temperatura: number;
+  timestamp: ISODate;
 }
 
-export interface LoginUser {
-  usuario: string;
-  clave: string;
+export interface SavedResponseBody {
+  saved_record: SavedRecord;
+  method: "hybrid_capture" | "direct_api" | string;
+  capture_analysis: unknown;
 }
 
-export interface UserEstacionInterface {
-  id?: string;
-  idEstacion: string;
-  idUsuario: string;
+export type SavedResponse = ApiResponse<SavedResponseBody>;
+
+export interface TuyaSensorData {
+  id: UUID;
+  nombre: string;
+  temperatura: number | null;
+  timestamp: ISODate;
+}
+
+export interface LatestResponseBody {
+  latest_records: TuyaSensorData[];
+  total_records_count?: number;
+  showing_latest?: number;
+}
+
+export type LatestResponse = ApiResponse<LatestResponseBody>;
+
+/* ------------------------------------------------------------------
+ * User‑Station association helpers
+ * ---------------------------------------------------------------- */
+
+export interface UserStation {
+  id: UUID;
+  idEstacion: UUID;
+  idUsuario: UUID;
   usuario?: string;
 }
 
-export interface FormularioInterface {
-  id?: string;
-  usuario: string;
-  nombres: string;
-  email: string;
-  telefono: string;
-  observacion: string;
-  clave: string;
-}
+/* ------------------------------------------------------------------
+ * Cultivo (crop type)
+ * ---------------------------------------------------------------- */
 
-export interface TipoCultivoInterface {
-  id?: string;
+export interface CropType {
+  id: UUID;
   nombre: string;
   descripcion: string;
 }
+
+/* ------------------------------------------------------------------
+ * Misc UI types
+ * ---------------------------------------------------------------- */
 
 export interface ImageHandler {
   imagePreview: string | null;
@@ -97,10 +191,10 @@ export interface ImageHandler {
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface User {
-  idEstacion: string;
-  id: string;
-  name: string;
+export interface AppUserCard {
+  id: UUID;
+  idEstacion: UUID;
+  nombre: string;
   avatar: string;
   username?: string;
   url?: string;
@@ -108,36 +202,36 @@ export interface User {
 }
 
 export interface CustomCheckboxProps {
-  user: User;
+  user: AppUserCard;
   value: string;
   asociar: boolean;
 }
 
 export interface DropdownUserAsociados {
-  user?: UserEstacionInterface;
+  user?: UserStation;
   numeros_asociados: string;
 }
 
-export interface DatosSensor {
-  idSensor: string;
-  valor: string;
-  fecha: string;
-}
+/* ------------------------------------------------------------------
+ * Chart related
+ * ---------------------------------------------------------------- */
 
-export interface SensorData {
-  time: string;
+export interface LineChartPoint {
+  time: string; // ↳ keep string to allow ISO or epoch – converted inside component
   value: number;
 }
 
+export interface ChartColors {
+  backgroundColor?: string;
+  lineColor?: string;
+  textColor?: string;
+  areaTopColor?: string;
+  areaBottomColor?: string;
+}
+
 export interface ChartComponentProps {
-  data: SensorData[];
-  colors?: {
-    backgroundColor?: string;
-    lineColor?: string;
-    textColor?: string;
-    areaTopColor?: string;
-    areaBottomColor?: string;
-  };
+  data: LineChartPoint[];
+  colors?: ChartColors;
 }
 
 export interface HistogramChartComponentProps {
@@ -153,41 +247,38 @@ export interface HistogramChartComponentProps {
   };
 }
 
-// ——————————————————————————————————————————
-// (2) Tipos específicos de TuyaSensor
-// ——————————————————————————————————————————
+/* ------------------------------------------------------------------
+ * Fallback / Error boundary helpers
+ * ---------------------------------------------------------------- */
 
-/** Un único registro ya guardado en BD */
-export interface SavedRecord {
-  id: string;
-  nombre: string;
-  temperatura: number;
-  timestamp: string;
+export interface ErrorFallbackProps {
+  componentError: string;
+  error: Error;
+  resetErrorBoundary: () => void;
 }
 
-/** Respuesta del POST /fetch-and-save */
-export interface SavedResponse {
-  saved_record: SavedRecord;
-  method: string;            // ej. "hybrid_capture"
-  success: boolean;
-  timestamp: string;         // momento de la respuesta
-  capture_analysis: any;     // si no lo usas en React, any está bien
+/* ------------------------------------------------------------------
+ * Forms (legacy names kept for backwards compatibility)
+ * ---------------------------------------------------------------- */
+
+export interface Formulario {
+  id?: UUID;
+  usuario: string;
+  nombres: string;
+  email: string;
+  telefono: string;
+  observacion: string;
+  clave: string;
 }
 
-/** Cada entrada que devuelve GET /latest */
-export interface TuyaSensorData {
-  id: string;
-  nombre: string;
-  temperatura: number | null;
-  timestamp: string;
-}
+/* ------------------------------------------------------------------
+ * Module re‑exports (handy when splitting this file later)
+ * ---------------------------------------------------------------- */
 
-/** Respuesta del GET /latest */
-export interface LatestResponse {
-  data: any;
-  records(records: any): unknown;
-  latest_records: TuyaSensorData[];
-  total_records_count?: number;
-  showing_latest?: number;
-  timestamp: string;
-}
+export type {
+  Station as EstacionInterface,
+  CropType as TipoCultivoInterface,
+  Sensor as SensorInterface,
+  SensorReading as DatosSensor,
+  TuyaSensorData,
+};

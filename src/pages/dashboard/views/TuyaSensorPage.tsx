@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TemperatureChart from "../../../components/Tuya/TemparatureChart";
 import TuyaSensorTable from "../../../components/Tuya/TuyaSensorTable";
 import useLatestTuyaData from "../../../hooks/useLatestTuyaData";
+import type { TuyaSensorData } from "../../../services/interfaces";
+
+const STORAGE_KEY = "tuya_sensor_records";
 
 const TuyaSensorPage: React.FC = () => {
   const { data, loading, error } = useLatestTuyaData();
+  const [mergedData, setMergedData] = useState<TuyaSensorData[]>([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const oldData: TuyaSensorData[] = stored ? JSON.parse(stored) : [];
+
+    const map = new Map<string, TuyaSensorData>();
+
+    // Agrega anteriores
+    oldData.forEach(r => map.set(r.id, r));
+
+    // Agrega nuevos
+    if (data) {
+      data.forEach(r => map.set(r.id, r));
+    }
+
+    const combined = Array.from(map.values()).sort(
+      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
+
+    setMergedData(combined);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(combined));
+  }, [data]);
 
   if (loading) {
     return (
@@ -31,13 +57,13 @@ const TuyaSensorPage: React.FC = () => {
       <section className="mb-10 bg-white shadow rounded-xl p-6">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">Gráfica de Temperatura</h2>
         <div className="overflow-hidden rounded-lg border border-gray-200">
-          <TemperatureChart data={data} />
+          <TemperatureChart data={mergedData} />
         </div>
       </section>
 
       <section className="bg-white shadow rounded-xl p-6">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">📋 Últimos Registros</h2>
-        <TuyaSensorTable records={data} />
+        <TuyaSensorTable records={mergedData} />
       </section>
     </div>
   );

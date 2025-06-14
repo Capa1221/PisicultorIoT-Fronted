@@ -1,142 +1,205 @@
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Checkbox,
+  Input,
+  Link,
+  Spinner,
+} from "@nextui-org/react";
+import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import { useState, useEffect, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import logoSistema from "../../assets/PISCICULTOR IOT-02.png";
-import heroImage from "../../assets/Piscicultura IoT con.png";
+import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+
+import logo from "@/assets/PISCICULTOR IOT-02.png";
 import { postLogin } from "../../services/auth-controller";
 import { decodeToken, handleInputChange } from "../../utils/utils";
-import { LoginUser } from "../../services/interfaces";
-import { Button, Link } from "@nextui-org/react";
-import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
-import toast from "react-hot-toast";
+import type { LoginUser } from "../../services/interfaces";
 
 export const FormLogin = () => {
   const navigate = useNavigate();
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [authUser, setAuthUser] = useState<LoginUser>({
-    usuario: "",
-    clave: "",
-  });
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!authUser.usuario || !authUser.clave) {
-      toast.error("Por favor completa todos los campos.");
-      return;
-    }
-
-    try {
-      const response = await postLogin(authUser);
-
-      if (response.status === 200) {
-        const token = response.headers.authorization;
-        sessionStorage.setItem("authToken", token);
-
-        rememberMe
-          ? localStorage.setItem("rememberedUser", JSON.stringify(authUser))
-          : localStorage.removeItem("rememberedUser");
-
-        const userRole = decodeToken(token)?.sub;
-        toast.success("Inicio de sesión exitoso");
-
-        setTimeout(() => {
-          navigate(
-            userRole === "ROOT"
-              ? "/Dashboard/Home"
-              : "/Dashboard/Mis-Estaciones"
-          );
-        }, 1000);
-      }
-    } catch (err) {
-      toast.error("Usuario o contraseña incorrecta.");
-      console.error("Error en el login", err);
-    }
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [authUser, setAuthUser] = useState<LoginUser>({ usuario: "", clave: "" });
+  const [errors, setErrors] = useState({ usuario: false, clave: false });
 
   useEffect(() => {
     const remembered = localStorage.getItem("rememberedUser");
     if (remembered) {
-      setAuthUser(JSON.parse(remembered));
+      const { usuario } = JSON.parse(remembered);
+      setAuthUser((prev: any) => ({ ...prev, usuario }));
       setRememberMe(true);
     }
   }, []);
 
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isLoading) return;
+
+    const hasErrors = {
+      usuario: !authUser.usuario.trim(),
+      clave: !authUser.clave.trim(),
+    };
+
+    if (hasErrors.usuario || hasErrors.clave) {
+      toast.error("Por favor completa todos los campos.");
+      setErrors(hasErrors);
+      return;
+    }
+
+    setErrors({ usuario: false, clave: false });
+    setIsLoading(true);
+
+    try {
+      const res = await postLogin(authUser);
+
+      if (res.status === 200) {
+        const token = res.headers.authorization;
+        sessionStorage.setItem("authToken", token);
+
+        if (rememberMe) {
+          localStorage.setItem("rememberedUser", JSON.stringify({ usuario: authUser.usuario }));
+        } else {
+          localStorage.removeItem("rememberedUser");
+        }
+
+        toast.success("Inicio de sesión exitoso");
+
+        const payload = decodeToken(token);
+        const role = payload?.role || payload?.sub;
+        const route = role === "ROOT" ? "/Dashboard/Home" : "/Dashboard/Mis-Estaciones";
+
+        setTimeout(() => {
+          navigate(route);
+        }, 800);
+      }
+    } catch (error) {
+      console.error("Error de inicio de sesión:", error);
+      toast.error("Usuario o contraseña incorrecta.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-gray-50">
-      {/* Lado Izquierdo */}
-      <div className="flex flex-col items-center justify-center bg-gray-100 p-8">
-        <img src={logoSistema} alt="Logo del Sistema" className="w-[15rem] lg:w-[20rem] mb-6" />
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">Bienvenido</h1>
-
-        <form
-          onSubmit={handleSubmit}
-          className="w-full max-w-md bg-white p-6 rounded-xl shadow-md space-y-4"
-        >
-          {/* Usuario */}
-          <input
-            type="text"
-            name="usuario"
-            autoFocus
-            aria-label="Usuario"
-            className="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
-            placeholder="Usuario"
-            value={authUser.usuario}
-            onChange={(e) => handleInputChange(e, setAuthUser, authUser)}
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+      {/* Panel izquierdo */}
+      <div className="relative hidden lg:flex flex-col justify-center bg-gradient-to-br from-blue-600 to--400 text-white p-12">
+        <div className="z-10">
+          <img
+            src={logo}
+            alt="Logo de Piscicultor IoT"
+            title="Piscicultor IoT"
+            className="w-100 lg:w-65 mb-8 drop-shadow-xl transition-transform duration-300 hover:scale-105"
           />
-
-          {/* Contraseña */}
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="clave"
-              aria-label="Contraseña"
-              className="w-full py-2 px-4 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Contraseña"
-              value={authUser.clave}
-              onChange={(e) => handleInputChange(e, setAuthUser, authUser)}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-            >
-              {showPassword ? <RiEyeOffFill size={20} /> : <RiEyeFill size={20} />}
-            </button>
-          </div>
-
-          {/* Recordarme */}
-          <div className="flex items-center justify-between text-sm text-gray-600">
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-              />
-              Recordarme
-            </label>
-            <Link href="/Olvidar-Clave" className="text-blue-500 hover:underline">
-              ¿Olvidaste tu contraseña?
-            </Link>
-          </div>
-
-          {/* Botón */}
-          <Button type="submit" className="w-full bg-primary text-white font-bold">
-            Iniciar sesión
-          </Button>
-        </form>
-
-        <p className="mt-6 text-gray-500">
-          ¿No tienes cuenta?{" "}
-          <a href="/" className="text-blue-500 hover:underline">
-            Regresar
-          </a>
-        </p>
+          <p className="text-md max-w-md">
+            Bienvenido al sistema inteligente de monitoreo y gestión para piscicultores. Automatiza, visualiza y controla desde un solo lugar.
+          </p>
+        </div>
+        <svg viewBox="0 0 1440 320" className="absolute bottom-0 left-0 w-full">
+          <path
+            fill="#ffffff"
+            fillOpacity="1"
+            d="M0,288L80,272C160,256,320,224,480,213.3C640,203,800,213,960,218.7C1120,224,1280,224,1360,224L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          ></path>
+        </svg>
       </div>
 
-      {/* Lado Derecho */}
-      <div className="hidden lg:flex items-center justify-center">
-        <img src={heroImage} alt="Imagen hero" className="object-cover rounded-lg h-screen" />
+      {/* Panel derecho (formulario) */}
+      <div className="flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-6">
+        <motion.form
+          onSubmit={handleLogin}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md"
+        >
+          <Card shadow="lg" className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+            <CardHeader className="flex flex-col items-center gap-3 pt-8">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Iniciar sesión</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Accede con tus credenciales</p>
+            </CardHeader>
+
+            <CardBody className="space-y-6 px-6 pt-4">
+              <Input
+                isRequired
+                name="usuario"
+                label="Usuario"
+                variant="flat"
+                radius="lg"
+                value={authUser.usuario}
+                onChange={(e) => handleInputChange(e, setAuthUser, authUser)}
+                placeholder="Ingresa tu usuario"
+                aria-label="Usuario"
+                isInvalid={errors.usuario}
+                errorMessage={errors.usuario && "Campo obligatorio"}
+              />
+
+              <Input
+                isRequired
+                name="clave"
+                label="Contraseña"
+                variant="flat"
+                radius="lg"
+                type={showPassword ? "text" : "password"}
+                value={authUser.clave}
+                onChange={(e) => handleInputChange(e, setAuthUser, authUser)}
+                placeholder="Ingresa tu contraseña"
+                aria-label="Contraseña"
+                isInvalid={errors.clave}
+                errorMessage={errors.clave && "Campo obligatorio"}
+                endContent={
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    className="focus:outline-none"
+                    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  >
+                    {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+                  </button>
+                }
+              />
+
+              <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-300">
+                <Checkbox
+                  isSelected={rememberMe}
+                  onValueChange={setRememberMe}
+                  size="sm"
+                  aria-label="Recordarme"
+                >
+                  Recordarme
+                </Checkbox>
+                <Link href="/Olvidar-Clave" underline="hover" className="text-blue-600 hover:text-blue-800 transition-colors">
+                  ¿Olvidaste tu contraseña?
+                </Link>
+              </div>
+            </CardBody>
+
+            <CardFooter className="flex flex-col gap-4 px-6 pb-8">
+              <Button
+                type="submit"
+                color="primary"
+                fullWidth
+                radius="lg"
+                isDisabled={isLoading}
+                className="font-semibold uppercase tracking-wide hover:bg-blue-300 transition-colors"
+              >
+                {isLoading ? <Spinner size="sm" color="white" /> : "Iniciar sesión"}
+              </Button>
+              <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+                ¿No tienes cuenta?{" "}
+                <Link href="/" underline="hover" className="text-blue-600 hover:text-blue-800 transition-colors">
+                  Regresar
+                </Link>
+              </p>
+            </CardFooter>
+          </Card>
+        </motion.form>
       </div>
     </div>
   );

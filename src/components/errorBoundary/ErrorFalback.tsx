@@ -1,13 +1,13 @@
-import { IErrorFallbackProps } from "../../services/interfaces";
-import imageSistema from '../../assets/54705961_transparent.png';
+import { ErrorFallbackProps } from "../../services/interfaces";
+import imageSistema from '../../assets/PISCICULTOR IOT-02.png';
 
-export const ErrorFallback = ({ componentError, error, resetErrorBoundary }: IErrorFallbackProps) => {
+export const ErrorFallback = ({ componentError, error, resetErrorBoundary }: ErrorFallbackProps) => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="bg-white shadow-2xl rounded-sm border border-gray-200 p-6 sm:p-10 w-full sm:w-3/5 lg:w-2/5">
         <div className="text-center">
           <img src={imageSistema} alt="Sistema" className="mx-auto mb-6 w-24 h-24 sm:w-48 sm:h-48"/>
-          <p className="text-primary text-2xl sm:text-3xl font-bold mb-4">Ocurrió un error</p>
+          <p className="text-primary text-2xl sm:text-3xl font-bold mb-4">Ocurriï¿½ un error</p>
           <p className="text-gray-700 text-base sm:text-lg mb-2">{componentError}</p>
           <p className="text-gray-500 mb-6 text-sm sm:text-base">{error.message}</p>
           <button

@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { TuyaSensorData } from "../../services/interfaces";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import { Download } from "lucide-react"; // Asegúrate de instalar lucide-react
+import { Download } from "lucide-react";
 
 interface Props {
   records: TuyaSensorData[];
 }
 
+const STORAGE_KEY = "tuya_sensor_records";
+
 const TuyaSensorTable: React.FC<Props> = ({ records }) => {
+  const [mergedRecords, setMergedRecords] = useState<TuyaSensorData[]>([]);
+
+  // Combinar nuevos registros con los del localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const previousRecords: TuyaSensorData[] = stored ? JSON.parse(stored) : [];
+
+    const mergedMap = new Map<string, TuyaSensorData>();
+
+    // Agrega antiguos
+    previousRecords.forEach(record => {
+      mergedMap.set(record.id, record);
+    });
+
+    // Agrega nuevos (sobrescribe si hay duplicados)
+    records.forEach(record => {
+      mergedMap.set(record.id, record);
+    });
+
+    const combined = Array.from(mergedMap.values()).sort(
+      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
+
+    setMergedRecords(combined);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(combined));
+  }, [records]);
+
   const downloadExcel = () => {
-    const data = records.map(r => ({
+    const data = mergedRecords.map(r => ({
       Nombre: r.nombre,
       Temperatura: r.temperatura !== null ? `${r.temperatura}°C` : "N/A",
       Fecha: new Date(r.timestamp).toLocaleString(),
@@ -25,7 +54,7 @@ const TuyaSensorTable: React.FC<Props> = ({ records }) => {
     saveAs(blob, "tuya_sensor_data.xlsx");
   };
 
-  if (records.length === 0)
+  if (mergedRecords.length === 0)
     return <p className="text-gray-600 text-center mt-4">No hay registros disponibles.</p>;
 
   return (
@@ -57,7 +86,7 @@ const TuyaSensorTable: React.FC<Props> = ({ records }) => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {records.map(r => (
+            {mergedRecords.map(r => (
               <tr key={r.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">{r.nombre}</td>
                 <td className="px-6 py-4 whitespace-nowrap">

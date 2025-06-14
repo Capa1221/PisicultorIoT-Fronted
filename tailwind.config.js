@@ -15,6 +15,7 @@ export default {
         accent: "#E59866",        // Cobre/dorado suave (distinción)
         background: "#F0EFEB",    // Fondo beige (cómodo a la vista)
         footer: "#2C2C2C",        // Footer oscuro elegante
+        colorT: "93ebe3",
       },
     },
   },
